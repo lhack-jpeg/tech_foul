@@ -14,6 +14,16 @@ app.get('/', (req, res) => {
   res.render('pages/homepage');
 });
 
+// Trying to pull data from db and display it
+/* app.get('/', function (req, res) {
+  db.query('SELECT * FROM /', function (err, result) {
+    if (err) throw err;
+
+    /// res.render() function
+    res.render('pages/homepage', { data: result });
+  });
+}); */
+
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 });
