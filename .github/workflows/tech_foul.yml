@@ -18,8 +18,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.14.0'
-      - run: npm ci
-      - run: npm test
+      - run: |
+            cd tech_foul_app/
+            npm ci
+      - run: |
+            cd tech_foul_app/
+            npm test
       - name: Lint
         uses: github/super-linter@v4
         env:
