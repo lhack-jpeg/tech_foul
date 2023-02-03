@@ -18,6 +18,7 @@ exports.getAllMatches = (req, res, next) => {
         `teams` t1 ON (t1.id = matches.team_one_id)\
     LEFT JOIN\
         `teams` t2 ON (t2.id = matches.team_two_id)',
+        // To send a view you need to use res.render('route/to/view', {data to be sent through})
         function (error, results, fields) {
             if (error) return next(new AppError(error));
             res.render('pages/homepage', { results });
