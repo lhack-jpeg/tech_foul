@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
-const port = 4000;
 const router = require('./routes');
 const AppError = require('./utilities/expressError');
 const errorHandler = require('./utilities/errorHandler');
@@ -25,6 +24,4 @@ app.all('*', (req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(port, () => {
-    console.log(`App is listening on port ${port}`);
-});
+module.exports = app;
