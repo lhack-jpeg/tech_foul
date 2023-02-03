@@ -10,7 +10,7 @@ on:
 
 jobs:
   tech_foul:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Clone and check out repository
         uses: actions/checkout@v3
