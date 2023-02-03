@@ -1,7 +1,7 @@
 const express = require('express');
-const mysqlController = require('../controllers/mySQL');
+const controllers = require('../controllers');
 const router = express.Router();
 
-router.route('/').get(mysqlController);
+router.route('/').get(controllers.getAllMatches);
 
 module.exports = router;
