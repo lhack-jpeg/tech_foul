@@ -23,4 +23,5 @@ exports.getAllMatches = (req, res, next) => {
             res.send({ results });
         }
     );
+    conn.end();
 };
