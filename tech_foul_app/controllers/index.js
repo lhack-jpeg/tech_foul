@@ -20,8 +20,8 @@ exports.getAllMatches = (req, res, next) => {
         `teams` t2 ON (t2.id = matches.team_two_id)',
         function (error, results, fields) {
             if (error) return next(new AppError(error));
-            res.send({ results });
+            res.render('pages/homepage', { results });
+            console.log(results);
         }
     );
-    conn.end();
 };
