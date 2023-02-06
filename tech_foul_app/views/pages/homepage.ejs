@@ -10,16 +10,23 @@
         <main>
             <!-- Attempting to display data from db on html page -->
             <div class="container">
-                <div class="text-center justify-content-center row">
-                    <h4>This will be teams</h4>
+                <div class="row shadow-sm mb-1">
                     <% results.forEach(entry=> { %>
-                    <div class="row text-center justify-content-center">
-                        <img class="team-icons" src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
-                        <%= entry.team_one %> VS
-                        <img class="team-icons" src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
-                        <%= entry.team_two %>
-                        <div class="col">
-                            <td><%= entry.startTime %></td>
+                    <div class="row shadow-lg mb-2">
+                        <div class="col team-icons">
+                            <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
+                        </div>
+                        <div class="col-2 text-center justify-content-left"><%= entry.team_one %></div>
+                        <div class="col-1 text-center justify-content-center"><h2>VS</h2></div>
+                        <div class="col team-icons">
+                            <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
+                        </div>
+                        <div class="col-2 text-center"><%= entry.team_two %></div>
+                        <div class="row align-items-center">
+                            <h6 class="start-time">Start Time:</h6>
+                            <div class="col flex-text">
+                                <td><%= entry.startTime %></td>
+                            </div>
                         </div>
                     </div>
                     <% }); %> <% results.forEach(entry=> { %>
