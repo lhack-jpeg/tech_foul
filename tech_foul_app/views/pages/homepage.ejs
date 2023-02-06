@@ -16,9 +16,9 @@
                         <% results.forEach(entry=> { %>
                         <li>
                             <div class="row text-center justify-content-center">
-                                <img src="<%=entry.team_one_logo%>" alt="<%= entry.team_one %>" />
+                                <img class="team-icons" src="<%=entry.team_one_logo%>" alt="<%= entry.team_one %>" />
                                 <%= entry.team_one %> VS
-                                <img src="<%=entry.team_two_logo%>" alt="<%= entry.team_two %>" />
+                                <img class="team-icons" src="<%=entry.team_two_logo%>" alt="<%= entry.team_two %>" />
                                 <%= entry.team_two %>
                                 <div class="row" style="margin-left: 50px">
                                     <td><%= entry.startTime %></td>
