@@ -34,35 +34,26 @@
             </div>
             <!-- Attempting to display data from db on html page -->
             <div class="container">
-                <div class="row">
-                    <div class="col-6">
+                <div class="text-center justify-content-center row">
+                    <ul>
                         <h4>This will be teams</h4>
-                        <ul>
-                            <% results.forEach(entry=> { %>
-                            <li>
-                                <div>
-                                    <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
-                                    <%= entry.team_one %> VS
-                                    <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
-                                    <%= entry.team_two %> <%= entry.startTime %>
-                                </div>
-                            </li>
-                            <% }); %>
-                        </ul>
                         <% results.forEach(entry=> { %>
-                        <td><%= entry.id %></td>
+                        <li>
+                            <div class="row text-center justify-content-center">
+                                <img src="<%=entry.team_one_logo%>" alt="<%= entry.team_one %>" />
+                                <%= entry.team_one %> VS
+                                <img src="<%=entry.team_two_logo%>" alt="<%= entry.team_two %>" />
+                                <%= entry.team_two %>
+                                <div class="row" style="margin-left: 50px">
+                                    <td><%= entry.startTime %></td>
+                                </div>
+                            </div>
+                        </li>
                         <% }); %>
-                    </div>
-                    <div class="col-6">
-                        <h4>This will be time until live</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
+                    </ul>
+                    <% results.forEach(entry=> { %>
+                    <td><%= entry.id %></td>
+                    <% }); %>
                 </div>
             </div>
         </main>
