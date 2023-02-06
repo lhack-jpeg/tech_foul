@@ -1,5 +1,6 @@
 const conn = require('../services/mysqlDB');
 const AppError = require('../utilities/expressError');
+const moment = require('moment');
 
 exports.getAllMatches = (req, res, next) => {
     conn.query(
@@ -21,6 +22,12 @@ exports.getAllMatches = (req, res, next) => {
         // To send a view you need to use res.render('route/to/view', {data to be sent through})
         function (error, results, fields) {
             if (error) return next(new AppError(error));
+
+            // Convert the `epoch_time` to the start time of the match in `hh:mm:ss` format using moment
+            results.forEach((result) => {
+                result.startTime = moment(result.epoch_time * 1000).format('HH:mm:ss');
+            });
+
             res.render('pages/homepage', { results });
             console.log(results);
         }
