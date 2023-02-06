@@ -11,23 +11,18 @@
             <!-- Attempting to display data from db on html page -->
             <div class="container">
                 <div class="text-center justify-content-center row">
-                    <ul>
-                        <h4>This will be teams</h4>
-                        <% results.forEach(entry=> { %>
-                        <li>
-                            <div class="row text-center justify-content-center">
-                                <img class="team-icons" src="<%=entry.team_one_logo%>" alt="<%= entry.team_one %>" />
-                                <%= entry.team_one %> VS
-                                <img class="team-icons" src="<%=entry.team_two_logo%>" alt="<%= entry.team_two %>" />
-                                <%= entry.team_two %>
-                                <div class="row" style="margin-left: 50px">
-                                    <td><%= entry.startTime %></td>
-                                </div>
-                            </div>
-                        </li>
-                        <% }); %>
-                    </ul>
+                    <h4>This will be teams</h4>
                     <% results.forEach(entry=> { %>
+                    <div class="row text-center justify-content-center">
+                        <img class="team-icons" src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
+                        <%= entry.team_one %> VS
+                        <img class="team-icons" src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
+                        <%= entry.team_two %>
+                        <div class="col">
+                            <td><%= entry.startTime %></td>
+                        </div>
+                    </div>
+                    <% }); %> <% results.forEach(entry=> { %>
                     <td><%= entry.id %></td>
                     <% }); %>
                 </div>
