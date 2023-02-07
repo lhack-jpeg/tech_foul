@@ -13,7 +13,7 @@
                 <div class="row mb-1">
                     <% results.forEach(entry=> { %>
                     <div class="container">
-                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-2">
+                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-2 matchButton">
                             <div class="row align-items-center">
                                 <div class="col team-icons d-flex justify-content-center">
                                     <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
@@ -39,5 +39,16 @@
         </main>
 
         <footer><%- include('../partials/footer'); %></footer>
+        <script>
+            const matchButtons = document.querySelectorAll('.matchButton');
+            matchButtons.forEach(function (button) {
+                button.addEventListener('mousedown', function () {
+                    this.classList.add('clicked');
+                });
+                button.addEventListener('mouseup', function () {
+                    this.classList.remove('clicked');
+                });
+            });
+        </script>
     </body>
 </html>
