@@ -76,7 +76,8 @@ def get_stats(matches_dict):
         first_blood_binary = 0
         for player in match["players"]:
             if player["isRadiant"] == flag:
-                first_blood_binary += player["firstblood_claimed"]
+                if player.get("firstblood_claimed") != None:
+                    first_blood_binary += player["firstblood_claimed"]
         first_bloods.append(first_blood_binary)
     team_dict["avg_match_time"] = sum(match_duration) / 10
     team_dict["avg_score"] = sum(average_score) / 10
@@ -88,7 +89,6 @@ def get_stats(matches_dict):
 
 if __name__ == "__main__":
     matches = list(get_sql_matches())
-    matches = matches[0:2]
     mongoDB = get_mongoDB()
     mongo_matches = mongoDB["matches"]
     for match in matches:
