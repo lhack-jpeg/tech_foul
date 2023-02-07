@@ -7,13 +7,13 @@
     <body class="container">
         <header><%- include('../partials/header'); %></header>
 
-        <main>
+        <main class="main-container">
             <!-- Attempting to display data from db on html page -->
             <div class="container">
                 <div class="row mb-1">
                     <% results.forEach(entry=> { %>
                     <div class="container">
-                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-2 matchButton">
+                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-1 mt-2 matchButton">
                             <div class="row align-items-center">
                                 <div class="col team-icons d-flex justify-content-center">
                                     <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
