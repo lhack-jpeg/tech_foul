@@ -28,10 +28,10 @@ def mysql_connect():
     Returns a connection instance to the MySQL Database
     """
     print(
-        f"mysql+mysqldb://luke:{urllib.parse.quote('4Z8tCNfL79Lr1Sb@K')}@114.76.12.80/dota_stats"
+        f"mysql+mysqldb://{DB.MYSQL_DB_USER}:{urllib.parse.quote(DB.MYSQL_DB_PASS)}@{DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}"
     )
     return create_engine(
-        f"mysql+mysqldb://luke:{urllib.parse.quote('4Z8tCNfL79Lr1Sb@K')}@hackettserver.hopto.org/dota_stats",
+        f"mysql+mysqldb://{DB.MYSQL_DB_USER}:{urllib.parse.quote(DB.MYSQL_DB_PASS)}@{DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}",
         pool_pre_ping=True,
     )
 
