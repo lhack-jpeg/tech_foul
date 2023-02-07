@@ -14,7 +14,7 @@ exports.match_detail = (req, res, next) => {
         return next(err);
       }
       // Successful, so render.
-      results.render('match_detail', {
+      results.render('pages/match_detail', {
         title: 'Match Detail'
         team_one: results.first_team,
         team_two: results.second_team,
