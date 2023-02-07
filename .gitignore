@@ -1,3 +1,4 @@
 node_modules/
 .env
 variables.py
+__pycache__/
