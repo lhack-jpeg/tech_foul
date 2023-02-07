@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('../partials/head'); %>
-    </head>
 
-    <body class="container">
-        <header><%- include('../partials/header'); %></header>
+<head>
+    <%- include('../partials/head'); %>
+</head>
 
-        <main>
-            <!-- Attempting to display data from MongoDB on html page -->
-            <div class="container">
-                <div class="container" style="background-color: aqua">
-                    <div class="row"></div>
-                </div>
-                <div class="container" style="background-color: grey">
-                    <div class="row"></div>
-                </div>
+<body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main>
+        <!-- Attempting to display data from MongoDB on html page -->
+        <div class="container">
+            <!-- Access stats with either team_one or team_two object -->
+            <div class="container" style="background-color: aqua">
+                <div class="row"></div>
             </div>
-        </main>
+            <div class="container" style="background-color: grey">
+                <div class="row"></div>
+            </div>
+        </div>
+    </main>
 
-        <footer><%- include('../partials/footer'); %></footer>
-    </body>
+    <footer><%- include('../partials/footer'); %></footer>
+</body>
+
 </html>
