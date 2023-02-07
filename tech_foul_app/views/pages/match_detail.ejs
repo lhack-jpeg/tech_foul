@@ -10,30 +10,11 @@
         <main>
             <!-- Attempting to display data from MongoDB on html page -->
             <div class="container">
-                <div class="row shadow-sm mb-1">
-                    <% results.forEach(entry=> { %>
-                    <div class="container">
-                        <div class="row shadow-lg mb-2 align-items-center">
-                            <div class="col team-icons d-flex">
-                                <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
-                            </div>
-                            <div class="col text-center"><%= entry.team_one %></div>
-                            <div class="col-1 text-left"><h2>VS</h2></div>
-                            <div class="col team-icons">
-                                <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
-                            </div>
-                            <div class="col-2 text-center"><%= entry.team_two %></div>
-                            <div class="row align-items-center">
-                                <h6 class="start-time">Start Time:</h6>
-                                <div class="col flex-text">
-                                    <td><%= entry.startTime %></td>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <% }); %> <% results.forEach(entry=> { %>
-                    <td><%= entry.id %></td>
-                    <% }); %>
+                <div class="container" style="background-color: aqua">
+                    <div class="row"></div>
+                </div>
+                <div class="container" style="background-color: grey">
+                    <div class="row"></div>
                 </div>
             </div>
         </main>
