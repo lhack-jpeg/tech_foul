@@ -13,23 +13,23 @@
                 <div class="row mb-1">
                     <% results.forEach(entry=> { %>
                     <div class="container">
-                        <div class="row shadow-lg mb-2 align-items-center border-bottom border-secondary">
-                            <div class="col team-icons d-flex justify-content-center">
-                                <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
-                            </div>
-                            <div class="col text-center"><%= entry.team_one %></div>
-                            <div class="col-1 text-left"><h2>VS</h2></div>
-                            <div class="col team-icons d-flex justify-content-center">
-                                <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
-                            </div>
-                            <div class="col text-center"><%= entry.team_two %></div>
+                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-2">
                             <div class="row align-items-center">
-                                <h6 class="start-time">Start Time:</h6>
-                                <div class="col flex-text mr-5">
-                                    <td><%= entry.startTime %></td>
+                                <div class="col team-icons d-flex justify-content-center">
+                                    <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
+                                </div>
+                                <div class="col text-center text-light"><%= entry.team_one %></div>
+                                <div class="col-1 text-left text-light"><h2>VS</h2></div>
+                                <div class="col team-icons d-flex justify-content-center">
+                                    <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
+                                </div>
+                                <div class="col text-center text-light"><%= entry.team_two %></div>
+                                <div class="row align-items-center text-light">
+                                    <h6 class="start-time">Start Time:</h6>
+                                    <div class="col flex-text mr-5"><%= entry.startTime %></div>
                                 </div>
                             </div>
-                        </div>
+                        </button>
                     </div>
                     <% }); %> <% results.forEach(entry=> { %>
                     <td><%= entry.id %></td>
