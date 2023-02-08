@@ -9,6 +9,22 @@ from time import sleep
 headers = {"api_key": variables.API_KEY}
 
 
+def get_api_rating(team_id):
+    """
+    Returns the team rating of a team from the opendota api.
+    """
+    r = requests.get(
+        f"https://api.opendota.com/api/teams/{team_id}", headers=headers
+    )
+    data = r.text
+    data = json.loads(data)
+    entries = ("last_match_time", "name", "tag", "id")
+    for key in entries:
+        if key in data:
+            del data[key]
+    return data
+
+
 class One_Match:
     """
     Match constructor for building stats for teams. Takes a siongle match_object from sql alchemy
