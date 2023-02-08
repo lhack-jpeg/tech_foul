@@ -16,9 +16,9 @@ const TeamSchema = new Schema({
 });
 
 const MatchSchema = new Schema({
-  match_id: String,
-  team_one_stats: [TeamSchema],
-  team_two_stats: [TeamSchema]
+  match_id: { type: String, required: true },
+  team_one: [TeamSchema],
+  team_two: [TeamSchema]
 });
 
 // Syntax is model name, schema name, collection name
