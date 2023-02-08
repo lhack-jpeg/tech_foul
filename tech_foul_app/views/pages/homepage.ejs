@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include('../partials/head'); %>
-    </head>
 
-    <body class="container">
-        <header><%- include('../partials/header'); %></header>
+<head>
+    <%- include('../partials/head'); %>
+</head>
 
-        <main class="main-container">
-            <!-- Attempting to display data from db on html page -->
-            <div class="container">
-                <div class="row mb-1">
-                    <% results.forEach(entry=> { %>
+<body class="container">
+    <header><%- include('../partials/header'); %></header>
+
+    <main class="main-container">
+        <!-- Attempting to display data from db on html page -->
+        <div class="container">
+            <div class="row mb-1">
+                <% results.forEach(entry=> { %>
                     <div class="container">
                         <button class="btn btn-block border-bottom border-secondary shadow-lg mb-1 mt-2 matchButton">
                             <div class="row align-items-center">
                                 <div class="col team-icons d-flex justify-content-center pr-0 pl-0">
-                                    <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
+                                    <img src="<%= entry.team_one_info.logo_url %>" alt="<%= entry.team_one %>" />
                                 </div>
-                                <div class="col text-center text-light pr-0 pl-0"><%= entry.team_one %></div>
-                                <div class="col-1 text-center text-light pr-0 pl-0"><h2>VS</h2></div>
+                                <div class="col text-center text-light pr-0 pl-0">
+                                    <%= entry.team_one %>
+                                </div>
+                                <div class="col-1 text-center text-light pr-0 pl-0">
+                                    <h2>VS</h2>
+                                </div>
                                 <div class="col team-icons d-flex justify-content-center pr-0 pl-0">
-                                    <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
+                                    <img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
                                 </div>
-                                <div class="col text-center text-light pr-0 pl-0"><%= entry.team_two %></div>
+                                <div class="col text-center text-light pr-0 pl-0">
+                                    <%= entry.team_two %>
+                                </div>
                                 <div class="row align-items-center text-light pr-0 pl-0">
                                     <h6 class="start-time">Start Time:</h6>
-                                    <div class="col flex-text mr-5"><%= entry.startTime %></div>
+                                    <div class="col flex-text mr-5">
+                                        <%= entry.startTime %>
+                                    </div>
                                 </div>
                             </div>
                         </button>
                     </div>
-                    <% }); %> <% results.forEach(entry=> { %>
-                    <td><%= entry.id %></td>
                     <% }); %>
-                </div>
+                        <% results.forEach(entry=> { %>
+                            <td>
+                                <%= entry.id %>
+                            </td>
+                            <% }); %>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer><%- include('../partials/footer'); %></footer>
-        <script>
-            const matchButtons = document.querySelectorAll('.matchButton');
-            matchButtons.forEach(function (button) {
-                button.addEventListener('mousedown', function () {
-                    this.classList.add('clicked');
-                });
-                button.addEventListener('mouseup', function () {
-                    this.classList.remove('clicked');
-                });
+    <footer><%- include('../partials/footer'); %></footer>
+    <script>
+        const matchButtons = document.querySelectorAll('.matchButton');
+        matchButtons.forEach(function (button) {
+            button.addEventListener('mousedown', function () {
+                this.classList.add('clicked');
             });
-        </script>
-    </body>
+            button.addEventListener('mouseup', function () {
+                this.classList.remove('clicked');
+            });
+        });
+    </script>
+</body>
+
 </html>
