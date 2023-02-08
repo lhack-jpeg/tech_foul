@@ -30,7 +30,7 @@ def get_team_rating(team_id):
     team_rating = (
         session.query(Team_rating)
         .filter(
-            Team_rating.team_id == team_id, Team_rating.inserted_at >= today
+            Team_rating.team_id == team_id, Team_rating.inserted_at == today
         )
         .first()
     )
@@ -44,6 +44,13 @@ def get_team_rating(team_id):
     return team_stats
 
 
+def win_probability(team_1_elo, team_2_elo):
+    """Returns the win probability of the two teams playing each other."""
+    elo_diff = team_2_elo - team_1_elo
+    win_prob = 1 / (1 + 10 ** (elo_diff / 400))
+    return win_prob
+
+
 def create_match_list(match_object):
     """
     Creates the JSON file of stats for two teams.
@@ -55,7 +62,9 @@ def create_match_list(match_object):
     matches_dict["team_one"] = {}
     matches_dict["team_two"] = {}
     matches_dict["team_one"]["id"] = single_match.team_one
+    matches_dict["team_one"]["name"] = single_match.team_one_name
     matches_dict["team_two"]["id"] = single_match.team_two
+    matches_dict["team_two"]["name"] = single_match.team_two_name
     matches_dict["team_one"]["match_ids"] = One_Match.get_matches(
         single_match.team_one
     )
@@ -113,26 +122,30 @@ def get_stats(matches_dict):
 
 if __name__ == "__main__":
     matches = list(get_sql_matches())
-    matches = matches[:2]
     mongoDB = get_mongoDB()
     mongo_matches = mongoDB["matches"]
     for match in matches:
         print(match.id)
-        # if mongo_matches.find_one({"match_id": match.id}) is not None:
-        #     pass
-        # else:
-        match = create_match_list(match)
-        team_one_stats = get_stats(match["team_one"])
-        team_two_stats = get_stats(match["team_two"])
-        match["team_one_stats"] = team_one_stats
-        match["team_two_stats"] = team_two_stats
-        del match["team_one"]["rich_info"]
-        del match["team_two"]["rich_info"]
-        del match["team_two"]["match_ids"]
-        del match["team_one"]["match_ids"]
-        print(
-            match.keys(),
-            match["team_one_stats"].items(),
-            match["team_one_stats"].items(),
-        )
-        # mongo_matches.insert_one(match)
+        if mongo_matches.find_one({"match_id": match.id}) is not None:
+            pass
+        else:
+            match = create_match_list(match)
+            team_one_stats = get_stats(match["team_one"])
+            team_two_stats = get_stats(match["team_two"])
+            match["team_one"].update(team_one_stats)
+            match["team_two"].update(team_two_stats)
+            elo_win_pct = win_probability(
+                match["team_one"]["rating"], match["team_two"]["rating"]
+            )
+            match["team_one"]["elo_win_pct"] = elo_win_pct
+            match["team_two"]["elo_win_pct"] = 1 - elo_win_pct
+            del match["team_one"]["rich_info"]
+            del match["team_two"]["rich_info"]
+            del match["team_two"]["match_ids"]
+            del match["team_one"]["match_ids"]
+            print(
+                match.keys(),
+                match["team_one"].items(),
+                match["team_two"].items(),
+            )
+            mongo_matches.insert_one(match)
