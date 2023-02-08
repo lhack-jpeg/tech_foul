@@ -18,7 +18,7 @@ def get_api_rating(team_id):
     )
     data = r.text
     data = json.loads(data)
-    entries = ("last_match_time", "name", "tag", "id")
+    entries = ("last_match_time", "name", "tag", "id", "logo_url")
     for key in entries:
         if key in data:
             del data[key]
@@ -36,14 +36,19 @@ class One_Match:
         self.team_one = match_obj.team_one_id
         self.team_two = match_obj.team_two_id
         self.epoch_start = match_obj.epoch_time
+        self.team_one_name = match_obj.team_one
+        self.team_two_name = match_obj.team_two
 
     @classmethod
     def get_matches(cls, team_id):
         """Returns one teams previous 10 games"""
-        r = requests.get(
-            f"https://api.opendota.com/api/teams/{team_id}/matches",
-            headers=headers,
-        )
+        response_status = 0
+        while response_status != 200:
+            r = requests.get(
+                f"https://api.opendota.com/api/teams/{team_id}/matches",
+                headers=headers,
+            )
+            response_status = r.status_code
         data = r.text
         data = json.loads(data)
         match_ids = []
@@ -58,10 +63,14 @@ class One_Match:
         """Takes a list of matches and returns a list of JSON objects"""
         rich_match_list = []
         for match in match_id:
-            r = requests.get(
-                f"https://api.opendota.com/api/matches/{match}",
-                headers=headers,
-            )
+            response_status = 0
+            # If status code is not 200, match results where not obtained and retries
+            while response_status != 200:
+                r = requests.get(
+                    f"https://api.opendota.com/api/matches/{match}",
+                    headers=headers,
+                )
+                response_status = r.status_code
             data = r.text
             data = json.loads(data)
             rich_match_list.append(data)
