@@ -8,6 +8,7 @@ import urllib.parse
 import sql_mongo_link
 import variables as DB
 from mongo_db_connect import get_mongoDB
+import mongo_db_connect
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
@@ -21,6 +22,9 @@ class TestMongo(unittest.TestCase):
     def setUpClass(cls):
         """Get functions from file"""
         cls.mongo_funcs = inspect.getmembers(sql_mongo_link, inspect.isfunction)
+        cls.mongo_db_funcs = inspect.getmembers(
+            mongo_db_connect, inspect.isfunction
+        )
 
     def setUp(self):
         """
@@ -41,7 +45,14 @@ class TestMongo(unittest.TestCase):
                 print(func)
             self.assertTrue(len(func[1].__doc__) >= 1)
 
+        for func in self.mongo_db_funcs:
+            if len(func[1].__doc__) < 1:
+                print(func)
+            self.assertTrue(len(func[1].__doc__) >= 1)
+
         module_docs = "sql_mongo_link".__doc__
+        self.assertTrue(len(module_docs) > 1)
+        module_docs = "monogo_db_connect".__doc__
         self.assertTrue(len(module_docs) > 1)
 
     def test_sql_matches_data(self):
