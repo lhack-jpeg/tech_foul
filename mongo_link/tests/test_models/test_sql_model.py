@@ -13,3 +13,7 @@ class TestSQLModel(unittest.TestCase):
         self.assertTrue(len(Team.__doc__) > 1)
         self.assertTrue(len(MyEnum.__doc__) > 1)
         self.assertTrue(len(Team_rating.__doc__) > 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

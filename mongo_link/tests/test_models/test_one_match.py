@@ -84,3 +84,7 @@ class TestOneMatch(unittest.TestCase):
         rich_list = One_Match.get_rich_match_info(match_id_list)
         self.assertIsNotNone(rich_list)
         self.assertEqual(type(rich_list), list)
+
+
+if __name__ == "__main__":
+    unittest.main()
