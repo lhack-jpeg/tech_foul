@@ -20,8 +20,8 @@
         "moment": "^2.29.4",
         "mongoose": "^6.9.0",
         "mysql2": "^3.1.0",
-        "supertest": "^6.3.3",
-        "typeorm": "^0.3.12"
+        "sequelize": "^6.28.0",
+        "supertest": "^6.3.3"
     },
     "devDependencies": {
         "@types/node": "^18.13.0"
