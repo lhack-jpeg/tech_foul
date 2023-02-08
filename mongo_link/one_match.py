@@ -18,7 +18,7 @@ def get_api_rating(team_id):
     )
     data = r.text
     data = json.loads(data)
-    entries = ("last_match_time", "name", "tag", "id", "logo_url")
+    entries = ("last_match_time", "name", "tag", "team_id", "logo_url")
     for key in entries:
         if key in data:
             del data[key]
