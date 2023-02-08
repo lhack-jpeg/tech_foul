@@ -1,12 +1,15 @@
 import unittest
 import inspect
+import os, sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from models import Base, Match
+from ..models import Base, Match
 import variables as DB
 import urllib.parse
 import sql_mongo_link
 from mongo_db_connect import get_mongoDB
+
+sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 
 class TestMongo(unittest.TestCase):
@@ -25,7 +28,7 @@ class TestMongo(unittest.TestCase):
         self.engine = create_engine(
             f"mysql+mysqldb://{DB.MYSQL_DB_USER}:\
                 {urllib.parse.quote(DB.MYSQL_DB_PASS)}@\
-                    {DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}",
+                {DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}",
             pool_pre_ping=True,
         )
         self.session = Session(bind=self.engine)
@@ -54,7 +57,15 @@ class TestMongo(unittest.TestCase):
         result = self.session.query(Match).first()
         self.assertIsNotNone(result)
         self.assertIsInstance(type(result.id), type("String"))
-        self.assertEqual(type(int) == type(result.team_one_id))
+        self.assertEqual(type(int), type(result.team_one_id))
 
     def test_mongo_result(self):
         """Test to ensure that match info from mongoDB."""
+        mysql_result = self.session.query(Match).first()
+        mongo_conn = get_mongoDB()
+        mongo_result = mongo_conn.findOne({"match_id": mysql_result.id})
+        self.assertIsNotNone(mongo_result)
+
+
+if __name__ == "__main__":
+    unittest.main()
