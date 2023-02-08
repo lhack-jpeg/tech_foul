@@ -3,7 +3,7 @@ import inspect
 import os, sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from ..models import Base, Match
+from ..sql_model import Base, Match
 import variables as DB
 import urllib.parse
 import sql_mongo_link
