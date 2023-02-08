@@ -1,29 +1,27 @@
-// This file contains the entity scheme for the teams table in the mySQL database using tpyeORM
-const { EntitySchema } = require('typeorm');
+const { DataTypes, Deferrable } = require('sequelize');
+const sequelize = require('../services/mysqlDB');
 
-module.exports = new EntitySchema({
-    name: 'Team',
-    tableName: 'teams',
-    columns: {
+const Team = sequelize.define(
+    'Team',
+    {
         id: {
-            primary: true,
-            type: 'bigint',
+            type: DataTypes.BIGINT,
+            primaryKey: true,
         },
         name: {
-            type: 'varchar',
+            type: DataTypes.STRING,
         },
         logo_url: {
-            type: 'text',
+            type: DataTypes.TEXT,
         },
         tag: {
-            type: 'varchar',
+            type: DataTypes.STRING,
         },
     },
-    relations: {
-        matches: {
-            type: 'one-to-many',
-            target: 'Match',
-            inverseSide: 'match',
-        },
-    },
-});
+    {
+        tableName: 'teams',
+        timestamps: false,
+    }
+);
+
+module.exports = Team;
