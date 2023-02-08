@@ -25,6 +25,7 @@ const AppDataSource = new DataSource({
     username: process.env.MYSQL_DB_USER,
     password: process.env.MYSQL_DB_PASS,
     database: process.env.MYSQL_DB,
+    entities: [require('../models/matches')],
 });
 
 AppDataSource.initialize()
