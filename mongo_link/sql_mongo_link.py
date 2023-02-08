@@ -3,7 +3,7 @@ This module gets up coming matches from the mysql database and fetches each team
 It then condenses it down to key metrics and stores it in a mongo database
 """
 
-from models import mysql_connect, Match, Team_rating, Team
+from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
 from datetime import date
 import variables
