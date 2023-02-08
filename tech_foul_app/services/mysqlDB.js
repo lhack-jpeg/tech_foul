@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { DataSource } = require('typeorm');
+const { Sequelize } = require('sequelize');
 
 // const conn = mysql.createConnection({
 //     host: process.env.MYSQL_DB_HOST,
@@ -18,22 +18,14 @@ const { DataSource } = require('typeorm');
 
 // module.exports = conn;
 
-const AppDataSource = new DataSource({
-    type: 'mysql',
-    host: process.env.MYSQL_DB_HOST,
-    port: '3306',
-    username: process.env.MYSQL_DB_USER,
-    password: process.env.MYSQL_DB_PASS,
-    database: process.env.MYSQL_DB,
-    entities: [require('../models/matches'), require('../models/teams')],
-});
+const sequelize = new Sequelize(
+    process.env.MYSQL_DB,
+    process.env.MYSQL_DB_USER,
+    process.env.MYSQL_DB_PASS,
+    {
+        host: process.env.MYSQL_DB_HOST,
+        dialect: 'mysql',
+    }
+);
 
-AppDataSource.initialize()
-    .then(() => {
-        console.log('Data Source has been initialized!');
-    })
-    .catch((err) => {
-        console.error(`Error during initalisation process: ${err}`);
-    });
-
-module.exports = AppDataSource;
+module.exports = sequelize;
