@@ -1,4 +1,4 @@
-// This file contains the entity model for the TypeORM module.
+// This file contains the entity model for the matches table in mySQL using them TypeORM module.
 const { EntitySchema } = require('typeorm');
 
 module.exports = new EntitySchema({
@@ -32,6 +32,16 @@ module.exports = new EntitySchema({
         },
         team_two_id: {
             type: 'bigint',
+        },
+    },
+    relations: {
+        teams: {
+            type: 'many-to-one',
+            target: 'Team',
+            joinColumn: {
+                name: 'team_one_id',
+            },
+            invereSide: 'teams',
         },
     },
 });
