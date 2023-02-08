@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+
+    <body class="container">
+        <header><%- include('../partials/header'); %></header>
+
+        <main>
+            <!-- Attempting to display data from db on html page -->
+            <div class="container">
+                <div class="row mb-1">
+                    <% results.forEach(entry=> { %>
+                    <div class="container">
+                        <div class="row shadow-lg mb-2 align-items-center border-bottom border-secondary">
+                            <div class="col team-icons d-flex justify-content-center">
+                                <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
+                            </div>
+                            <div class="col text-center"><%= entry.team_one %></div>
+                            <div class="col-1 text-left"><h2>VS</h2></div>
+                            <div class="col team-icons d-flex justify-content-center">
+                                <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
+                            </div>
+                            <div class="col text-center"><%= entry.team_two %></div>
+                            <div class="row align-items-center">
+                                <h6 class="start-time">Start Time:</h6>
+                                <div class="col flex-text mr-5">
+                                    <td><%= entry.startTime %></td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %> <% results.forEach(entry=> { %>
+                    <td><%= entry.id %></td>
+                    <% }); %>
+                </div>
+            </div>
+        </main>
+
+        <footer><%- include('../partials/footer'); %></footer>
+    </body>
+</html>
