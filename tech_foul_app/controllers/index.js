@@ -1,6 +1,7 @@
 const conn = require('../services/mysqlDB');
 const AppError = require('../utilities/expressError');
 const moment = require('moment');
+const Matches = require('../models/match');
 
 exports.getAllMatches = (req, res, next) => {
     conn.query(
@@ -34,4 +35,15 @@ exports.getAllMatches = (req, res, next) => {
             console.log(results);
         }
     );
+};
+
+// Display detail of a match that has been clicked on
+exports.match_detail = async (req, res) => {
+    const { match_id } = req.params;
+    console.log(`match_id is ${match_id}`);
+    const results = await Matches.findOne({ match_id: match_id });
+    const team_one = results.team_one_stats;
+    const team_two = results.team_two_stats;
+    console.log(results.team_one_stats, results.team_two_stats);
+    res.render('pages/match_detail', { team_one, team_two });
 };
