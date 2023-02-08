@@ -16,12 +16,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 
 mongoose.set('strictQuery', false);
-const mongoDB = 'mongodb+srv://haross:Gloucester@cluster0.r6m5ves.mongodb.net/mongo_test?retryWrites=true&w=majority';
+
 // Wait for database to connect, logging an error if there is a problem
-main().catch(err => console.log(err));
-async function main () {
-  await mongoose.connect(mongoDB);
-}
+const mongoDBURL = process.env.MONGODB_URL;
+mongoose.connect(mongoDBURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Database connected');
+});
 
 app.get('/', (req, res) => {
   res.send('The app is working');
