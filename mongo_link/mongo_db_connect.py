@@ -7,6 +7,7 @@ import certifi
 
 
 def get_mongoDB():
+    """Creates a connection to MongoDB database"""
     CONNECTION_STRING = variables.MONGO_DB_CONNECTION_STRING
 
     client = MongoClient(CONNECTION_STRING, tlsCAFile=certifi.where())
