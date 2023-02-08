@@ -10,23 +10,36 @@
         <main class="main-container">
             <!-- Attempting to display data from db on html page -->
             <div class="container">
+                <!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
+                <!-- <div class="row">
+                    <h6 class="col text-light d-flex start-time justify-content-center m-1">Team One</h6>
+                    <h6 class="col text-light d-flex start-time justify-content-center m-1">Team Two</h6>
+                </div> -->
                 <div class="row mb-1 me-0 gx-3">
                     <% results.forEach(entry=> { %>
                     <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col team-icons justify-content-center pr-0 pl-0">
+                                <div class="col team-icons justify-content-center">
                                     <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
                                 </div>
-                                <div class="col text-center text-light pr-0 pl-0"><%= entry.team_one %></div>
-                                <div class="col text-center text-light pr-0 pl-0"><h2>VS</h2></div>
-                                <div class="col team-icons d-flex justify-content-center pr-0 pl-0">
+                                <div class="col text-center text-light">
+                                    <h6 class="row start-time justify-content-center ms-0 me-0">Team One</h6>
+                                    <%= entry.team_one %>
+                                </div>
+                                <div class="col text-center text-light"><h2>VS</h2></div>
+                                <div class="col team-icons d-flex justify-content-center">
                                     <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
                                 </div>
-                                <div class="col text-center text-light"><%= entry.team_two %></div>
+                                <div class="col text-center text-light">
+                                    <h6 class="row start-time justify-content-center ms-0 me-0">Team Two</h6>
+                                    <%= entry.team_two %>
+                                </div>
                                 <div class="col align-items-center text-light">
-                                    <h6 class="row start-time align-items-center">Start Time:</h6>
-                                    <div class="col flex-text align-items-center mr-5"><%= entry.startTime %></div>
+                                    <h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
+                                    <div class="col flex-text justify-content-center ms-0 me-0">
+                                        <%= entry.startTime %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
