@@ -10,27 +10,28 @@
         <main class="main-container">
             <!-- Attempting to display data from db on html page -->
             <div class="container">
-                <div class="row mb-1">
+                <div class="row mb-1 me-0 gx-3">
                     <% results.forEach(entry=> { %>
-                    <div class="container">
-                        <button class="btn btn-block border-bottom border-secondary shadow-lg mb-1 mt-2 matchButton">
+                    <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton">
+                        <div class="container">
                             <div class="row align-items-center">
-                                <div class="col team-icons d-flex justify-content-center pr-0 pl-0">
+                                <div class="col team-icons justify-content-center pr-0 pl-0">
                                     <img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
                                 </div>
                                 <div class="col text-center text-light pr-0 pl-0"><%= entry.team_one %></div>
-                                <div class="col-1 text-center text-light pr-0 pl-0"><h2>VS</h2></div>
+                                <div class="col text-center text-light pr-0 pl-0"><h2>VS</h2></div>
                                 <div class="col team-icons d-flex justify-content-center pr-0 pl-0">
                                     <img src="<%= entry.team_two_logo %>" alt="<%= entry.team_two %>" />
                                 </div>
                                 <div class="col text-center text-light pr-0 pl-0"><%= entry.team_two %></div>
-                                <div class="row align-items-center text-light pr-0 pl-0">
-                                    <h6 class="start-time">Start Time:</h6>
+                                <div class="col align-items-center text-light pr-0 pl-0">
+                                    <h6 class="row start-time">Start Time:</h6>
                                     <div class="col flex-text mr-5"><%= entry.startTime %></div>
                                 </div>
                             </div>
-                        </button>
-                    </div>
+                        </div>
+                    </button>
+
                     <% }); %> <% results.forEach(entry=> { %>
                     <td><%= entry.id %></td>
                     <% }); %>
