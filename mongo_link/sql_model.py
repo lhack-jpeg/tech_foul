@@ -50,7 +50,7 @@ class Match(Base):
     id = Column(String(256), primary_key=True)
     team_one = Column("team_one", String(128), nullable=False)
     team_two = Column("team_two", String(128), nullable=False)
-    match_format = Column(String)
+    match_format = Column(String(5))
     match_time = Column("match_time", DateTime, nullable=False)
     epoch_time = Column("epoch_time", BigInteger, nullable=False)
     team_one_id = Column(BigInteger, ForeignKey("teams.id"), nullable=False)
