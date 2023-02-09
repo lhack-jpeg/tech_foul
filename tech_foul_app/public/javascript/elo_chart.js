@@ -1,6 +1,6 @@
-const eloChart = document.getElementById('eloChart');
+const ctx = document.getElementById('myChart');
 
-new Chart(eloChart, {
+new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
