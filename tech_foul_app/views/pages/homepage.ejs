@@ -22,6 +22,11 @@
 					<% results.forEach(entry=> { %>
 					<button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton">
 						<div class="container">
+							<!-- Place holder for tournament name -->
+							<!-- <div class="row align-items-center">
+								<h6 class="text-light m-0 p-0">Tournament: <%# entry.tournament_name %></h6>
+							</div> -->
+
 							<div class="row align-items-center">
 								<div class="col team-icons justify-content-center">
 									<img src="<%= entry.team_one_logo %>" alt="<%= entry.team_one %>" />
@@ -45,6 +50,11 @@
 									</div>
 								</div>
 							</div>
+							<!-- Place holder for Win and Loss -->
+							<!-- <div class="row align-items-center">
+								<h6 class="col text-success m-0 p-0">W</h6>
+								<h6 class="col text-danger m-0 p-0">L</h6>
+							</div> -->
 						</div>
 					</button>
 
