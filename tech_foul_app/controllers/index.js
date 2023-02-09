@@ -29,8 +29,24 @@ exports.match_detail = async (req, res) => {
     const { match_id } = req.params;
     console.log(`match_id is ${match_id}`);
     const results = await Matches.findOne({ match_id: match_id });
-    const team_one = results.team_one_stats;
-    const team_two = results.team_two_stats;
-    console.log(results.team_one_stats, results.team_two_stats);
+    const team_one = results.team_one;
+    const team_two = results.team_two;
+    console.log(results.team_one, results.team_two);
     res.render('pages/match_detail', { team_one, team_two });
 };
+
+// exports.match_detail = async (req, res, next) => {
+//  const { match_id } = req.params;
+//  console.log(`match_id is ${match_id}`);
+//  await Matches.findOne({ match_id: match_id })
+//    .exec(function (err, results) {
+//      if (err) {
+//        return next(err);
+//      }
+//      const team_one = results.team_one;
+//      const team_two = results.team_two;
+//      console.log(results.team_one, results.team_two);
+// Successful, so render.
+//      res.render('pages/match_detail', { team_one, team_two });
+//    });
+// };
