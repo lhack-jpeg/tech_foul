@@ -4,9 +4,11 @@ const app = require('../app');
 const should = chai.should();
 chai.use(chaiHttp);
 const sequelize = require('../services/mysqlDB');
+const mongoose = require('mongoose');
 
 after(function (done) {
     sequelize.close();
+    mongoose.connection.close();
     done();
 });
 
