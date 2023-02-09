@@ -24,6 +24,14 @@ exports.getAllMatches = async (req, res, next) => {
   res.render('pages/homepage', { results });
 };
 
+exports.getTeamData = async (req, res) => {
+  const { id } = req.body;
+  console.log('params', req.body);
+  console.log(id);
+  console.log('Team post route');
+  res.send(`Hit the route ${id}`);
+};
+
 // Display detail of a match that has been clicked on
 exports.match_detail = async (req, res) => {
   const { match_id } = req.params;
