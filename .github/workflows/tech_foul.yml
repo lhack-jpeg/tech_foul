@@ -18,6 +18,12 @@ jobs:
               uses: actions/setup-node@v3
               with:
                   node-version: '16.14.0'
+              secrets:
+                MYSQL_DB_HOST: ${{ sercets.MYSQL_DB_HOST }}
+                MYSQL_DB_USER: ${{ secrets.MYSQL_DB_USER }}
+                MYSQL_DB_PASS: ${{ secrets.MYSQL_DB_PASS }}
+                MYSQL_DB: ${{ secrets.MYSQL_DB }}
+                MONGODB_URL: ${{ secrets.MONGODB_URL }}
             - run: |
                   cd tech_foul_app/
                   npm ci
