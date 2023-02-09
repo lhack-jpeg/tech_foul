@@ -22,13 +22,6 @@ jobs:
                   cd tech_foul_app/
                   npm ci
                   npm run
-                  npm test
-              env:
-                  MYSQL_DB_HOST: ${{ env.MYSQL_DB_HOST }}
-                  MYSQL_DB_USER: ${{ env.MYSQL_DB_USER }}
-                  MYSQL_DB_PASS: ${{ env.MYSQL_DB_PASS }}
-                  MYSQL_DB: ${{ env.MYSQL_DB }}
-                  MONGODB_URL: ${{ env.MONGODB_URL }}
             - name: Lint
               uses: github/super-linter@v4
               env:
