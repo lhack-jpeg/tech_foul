@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --runInBand --coverage",
+        "test": "mocha",
         "start": "node server.js",
         "dev": "nodemon server.js"
     },
@@ -16,9 +16,16 @@
         "dotenv": "^16.0.3",
         "ejs": "^3.1.8",
         "express": "^4.18.2",
-        "jest": "^29.4.1",
+        "moment": "^2.29.4",
         "mongoose": "^6.9.0",
         "mysql2": "^3.1.0",
+        "sequelize": "^6.28.0",
         "supertest": "^6.3.3"
+    },
+    "devDependencies": {
+        "@types/node": "^18.13.0",
+        "chai": "^4.3.7",
+        "chai-http": "^4.3.0",
+        "mocha": "^10.2.0"
     }
 }
