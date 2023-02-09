@@ -1,16 +1,16 @@
-const userArgs = process.argv.slice(2);
+const userArgs = process.argv.slice(2)
 
-const Match = require('./models/match');
+const Match = require('./models/match')
 
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
+const mongoose = require('mongoose')
+mongoose.set('strictQuery', false)
 
-const mongoDB = userArgs[0];
+const mongoDB = userArgs[0]
 
 mongoose
   .connect(mongoDB)
   .then(function () {
-    console.log('Database connected!');
+    console.log('Database connected!')
 
     const matchone = new Match({
       match_id: '12345',
@@ -31,10 +31,9 @@ mongoose
         previous_xp_advantage: '7',
         previous_gold_advantage: '8'
       }]
-    });
+    })
     matchone.save(function (error, document) {
-      if (error) console.error(error);
-      console.log(document);
-    });
+      if (error) console.error(error)
+      console.log(document)
+    })
   })
-;
