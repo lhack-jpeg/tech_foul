@@ -118,12 +118,31 @@
     <div>
       <canvas id="eloChart"></canvas>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
-      const eloDataTeamOne = <% - JSON.stringify(team_one.eloData) %>
-      const eloDataTeamTwo = <% - JSON.stringify(team_one.eloData) %>
+      const ctx = document.getElementById('eloChart');
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [
+            {
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3], // await get my_data_api
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
     </script>
-    <script src="/javascript/elo_chart.js"></script>
   </main>
 
   <footer><%- include('../partials/footer'); %></footer>
