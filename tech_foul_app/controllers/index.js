@@ -30,6 +30,7 @@ exports.getAllMatches = (req, res, next) => {
       });
 
       res.render('pages/homepage', { results });
+      res.render('pages/match_detail', { results });
       console.log(results);
     }
   );

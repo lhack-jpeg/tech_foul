@@ -3,98 +3,68 @@
 
 <head>
     <%- include('../partials/head'); %>
+    <link rel='stylesheet', href='/stylesheets/match_detail_style.css')>
 </head>
 
 
 <body class="container">
     <header><%- include('../partials/header'); %></header>
     <main class="main-container">
-        <div class="col">
-            <table class="row">
-                <tbody>
-                  <%if (team_one.length >0){ %>
-                  <% team_one.forEach(function(row){ %>
-                  <tr>
-                    <td>NAME: <%= row.name %></td>
-                  </tr>
-                  <tr>
-                    <td>TEAM_ID: <%= row.team_id %></td>
-                  </tr>
-                  <tr>
-                    <td>RATING: <%= row.rating %></td>
-                  </tr>
-                  <tr>
-                    <td>WINS: <%= row.wins %></td>
-                  </tr>
-                  <tr>
-                    <td>LOSSES: <%= row.losses %></td>
-                  </tr>
-                  <tr>
-                    <td>AVERAGE MATCH TIME: <%= row.avg_match_time %></td>
-                  </tr>
-                  <tr>
-                    <td>AVERAGE SCORE: <%= row.avg_score %></td>
-                  </tr>
-                  <tr>
-                    <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %></td>
-                  </tr>
-                  <tr>
-                    <td>PREVIOUS FORM: <%= row.prev_form %></td>
-                  </tr>
-                  <tr>
-                    <td>ELO: <%= row.elo_win_pct %></td>
-                  </tr>
-                  <% })}else{ %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="row border-between">
+            <div class="col-sm-6">
+              <% team_one.forEach(entry=> { %>
+              <h2 class="sub-header"><%= entry.name %></h2>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
-                        <td colspan="6">No Record Found</td>
-                      </tr>
-                    <% } %>
-                </tbody>
-            </table>
-       </div>
-       <div class="col">
-        <table class="row">
-            <tbody>
-              <%if (team_two.length >0){ %>
-              <% team_two.forEach(function(row){ %>
-              <tr>
-                <td>NAME: <%= row.name %></td>
-              </tr>
-              <tr>
-                <td>TEAM_ID: <%= row.team_id %></td>
-              </tr>
-              <tr>
-                <td>RATING: <%= row.rating %></td>
-              </tr>
-              <tr>
-                <td>WINS: <%= row.wins %></td>
-              </tr>
-              <tr>
-                <td>LOSSES: <%= row.losses %></td>
-              </tr>
-              <tr>
-                <td>AVERAGE MATCH TIME: <%= row.avg_match_time %></td>
-              </tr>
-              <tr>
-                <td>AVERAGE SCORE: <%= row.avg_score %></td>
-              </tr>
-              <tr>
-                <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %></td>
-              </tr>
-              <tr>
-                <td>PREVIOUS FORM: <%= row.prev_form %></td>
-              </tr>
-              <tr>
-                <td>ELO: <%= row.elo_win_pct %></td>
-              </tr>
-              <% })}else{ %>
-                <tr>
-                    <td colspan="6">No Record Found</td>
+                      <th>Category</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Name</td>
+                      <td><%= entry.name %></td>
+                    </tr>
+                    <tr>
+                      <td>Team ID</td>
+                      <td><%= entry.team_id %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <% }); %> 
+            </div>
+            <div class="col-sm-6">
+            <% team_two.forEach(entry=> { %>
+            <h2 class="sub-header"><%= entry.name %></h2>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Value</th>
                   </tr>
-                <% } %>
-            </tbody>
-        </table>
-   </div>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td><%= entry.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Team ID</td>
+                    <td><%= entry.team_id %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer><%- include('../partials/footer'); %></footer>
