@@ -20,21 +20,27 @@ mongoose.set('strictQuery', false);
 // Wait for database to connect, logging an error if there is a problem
 const mongoDBURL = process.env.MONGODB_URL;
 mongoose.connect(mongoDBURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Database connected');
+    console.log('Database connected');
 });
 
 app.get('/', (req, res) => {
-  res.send('The app is working');
+    res.send('The app is working');
 });
 
-app.all('*', (req, res, next) => {
-  next(new AppError(`The URL ${req.originalUrl} does not exist`, 404));
+app.use((err, req, res, next) => {
+    const { status = 500 } = err;
+    if (!err.message) err.message = 'Something went wrong';
+    console.log({ err });
+    res.status(status).render('pages/error', { err });
+});
+app.get('*', (req, res, next) => {
+    next(new AppError(`The URL ${req.originalUrl} does not exist`, 404));
 });
 
 app.use(errorHandler);
