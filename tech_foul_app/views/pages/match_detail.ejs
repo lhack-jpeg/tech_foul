@@ -2,102 +2,131 @@
 <html lang="en">
 
 <head>
-    <%- include('../partials/head'); %>
+  <%- include('../partials/head'); %>
 </head>
 
 
 <body class="container">
-    <header><%- include('../partials/header'); %></header>
-    <main class="main-container">
-        <div class="col">
-            <table class="row">
-                <tbody>
-                  <%if (team_one.length >0){ %>
-                  <% team_one.forEach(function(row){ %>
-                  <tr>
-                    <td>NAME: <%= row.name %></td>
-                  </tr>
-                  <tr>
-                    <td>TEAM_ID: <%= row.team_id %></td>
-                  </tr>
-                  <tr>
-                    <td>RATING: <%= row.rating %></td>
-                  </tr>
-                  <tr>
-                    <td>WINS: <%= row.wins %></td>
-                  </tr>
-                  <tr>
-                    <td>LOSSES: <%= row.losses %></td>
-                  </tr>
-                  <tr>
-                    <td>AVERAGE MATCH TIME: <%= row.avg_match_time %></td>
-                  </tr>
-                  <tr>
-                    <td>AVERAGE SCORE: <%= row.avg_score %></td>
-                  </tr>
-                  <tr>
-                    <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %></td>
-                  </tr>
-                  <tr>
-                    <td>PREVIOUS FORM: <%= row.prev_form %></td>
-                  </tr>
-                  <tr>
-                    <td>ELO: <%= row.elo_win_pct %></td>
-                  </tr>
-                  <% })}else{ %>
-                    <tr>
-                        <td colspan="6">No Record Found</td>
-                      </tr>
-                    <% } %>
-                </tbody>
-            </table>
-       </div>
-       <div class="col">
-        <table class="row">
-            <tbody>
-              <%if (team_two.length >0){ %>
-              <% team_two.forEach(function(row){ %>
+  <header><%- include('../partials/header'); %></header>
+  <main class="main-container">
+    <div class="col">
+      <table class="row">
+        <tbody>
+          <%if (team_one.length>0){ %>
+            <% team_one.forEach(function(row){ %>
               <tr>
-                <td>NAME: <%= row.name %></td>
+                <td>NAME: <%= row.name %>
+                </td>
               </tr>
               <tr>
-                <td>TEAM_ID: <%= row.team_id %></td>
+                <td>TEAM_ID: <%= row.team_id %>
+                </td>
               </tr>
               <tr>
-                <td>RATING: <%= row.rating %></td>
+                <td>RATING: <%= row.rating %>
+                </td>
               </tr>
               <tr>
-                <td>WINS: <%= row.wins %></td>
+                <td>WINS: <%= row.wins %>
+                </td>
               </tr>
               <tr>
-                <td>LOSSES: <%= row.losses %></td>
+                <td>LOSSES: <%= row.losses %>
+                </td>
               </tr>
               <tr>
-                <td>AVERAGE MATCH TIME: <%= row.avg_match_time %></td>
+                <td>AVERAGE MATCH TIME: <%= row.avg_match_time %>
+                </td>
               </tr>
               <tr>
-                <td>AVERAGE SCORE: <%= row.avg_score %></td>
+                <td>AVERAGE SCORE: <%= row.avg_score %>
+                </td>
               </tr>
               <tr>
-                <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %></td>
+                <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %>
+                </td>
               </tr>
               <tr>
-                <td>PREVIOUS FORM: <%= row.prev_form %></td>
+                <td>PREVIOUS FORM: <%= row.prev_form %>
+                </td>
               </tr>
               <tr>
-                <td>ELO: <%= row.elo_win_pct %></td>
+                <td>ELO: <%= row.elo_win_pct %>
+                </td>
               </tr>
               <% })}else{ %>
                 <tr>
-                    <td colspan="6">No Record Found</td>
-                  </tr>
+                  <td colspan="6">No Record Found</td>
+                </tr>
                 <% } %>
-            </tbody>
-        </table>
-   </div>
-    </main>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <table class="row">
+        <tbody>
+          <%if (team_two.length>0){ %>
+            <% team_two.forEach(function(row){ %>
+              <tr>
+                <td>NAME: <%= row.name %>
+                </td>
+              </tr>
+              <tr>
+                <td>TEAM_ID: <%= row.team_id %>
+                </td>
+              </tr>
+              <tr>
+                <td>RATING: <%= row.rating %>
+                </td>
+              </tr>
+              <tr>
+                <td>WINS: <%= row.wins %>
+                </td>
+              </tr>
+              <tr>
+                <td>LOSSES: <%= row.losses %>
+                </td>
+              </tr>
+              <tr>
+                <td>AVERAGE MATCH TIME: <%= row.avg_match_time %>
+                </td>
+              </tr>
+              <tr>
+                <td>AVERAGE SCORE: <%= row.avg_score %>
+                </td>
+              </tr>
+              <tr>
+                <td>FIRST BLOOD PERCENTAGE: <%= row.first_blood_pct %>
+                </td>
+              </tr>
+              <tr>
+                <td>PREVIOUS FORM: <%= row.prev_form %>
+                </td>
+              </tr>
+              <tr>
+                <td>ELO: <%= row.elo_win_pct %>
+                </td>
+              </tr>
+              <% })}else{ %>
+                <tr>
+                  <td colspan="6">No Record Found</td>
+                </tr>
+                <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <canvas id="eloChart"></canvas>
+    </div>
+    <script>
+      const eloDataTeamOne = <% - JSON.stringify(team_one.eloData) %>
+      const eloDataTeamTwo = <% - JSON.stringify(team_one.eloData) %>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/javascript/elo_chart.js"></script>
+  </main>
 
-    <footer><%- include('../partials/footer'); %></footer>
+  <footer><%- include('../partials/footer'); %></footer>
 </body>
 
 </html>
