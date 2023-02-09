@@ -118,30 +118,28 @@
     <div>
       <canvas id="eloChart"></canvas>
     </div>
-
     <script>
-      const ctx = document.getElementById('eloChart');
+      const teamOne = <%- JSON.stringify(team_one[0]) %>
+      const teamTwo = <%- JSON.stringify(team_two[0]) %>
+        async function postData(url = '') {
+          const response = await fetch(url, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              'teamOne': teamOne,
+              'teamTwo': teamTwo
+            }),
+          });
+          return response.json();
+        }
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [
-            {
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3], // await get my_data_api
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
+      const data = postData('http://localhost:4000/api');
+      console.log({ data });
+    </script>
+    <script src="/javascript/eloChart.js">
     </script>
   </main>
 
