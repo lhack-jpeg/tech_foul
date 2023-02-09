@@ -1,4 +1,4 @@
-const ctx = document.getElementById('myChart');
+const ctx = document.getElementById('eloChart');
 
 new Chart(ctx, {
   type: 'bar',
