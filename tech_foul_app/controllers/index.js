@@ -2,6 +2,7 @@ const moment = require('moment');
 const Matches = require('../models/match');
 const sqlMatch = require('../models/sqlMatches');
 const Team = require('../models/teams');
+const TeamRating = require('../models/teamRatings');
 const { log } = require('console');
 
 exports.getAllMatches = async (req, res, next) => {
@@ -25,11 +26,31 @@ exports.getAllMatches = async (req, res, next) => {
 };
 
 exports.getTeamData = async (req, res) => {
-  const { id } = req.body;
-  console.log('params', req.body);
-  console.log(id);
-  console.log('Team post route');
-  res.send(`Hit the route ${id}`);
+  const teams = req.body;
+  const teamOne = teams.teamOne.id;
+  const teamTwo = teams.teamTwo.id;
+  const eloRatings = {};
+  eloRatings.teamOne = [];
+  eloRatings.teamTwo = [];
+  const teamOneElo = await TeamRating.findAll({
+    attributes: ['rating', 'inserted_at'],
+    where: {
+      team_id: teamOne,
+    },
+  });
+  const teamTwoElo = await TeamRating.findAll({
+    attributes: ['rating', 'inserted_at'],
+    where: {
+      team_id: teamTwo,
+    },
+  });
+  if (teamOneElo.length > 0) {
+    eloRatings.teamOne = teamOneElo;
+  }
+  if (teamTwoElo.length > 0) {
+    eloRatings.teamTwo = teamTwoElo;
+  }
+  res.status(200).send(eloRatings);
 };
 
 // Display detail of a match that has been clicked on
@@ -37,8 +58,12 @@ exports.match_detail = async (req, res) => {
   const { match_id } = req.params;
   console.log(`match_id is ${match_id}`);
   const results = await Matches.findOne({ match_id });
-  const team_one = results.team_one;
-  const team_two = results.team_two;
-  console.log(results.team_one, results.team_two);
-  res.render('pages/match_detail', { team_one, team_two });
+  try {
+    const team_one = results.team_one;
+    const team_two = results.team_two;
+    console.log(results.team_one, results.team_two);
+    res.render('pages/match_detail', { team_one, team_two });
+  } catch (error) {
+    console.log(error);
+  }
 };
