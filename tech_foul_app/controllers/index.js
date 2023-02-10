@@ -10,13 +10,13 @@ exports.getAllMatches = async (req, res, next) => {
     include: [
       {
         model: Team,
-        as: 'team_one_info',
+        as: 'team_one_info'
       },
       {
         model: Team,
-        as: 'team_two_info',
-      },
-    ],
+        as: 'team_two_info'
+      }
+    ]
   });
   results.forEach((result) => {
     result.startTime = moment(result.epoch_time * 1000).format('HH:mm:ss');
@@ -35,16 +35,16 @@ exports.getTeamData = async (req, res) => {
   const teamOneElo = await TeamRating.findAll({
     attributes: ['rating', 'inserted_at'],
     where: {
-      team_id: teamOne,
+      team_id: teamOne
     },
-    order: [['inserted_at', 'ASC']],
+    order: [['inserted_at', 'ASC']]
   });
   const teamTwoElo = await TeamRating.findAll({
     attributes: ['rating', 'inserted_at'],
     where: {
-      team_id: teamTwo,
+      team_id: teamTwo
     },
-    order: [['inserted_at', 'ASC']],
+    order: [['inserted_at', 'ASC']]
   });
   if (teamOneElo.length > 0) {
     eloRatings.teamOne = teamOneElo;

@@ -23,7 +23,7 @@ mongoose.set('strictQuery', false);
 const mongoDBURL = process.env.MONGODB_URL;
 mongoose.connect(mongoDBURL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
