@@ -4,7 +4,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const AppError = require('./utilities/expressError');
 const errorHandler = require('./utilities/errorHandler');
-
+const favicon = require('serve-favicon');
 const indexRouter = require('./routes/index');
 
 // Set config for app
@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use('/', indexRouter);
 
