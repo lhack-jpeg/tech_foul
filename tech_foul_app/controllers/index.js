@@ -27,8 +27,8 @@ exports.getAllMatches = async (req, res, next) => {
 
 exports.getTeamData = async (req, res) => {
   const teams = req.body;
-  const teamOne = teams.teamOne.id;
-  const teamTwo = teams.teamTwo.id;
+  const teamOne = teams.teamOne;
+  const teamTwo = teams.teamTwo;
   const eloRatings = {};
   eloRatings.teamOne = [];
   eloRatings.teamTwo = [];
@@ -37,12 +37,14 @@ exports.getTeamData = async (req, res) => {
     where: {
       team_id: teamOne,
     },
+    order: [['inserted_at', 'ASC']],
   });
   const teamTwoElo = await TeamRating.findAll({
     attributes: ['rating', 'inserted_at'],
     where: {
       team_id: teamTwo,
     },
+    order: [['inserted_at', 'ASC']],
   });
   if (teamOneElo.length > 0) {
     eloRatings.teamOne = teamOneElo;
@@ -61,7 +63,6 @@ exports.match_detail = async (req, res) => {
   try {
     const team_one = results.team_one;
     const team_two = results.team_two;
-    console.log(results.team_one, results.team_two);
     res.render('pages/match_detail', { team_one, team_two });
   } catch (error) {
     console.log(error);
