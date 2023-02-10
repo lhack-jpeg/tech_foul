@@ -1,0 +1,41 @@
+body {
+    padding-top: 50px;
+    background-color: #a4230d;
+}
+header {
+    color: white;
+    
+}
+
+#header-logo {
+    display: flex;
+	height: 138px;
+	width: 196px;
+    background-image: url("../images/TF_Logo_2.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.team-name-top {
+    display: inline;
+    white-space: nowrap;
+}
+
+.team-icon > img {
+    display: inline;
+	height: 50px;
+	width: 70px;
+}
+
+.main-container {
+    border-radius: 10px;
+    background-color: #374354;
+}
+
+
+
+.border-right {
+    border-right-style: double;
+    border-right-width: 5px;
+    border-right-color: #6b757e;
+}
