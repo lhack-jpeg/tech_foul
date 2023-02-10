@@ -77,9 +77,9 @@ def create_match_list(match_object):
     matches_dict["epoch_time"] = single_match.epoch_start
     matches_dict["team_one"] = {}
     matches_dict["team_two"] = {}
-    matches_dict["team_one"]["id"] = single_match.team_one
+    matches_dict["team_one"]["team_id"] = single_match.team_one
     matches_dict["team_one"]["name"] = single_match.team_one_name
-    matches_dict["team_two"]["id"] = single_match.team_two
+    matches_dict["team_two"]["team_id"] = single_match.team_two
     matches_dict["team_two"]["name"] = single_match.team_two_name
     matches_dict["team_one"]["match_ids"] = One_Match.get_matches(
         single_match.team_one
@@ -101,7 +101,7 @@ def get_stats(matches_dict):
     Takes in a teams dict of previous matches returns win_loss
     """
     team_dict = {}
-    team_id = matches_dict["id"]
+    team_id = matches_dict["team_id"]
     team_dict.update(get_team_rating(team_id))
     prev_performance = ""
     match_duration = []
