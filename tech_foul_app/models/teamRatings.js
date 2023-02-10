@@ -7,6 +7,7 @@ const TeamRating = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
     },
     team_id: {
       type: DataTypes.BIGINT,
