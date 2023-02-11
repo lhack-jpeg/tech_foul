@@ -38,6 +38,7 @@ let teamData = postData('http://localhost:4000/api').then((value) => {
             x: row.inserted_at,
             y: row.rating,
           })),
+          tension: 0.5,
         },
         {
           label: 'team_two_rating',
@@ -46,43 +47,18 @@ let teamData = postData('http://localhost:4000/api').then((value) => {
             x: row.inserted_at,
             y: row.rating,
           })),
+          tension: 0.5,
         },
       ],
     },
     options: {
       scales: {
-        xAxes: [
-          {
-            id: 'teamOne',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                quarter: 'dd MM',
-              },
-              stepSize: 7,
-            },
-            beginAtZero: false,
-            min: '2022-10-01',
+        xAxis: {
+          ticks: {
+            soruce: 'auto',
+            maxTicksLimit: 12,
           },
-          {
-            id: 'teamTwo',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                day: 'dd MM',
-              },
-              stepSize: 7,
-            },
-            beginAtZero: true,
-            display: false,
-          },
-        ],
+        },
       },
     },
   });
