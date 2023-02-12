@@ -16,8 +16,27 @@ from sqlalchemy import (
 import enum
 from sqlalchemy.ext.declarative import declarative_base
 import urllib.parse
+from os import getenv
 
 # Import database secrets
+if getenv("MYSQL_DB_HOST"):
+    MYSQL_DB_USER = getenv("MYSQL_DB_USER")
+else:
+    import variables as DB
+
+    MYSQL_DB_USER = DB.MYSQL_DB_USER
+if getenv("MYSQL_DB_PASS"):
+    MYSQL_DB_PASS = getenv("MYSQL_DB_PASS")
+else:
+    MYSQL_DB_PASS = DB.MYSQL_DB_PASS
+if getenv("MYSQL_DB_HOST"):
+    MYSQL_DB_HOST = getenv("MYSQL_DB_HOST")
+else:
+    MYSQL_DB_HOST = DB.MYSQL_DB_HOST
+if getenv("MYSQL_DB"):
+    MYSQL_DB = getenv("MYSQL_DB")
+else:
+    MYSQL_DB = DB.MYSQL_DB
 import variables as DB
 
 Base = declarative_base()

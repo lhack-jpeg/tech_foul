@@ -2,7 +2,6 @@
 This module contains the constructor for one match using requests and json
 """
 import requests
-import variables
 import json
 from os import getenv
 
@@ -12,6 +11,8 @@ Check for env variables
 if getenv("API_KEY"):
     API_KEY = getenv("API_KEY")
 else:
+    import variables
+
     API_KEY = variables.API_KEY
 
 headers = {"api_key": API_KEY}
