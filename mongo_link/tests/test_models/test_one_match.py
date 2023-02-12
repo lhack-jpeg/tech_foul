@@ -8,8 +8,25 @@ from sqlalchemy.orm import Session
 from sql_model import Match, Team
 import variables as DB
 import urllib.parse
+from os import getenv
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+if getenv("MYSQL_DB_HOST"):
+    MYSQL_DB_USER = getenv("MYSQL_DB_USER")
+else:
+    MYSQL_DB_USER = DB.MYSQL_DB_USER
+if getenv("MYSQL_DB_PASS"):
+    MYSQL_DB_PASS = getenv("MYSQL_DB_PASS")
+else:
+    MYSQL_DB_PASS = DB.MYSQL_DB_PASS
+if getenv("MYSQL_DB_HOST"):
+    MYSQL_DB_HOST = getenv("MYSQL_DB_HOST")
+else:
+    MYSQL_DB_HOST = DB.MYSQL_DB_HOST
+if getenv("MYSQL_DB"):
+    MYSQL_DB = getenv("MYSQL_DB")
+else:
+    MYSQL_DB = DB.MYSQL_DB
 
 
 class TestOneMatch(unittest.TestCase):
@@ -25,7 +42,7 @@ class TestOneMatch(unittest.TestCase):
         Set up the test class.
         """
         self.engine = create_engine(
-            f"mysql+mysqldb://{DB.MYSQL_DB_USER}:{urllib.parse.quote(DB.MYSQL_DB_PASS)}@{DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}",
+            f"mysql+mysqldb://{MYSQL_DB_USER}:{urllib.parse.quote(MYSQL_DB_PASS)}@{MYSQL_DB_HOST}/{MYSQL_DB}",
             pool_pre_ping=True,
         )
         self.session = Session(bind=self.engine)
