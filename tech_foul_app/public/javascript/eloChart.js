@@ -10,17 +10,17 @@ const splintString = (string) => {
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
 console.log('team info', teamOneId, teamTwoId);
-async function postData (url = '') {
+async function postData(url = '') {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       teamOne: teamOneId,
-      teamTwo: teamTwoId
-    })
+      teamTwo: teamTwoId,
+    }),
   });
   const teamData = response.json();
   return teamData;
@@ -36,54 +36,30 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
           xAxisID: 'teamOne',
           data: value.teamOne.map((row) => ({
             x: row.inserted_at,
-            y: row.rating
-          }))
+            y: row.rating,
+          })),
+          tension: 0.5,
         },
         {
           label: 'team_two_rating',
           xAxisID: 'teamTwo',
           data: value.teamTwo.map((row) => ({
             x: row.inserted_at,
-            y: row.rating
-          }))
-        }
-      ]
+            y: row.rating,
+          })),
+          tension: 0.5,
+        },
+      ],
     },
     options: {
       scales: {
-        xAxes: [
-          {
-            id: 'teamOne',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                quarter: 'dd MM'
-              },
-              stepSize: 7
-            },
-            beginAtZero: false,
-            min: '2022-10-01'
+        xAxis: {
+          ticks: {
+            soruce: 'auto',
+            maxTicksLimit: 12,
           },
-          {
-            id: 'teamTwo',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                day: 'dd MM'
-              },
-              stepSize: 7
-            },
-            beginAtZero: true,
-            display: false
-          }
-        ]
-      }
-    }
+        },
+      },
+    },
   });
 });

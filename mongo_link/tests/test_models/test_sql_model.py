@@ -1,5 +1,5 @@
 import unittest
-from sql_model import Match, Team, mysql_connect, MyEnum, Team_rating
+from sql_model import Match, Team, MyEnum, Team_rating
 
 
 class TestSQLModel(unittest.TestCase):
