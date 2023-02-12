@@ -18,7 +18,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import urllib.parse
 from os import getenv, path
 
-if path.exists("variables.py"):
+if path.exists("./variables.py"):
     import variables as DB
 
 # Import database secrets
@@ -38,7 +38,6 @@ if getenv("MYSQL_DB"):
     MYSQL_DB = getenv("MYSQL_DB")
 else:
     MYSQL_DB = DB.MYSQL_DB
-import variables as DB
 
 Base = declarative_base()
 
@@ -48,7 +47,7 @@ def mysql_connect():
     Returns a connection instance to the MySQL Database
     """
     return create_engine(
-        f"mysql+mysqldb://{DB.MYSQL_DB_USER}:{urllib.parse.quote(DB.MYSQL_DB_PASS)}@{DB.MYSQL_DB_HOST}/{DB.MYSQL_DB}",
+        f"mysql+mysqldb://{MYSQL_DB_USER}:{urllib.parse.quote(MYSQL_DB_PASS)}@{MYSQL_DB_HOST}/{MYSQL_DB}",
         pool_pre_ping=True,
     )
 
