@@ -5,7 +5,7 @@ It then condenses it down to key metrics and stores it in a mongo database
 
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
-from datetime import date
+from datetime import date, datetime
 import variables
 from one_match import One_Match, get_api_rating
 from mongo_db_connect import get_mongoDB
@@ -34,6 +34,20 @@ def get_team_rating(team_id):
         )
         .first()
     )
+    elo_rating = (
+        session.query(Team_rating.rating, Team_rating.inserted_at)
+        .filter(Team_rating.team_id == team_id)
+        .all()
+    )
+    elo_list = []
+    if elo_rating is not None:
+        for rating in elo_rating:
+            elo_dict = {}
+            date = rating[1].date()
+            date = date.strftime("%m/%d/%Y")
+            elo_dict["date"] = date
+            elo_dict["rating"] = rating[0]
+            elo_list.append(elo_dict)
     if team_rating is None:
         team_stats = get_api_rating(team_id)
     else:
@@ -41,6 +55,8 @@ def get_team_rating(team_id):
         team_stats.update({"rating": team_rating.rating})
         team_stats.update({"wins": team_rating.wins})
         team_stats.update({"Losses": team_rating.losses})
+
+    team_stats.update({"elo_ratings": elo_list})
     return team_stats
 
 
@@ -61,9 +77,9 @@ def create_match_list(match_object):
     matches_dict["epoch_time"] = single_match.epoch_start
     matches_dict["team_one"] = {}
     matches_dict["team_two"] = {}
-    matches_dict["team_one"]["id"] = single_match.team_one
+    matches_dict["team_one"]["team_id"] = single_match.team_one
     matches_dict["team_one"]["name"] = single_match.team_one_name
-    matches_dict["team_two"]["id"] = single_match.team_two
+    matches_dict["team_two"]["team_id"] = single_match.team_two
     matches_dict["team_two"]["name"] = single_match.team_two_name
     matches_dict["team_one"]["match_ids"] = One_Match.get_matches(
         single_match.team_one
@@ -85,7 +101,7 @@ def get_stats(matches_dict):
     Takes in a teams dict of previous matches returns win_loss
     """
     team_dict = {}
-    team_id = matches_dict["id"]
+    team_id = matches_dict["team_id"]
     team_dict.update(get_team_rating(team_id))
     prev_performance = ""
     match_duration = []

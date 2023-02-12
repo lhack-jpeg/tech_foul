@@ -36,5 +36,4 @@ mongoose
       if (error) console.error(error);
       console.log(document);
     });
-  })
-;
+  });

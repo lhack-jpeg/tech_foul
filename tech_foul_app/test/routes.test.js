@@ -7,19 +7,19 @@ const sequelize = require('../services/mysqlDB');
 const mongoose = require('mongoose');
 
 after(function (done) {
-    sequelize.close();
-    mongoose.connection.close();
-    done();
+  sequelize.close();
+  mongoose.connection.close();
+  done();
 });
 
 describe('/GET home route', () => {
-    it('it should gat all matches', (done) => {
-        chai.request(app)
-            .get('/')
-            .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                done();
-            });
-    });
+  it('it should gat all matches', (done) => {
+    chai.request(app)
+      .get('/')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+  });
 });
