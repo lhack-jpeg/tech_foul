@@ -16,14 +16,15 @@ from sqlalchemy import (
 import enum
 from sqlalchemy.ext.declarative import declarative_base
 import urllib.parse
-from os import getenv
+from os import getenv, path
+
+if path.exists("variables.py"):
+    import variables as DB
 
 # Import database secrets
 if getenv("MYSQL_DB_HOST"):
     MYSQL_DB_USER = getenv("MYSQL_DB_USER")
 else:
-    import variables as DB
-
     MYSQL_DB_USER = DB.MYSQL_DB_USER
 if getenv("MYSQL_DB_PASS"):
     MYSQL_DB_PASS = getenv("MYSQL_DB_PASS")
