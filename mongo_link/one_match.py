@@ -3,8 +3,10 @@ This module contains the constructor for one match using requests and json
 """
 import requests
 import json
-from os import getenv
+from os import getenv, path
 
+if path.exists("variables.py"):
+    import variables
 """
 Check for env variables
 """
