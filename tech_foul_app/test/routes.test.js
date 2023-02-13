@@ -4,6 +4,7 @@ const app = require('../app');
 const should = chai.should();
 chai.use(chaiHttp);
 const sequelize = require('../services/mysqlDB');
+const sqlMatch = require('../models/sqlMatches');
 const mongoose = require('mongoose');
 
 after(function (done) {
@@ -14,7 +15,8 @@ after(function (done) {
 
 describe('/GET home route', () => {
   it('it should gat all matches', (done) => {
-    chai.request(app)
+    chai
+      .request(app)
       .get('/')
       .end((err, res) => {
         res.should.have.status(200);
