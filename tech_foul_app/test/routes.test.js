@@ -13,6 +13,10 @@ after(function (done) {
   done();
 });
 
+/*
+ * Test the home route
+ */
+
 describe('/GET home route', () => {
   it('it should gat all matches', (done) => {
     chai
@@ -23,5 +27,18 @@ describe('/GET home route', () => {
         res.body.should.be.a('object');
         done();
       });
+  });
+});
+
+/*
+ * Test the post route
+ */
+
+describe('/POST api route', () => {
+  it('It should return the ratings of two teams', (done) => {
+    let teams = {
+      teamOne: 41,
+      teamTwo: 4,
+    };
   });
 });
