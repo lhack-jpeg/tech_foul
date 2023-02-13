@@ -34,16 +34,17 @@
               <div class="col text-center text-light">
                 <h6 class="row start-time justify-content-center ms-0 me-0">Team One</h6>
                 <%= entry.team_one %>
-                <a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
               </div>
-              <div class="col text-center text-light"><h2>VS</h2></div>
-              <div class="col team-icons d-flex justify-content-center">
-                <img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
+              <div class="col text-center text-light">
+                <h2>VS</h2>
+                <a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
               </div>
               <div class="col text-center text-light">
                 <h6 class="row start-time justify-content-center ms-0 me-0">Team Two</h6>
                 <%= entry.team_two %>
-                <a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
+              </div>
+              <div class="col team-icons d-flex justify-content-center">
+                <img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
               </div>
               <div class="col align-items-center text-light">
                 <h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
