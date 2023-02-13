@@ -29,11 +29,11 @@ exports.getAllMatches = async (req, res, next) => {
     const hoursUntilStart = Math.floor(timeUntilStart / 1000 / 60 / 60);
     const minutesUntilStart = Math.floor((timeUntilStart / 1000 / 60) % 60);
 
-    if (timeUntilStart <= 0) {
-      result.timeUntilStart = 'Game Finished';
-    } else {
-      result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
-    }
+    // if (timeUntilStart <= 0) {
+    //   result.timeUntilStart = 'Game Finished';
+    // } else {
+    result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
+    // }
   });
 
   // Renders the current date in a longer format
