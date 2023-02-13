@@ -6,10 +6,12 @@ It then condenses it down to key metrics and stores it in a mongo database
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
 from datetime import date, datetime
-import variables
+from os import path
 from one_match import One_Match, get_api_rating
 from mongo_db_connect import get_mongoDB
 
+if path.exists("./variables.py"):
+    import variables
 engine = mysql_connect()
 Session = sessionmaker(bind=engine)
 session = Session()
