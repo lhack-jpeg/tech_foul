@@ -20,9 +20,33 @@ exports.getAllMatches = async (req, res, next) => {
   });
   results.forEach((result) => {
     result.startTime = moment(result.epoch_time * 1000).format('HH:mm:ss');
+
+    // Convert the `epoch_time` to the start time of the match in `hh:mm:ss` format using moment
+
+    const startTime = new Date(result.epoch_time * 1000);
+    const currentTime = new Date();
+    const timeUntilStart = startTime - currentTime;
+    const hoursUntilStart = Math.floor(timeUntilStart / 1000 / 60 / 60);
+    const minutesUntilStart = Math.floor((timeUntilStart / 1000 / 60) % 60);
+
+    if (timeUntilStart <= 0) {
+      result.timeUntilStart = 'Game Finished';
+    } else {
+      result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
+    }
   });
+
+  // Renders the current date in a longer format
+  const currentDate = new Date();
+  const currentDateString = currentDate.toLocaleDateString('en-AU', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
   log(JSON.stringify(results));
-  res.render('pages/homepage', { results });
+  res.render('pages/homepage', { results, currentDate: currentDateString });
 };
 
 exports.getTeamData = async (req, res) => {
