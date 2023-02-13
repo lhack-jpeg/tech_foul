@@ -1,7 +1,6 @@
 """
 This module returns a connection instance to a mongoDB server.
 """
-import variables
 from pymongo import MongoClient
 import certifi
 from os import getenv, path
