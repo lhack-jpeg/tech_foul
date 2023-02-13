@@ -6,9 +6,11 @@ import one_match
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sql_model import Match, Team
-import variables as DB
 import urllib.parse
-from os import getenv
+from os import getenv, path
+
+if path.exists("./variables.py"):
+    import variables as DB
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 if getenv("MYSQL_DB_HOST"):
