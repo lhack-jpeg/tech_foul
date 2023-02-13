@@ -6,12 +6,14 @@ from sqlalchemy.orm import Session
 from sql_model import Match
 import urllib.parse
 import sql_mongo_link
-import variables as DB
 from mongo_db_connect import get_mongoDB
 import mongo_db_connect
-from os import getenv
+from os import getenv, path
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
+if path.exists("./variables.py"):
+    import variables as DB
 
 """
 Get environment values if ran in github workflow.
