@@ -6,7 +6,7 @@ It then condenses it down to key metrics and stores it in a mongo database
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
 from datetime import date, datetime
-from os import path
+from os import path, getenv
 from one_match import One_Match, get_api_rating
 from mongo_db_connect import get_mongoDB
 
@@ -15,8 +15,16 @@ if path.exists("./variables.py"):
 engine = mysql_connect()
 Session = sessionmaker(bind=engine)
 session = Session()
-headers = {"api_key": variables.API_KEY}
 today = date.today()
+
+if getenv("API_KEY"):
+    API_KEY = getenv("API_KEY")
+else:
+    import variables
+
+    API_KEY = variables.API_KEY
+
+headers = {"api_key": API_KEY}
 
 
 def get_sql_matches():
