@@ -3,8 +3,7 @@
   <head>
     <%- include('../partials/head'); %>
   </head>
-
-  <body class="container" id="body-light">
+  <body class="container bg-image" id="body-light">
     <header><%- include('../partials/header'); %></header>
 
     <main class="main-container" id="main-light">
@@ -37,7 +36,7 @@
                 <%= entry.team_one %>
               </div>
               <div class="col text-center main-text">
-                <h2>VS</h2>
+                <h3>VS</h3>
                 <a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
               </div>
               <div class="col text-center main-text">
@@ -68,42 +67,6 @@
     </main>
 
     <footer><%- include('../partials/footer'); %></footer>
-    <script>
-      const matchButtons = document.querySelectorAll('.matchButton');
-      matchButtons.forEach(function (button) {
-        button.addEventListener('mousedown', function () {
-          this.classList.add('clicked');
-        });
-        button.addEventListener('mouseup', function () {
-          this.classList.remove('clicked');
-        });
-      });
-      function myFunction() {
-        const body_element = document.getElementById('body-light');
-        const main_element = document.getElementById('main-light');
-        const text_main_switch = document.querySelectorAll('.main-text');
-        body_element.classList.toggle('light-mode-body');
-        main_element.classList.toggle('light-mode-main');
-        const text_light_switch = document.querySelectorAll('.light-mode-text');
-        text_main_switch.forEach(function (className) {
-          if (className.classList.contains('main-text')) {
-            className.classList.remove('main-text');
-            className.classList.add('light-mode-text');
-          } else if (className.classList.contains('light-mode-text')) {
-            className.classList.remove('light-mode-text');
-            className.classList.add('main-text');
-          }
-        });
-        text_light_switch.forEach(function (className) {
-          if (className.classList.contains('light-mode-text')) {
-            className.classList.remove('light-mode-text');
-            className.classList.add('main-text');
-          } else if (className.classList.contains('main-text')) {
-            className.classList.remove('main-text');
-            className.classList.add('light-mode-text');
-          }
-        });
-      }
-    </script>
+    <%- include('../partials/script'); %>
   </body>
 </html>
