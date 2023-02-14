@@ -4,6 +4,7 @@ const sqlMatch = require('../models/sqlMatches');
 const Team = require('../models/teams');
 const TeamRating = require('../models/teamRatings');
 const { log } = require('console');
+const sequelize = require('../services/mysqlDB');
 
 exports.getAllMatches = async (req, res, next) => {
   const results = await sqlMatch.findAll({
@@ -57,14 +58,30 @@ exports.getTeamData = async (req, res) => {
   eloRatings.teamOne = [];
   eloRatings.teamTwo = [];
   const teamOneElo = await TeamRating.findAll({
-    attributes: ['rating', 'inserted_at'],
+    attributes: {
+      include: [
+        'rating',
+        [
+          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
+          'inserted_at',
+        ],
+      ],
+    },
     where: {
       team_id: teamOne,
     },
     order: [['inserted_at', 'ASC']],
   });
   const teamTwoElo = await TeamRating.findAll({
-    attributes: ['rating', 'inserted_at'],
+    attributes: {
+      include: [
+        'rating',
+        [
+          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
+          'inserted_at',
+        ],
+      ],
+    },
     where: {
       team_id: teamTwo,
     },

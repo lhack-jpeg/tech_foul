@@ -9,8 +9,8 @@ const splintString = (string) => {
 
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
-console.log('team info', teamOneId, teamTwoId);
-async function postData(url = '') {
+// console.log('team info', teamOneId, teamTwoId);
+async function postData(url = '', teamOneID, teamTwoID) {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -18,15 +18,19 @@ async function postData(url = '') {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      teamOne: teamOneId,
-      teamTwo: teamTwoId,
+      teamOne: teamOneID,
+      teamTwo: teamTwoID,
     }),
   });
   const teamData = response.json();
   return teamData;
 }
 
-const teamData = postData('http://localhost:4000/api').then((value) => {
+const teamData = postData(
+  'http://localhost:4000/api',
+  teamOneId,
+  teamTwoId
+).then((value) => {
   new Chart(ctx, {
     type: 'line',
     data: {
@@ -38,6 +42,7 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
             x: row.inserted_at,
             y: row.rating,
           })),
+          tension: 0.5,
         },
         {
           label: 'team_two_rating',
@@ -46,41 +51,24 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
             x: row.inserted_at,
             y: row.rating,
           })),
+          tension: 0.5,
         },
       ],
     },
     options: {
       scales: {
-        x: {
-          id: 'teamOne',
-          type: 'time',
-          distribution: 'linear',
-          time: {
-            parser: 'yyyy-MM-dd HH:mm:ss',
-            unit: 'day',
-            displayFormats: {
-              quarter: 'dd MM',
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Date',
             },
-            stepSize: 7,
-          },
-          beginAtZero: false,
-          min: '2022-10-01',
-        },
-        x2: {
-          id: 'teamTwo',
-          type: 'time',
-          distribution: 'linear',
-          time: {
-            parser: 'yyyy-MM-dd HH:mm:ss',
-            unit: 'day',
-            displayFormats: {
-              day: 'dd MM',
+            ticks: {
+              source: 'auto',
+              display: false,
             },
-            stepSize: 7,
           },
-          beginAtZero: true,
-          display: false,
-        },
+        ],
       },
     },
   });
