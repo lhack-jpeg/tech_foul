@@ -87,7 +87,6 @@ exports.match_detail = async (req, res) => {
   try {
     const team_one = results.team_one;
     const team_two = results.team_two;
-    console.log(team_one);
     res.render('pages/match_detail', {
       epoch: results.epoch_time,
       team_one,
