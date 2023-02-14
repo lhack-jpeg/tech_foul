@@ -1,4 +1,5 @@
-const ctx = document.getElementById('eloChart');
+const teamOneChart = document.getElementById('eloTeamOneChart');
+const teamTwoChart = document.getElementById('eloTeamTwoChart');
 let teamOneText = document.getElementById('teamOneID').innerText;
 let teamTwoText = document.getElementById('teamTwoID').innerText;
 let splintString = (string) => {
@@ -9,8 +10,8 @@ let splintString = (string) => {
 
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
-console.log('team info', teamOneId, teamTwoId);
-async function postData(url = '') {
+// console.log('team info', teamOneId, teamTwoId);
+async function postData(url = '', teamID) {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -18,48 +19,72 @@ async function postData(url = '') {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      teamOne: teamOneId,
-      teamTwo: teamTwoId,
+      team: teamID,
     }),
   });
   let teamData = response.json();
   return teamData;
 }
 
-let teamData = postData('http://localhost:4000/api').then((value) => {
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      datasets: [
-        {
-          label: 'team_one_rating',
-          xAxisID: 'teamOne',
-          data: value.teamOne.map((row) => ({
-            x: row.inserted_at,
-            y: row.rating,
-          })),
-          tension: 0.5,
-        },
-        {
-          label: 'team_two_rating',
-          xAxisID: 'teamTwo',
-          data: value.teamTwo.map((row) => ({
-            x: row.inserted_at,
-            y: row.rating,
-          })),
-          tension: 0.5,
-        },
-      ],
-    },
-    options: {
-      scales: {
-        xAxis: {
-          ticks: {
-            soruce: 'auto',
-            maxTicksLimit: 12,
+let teamOneData = postData('http://localhost:4000/api', teamOneId).then(
+  (value) => {
+    new Chart(teamOneChart, {
+      type: 'line',
+      data: {
+        labels: value.team.map((row) => row.inserted_at),
+        datasets: [
+          {
+            label: 'team_one_rating',
+            data: value.team.map((row) => row.rating),
+            tension: 0.5,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'time',
+            ticks: {
+              source: 'labels',
+            },
           },
         },
+        responsive: true,
+        maintainAspectRatio: false,
       },
-    },
-  });
-});
+    });
+  }
+);
+
+let teamTwoData = postData('http://localhost:4000/api', teamTwoId).then(
+  (value) => {
+    new Chart(teamTwoChart, {
+      type: 'line',
+      data: {
+        labels: value.team.map((row) => row.inserted_at),
+        datasets: [
+          {
+            label: 'team_one_rating',
+            data: value.team.map((row) => row.rating),
+            tension: 0.5,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              units: 'day',
+            },
+            ticks: {
+              source: 'labels',
+            },
+          },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    });
+  }
+);
