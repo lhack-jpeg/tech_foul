@@ -1,0 +1,57 @@
+<script>
+  const matchButtons = document.querySelectorAll('.matchButton');
+  matchButtons.forEach(function (button) {
+    button.addEventListener('mousedown', function () {
+      this.classList.add('clicked');
+    });
+    button.addEventListener('mouseup', function () {
+      this.classList.remove('clicked');
+    });
+  });
+  function myFunction() {
+    const body_element = document.getElementById('body-light');
+    const main_element = document.getElementById('main-light');
+    const text_main_switch = document.querySelectorAll('.main-text');
+    const header_main_switch = document.querySelectorAll('.main-header');
+    const header_light_switch = document.querySelectorAll('.light-mode-header');
+    body_element.classList.toggle('light-mode-body');
+    main_element.classList.toggle('light-mode-main');
+    const text_light_switch = document.querySelectorAll('.light-mode-text');
+    text_main_switch.forEach(function (className) {
+      if (className.classList.contains('main-text')) {
+        className.classList.remove('main-text');
+        className.classList.add('light-mode-text');
+      } else if (className.classList.contains('light-mode-text')) {
+        className.classList.remove('light-mode-text');
+        className.classList.add('main-text');
+      }
+    });
+    text_light_switch.forEach(function (className) {
+      if (className.classList.contains('light-mode-text')) {
+        className.classList.remove('light-mode-text');
+        className.classList.add('main-text');
+      } else if (className.classList.contains('main-text')) {
+        className.classList.remove('main-text');
+        className.classList.add('light-mode-text');
+      }
+    });
+    header_main_switch.forEach(function (className) {
+      if (className.classList.contains('main-header')) {
+        className.classList.remove('main-header');
+        className.classList.add('light-mode-header');
+      } else if (className.classList.contains('light-mode-header')) {
+        className.classList.remove('light-mode-header');
+        className.classList.add('main-header');
+      }
+    });
+    header_light_switch.forEach(function (className) {
+      if (className.classList.contains('light-mode-header')) {
+        className.classList.remove('light-mode-header');
+        className.classList.add('main-header');
+      } else if (className.classList.contains('main-header')) {
+        className.classList.remove('main-header');
+        className.classList.add('light-mode-header');
+      }
+    });
+  }
+</script>
