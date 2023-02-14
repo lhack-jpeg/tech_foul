@@ -11,8 +11,9 @@
 <style>
   body {
     padding-top: 50px;
+    /* background-color: #a4230d; */
     /* background-color: #a25744; */
-    background-color: #a4230d;
+    /* position: relative; */
   }
 
   header {
@@ -27,6 +28,20 @@
 
   ul {
     list-style-type: none;
+  }
+
+  .bg-image {
+    background-image: url('https://cdn.oneesports.gg/cdn-data/2022/03/Dota2_ClashofHeroes.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+    /* backdrop-filter: blur(8px);
+    background-blend-mode: color; */
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
   }
 
   .logo-header {
@@ -83,7 +98,20 @@
     border-color: #252c38;
   }
   .light-mode-text {
-    color: black;
+    color: rgb(0, 0, 0);
+  }
+  .light-mode-header {
+    color: rgb(0, 0, 0);
+    background-color: rgb(86, 152, 206);
+    border-radius: 25px;
+    box-shadow: -2px 3px 0px 0px rgb(86, 152, 206), 0 6px 20px 0 rgb(86, 152, 206);
+  }
+  .main-header {
+    --bs-text-opactiy: 1;
+    color: rgba(248, 249, 250, var(--bs-text-opactiy));
+    background-color: #374354;
+    border-radius: 25px;
+    box-shadow: -2px 3px 0px 0px #374354, 0 6px 20px 0 #374354;
   }
   .main-text {
     --bs-text-opactiy: 1;
