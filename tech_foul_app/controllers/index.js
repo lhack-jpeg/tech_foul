@@ -28,12 +28,10 @@ exports.getAllMatches = async (req, res, next) => {
 
 exports.getTeamData = async (req, res) => {
   const teams = req.body;
-  const teamOne = teams.teamOne;
-  const teamTwo = teams.teamTwo;
+  const teamOne = teams.team;
   const eloRatings = {};
-  eloRatings.teamOne = [];
-  eloRatings.teamTwo = [];
-  const teamOneElo = await TeamRating.findAll({
+  eloRatings.team = [];
+  const teamElo = await TeamRating.findAll({
     attributes: {
       include: [
         'rating',
@@ -48,26 +46,8 @@ exports.getTeamData = async (req, res) => {
     },
     order: [['inserted_at', 'ASC']],
   });
-  const teamTwoElo = await TeamRating.findAll({
-    attributes: {
-      include: [
-        'rating',
-        [
-          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
-          'inserted_at',
-        ],
-      ],
-    },
-    where: {
-      team_id: teamTwo,
-    },
-    order: [['inserted_at', 'ASC']],
-  });
-  if (teamOneElo.length > 0) {
-    eloRatings.teamOne = teamOneElo;
-  }
-  if (teamTwoElo.length > 0) {
-    eloRatings.teamTwo = teamTwoElo;
+  if (teamElo.length > 0) {
+    eloRatings.team = teamElo;
   }
   res.status(200).send(eloRatings);
 };
