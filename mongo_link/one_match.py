@@ -4,9 +4,17 @@ This module contains the constructor for one match using requests and json
 import requests
 import variables
 import json
-from time import sleep
+from os import getenv
 
-headers = {"api_key": variables.API_KEY}
+"""
+Check for env variables
+"""
+if getenv("API_KEY"):
+    API_KEY = getenv("API_KEY")
+else:
+    API_KEY = variables.API_KEY
+
+headers = {"api_key": API_KEY}
 
 
 def get_api_rating(team_id):
