@@ -11,7 +11,9 @@
       <div class="container">
         <div class="row border-bottom border-secondary">
           <h6 class="col d-flex main-text"><%= currentDate %></h6>
-          <div class="col d-flex justify-content-end"><button onclick="myFunction()">Light/Dark</button></div>
+          <div class="col d-flex justify-content-end">
+            <div onclick="myFunction()" class="light-dark-button">Light/Dark</div>
+          </div>
         </div>
         <!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
         <!-- <div class="row">
@@ -23,9 +25,9 @@
           <!-- <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton"> -->
           <div class="container">
             <!-- Place holder for tournament name -->
-            <!-- <div class="row align-items-center">
-								<h6 class="main-text m-0 p-0">Tournament: <%# entry.tournament_name %></h6>
-							</div> -->
+            <div class="row justify-content-center">
+              <h6 class="main-text m-0 p-0">Tournament: <%= entry.tournament_name %></h6>
+            </div>
 
             <div class="row align-items-center border-bottom border-secondary row-hover">
               <div class="col team-icons justify-content-center">

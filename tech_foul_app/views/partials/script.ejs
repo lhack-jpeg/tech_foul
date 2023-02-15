@@ -53,5 +53,15 @@
         className.classList.add('light-mode-header');
       }
     });
+
+    var btn = document.querySelector('light-dark-button'); // select the button element
+    // check if it has class "btn-light"
+    if (btn.classList.contains('button-light')) {
+      btn.classList.remove('button-light'); // remove "btn-light"
+      btn.classList.add('button-dark'); // add "btn-dark"
+    } else {
+      btn.classList.remove('button-dark'); // remove "btn-dark"
+      btn.classList.add('button-light'); // add "btn-light"
+    }
   }
 </script>

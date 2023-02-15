@@ -8,6 +8,7 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
   crossorigin="anonymous"
 />
+
 <style>
   body {
     padding-top: 50px;
@@ -105,6 +106,8 @@
     background-color: rgb(86, 152, 206);
     border-radius: 25px;
     box-shadow: -2px 3px 0px 0px rgb(86, 152, 206), 0 6px 20px 0 rgb(86, 152, 206);
+    font-family: constantia;
+    font-weight: bold;
   }
   .main-header {
     --bs-text-opactiy: 1;
@@ -118,6 +121,18 @@
   .main-text {
     --bs-text-opactiy: 1;
     color: rgba(248, 249, 250, var(--bs-text-opactiy));
+  }
+  .light-dark-button {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: #f0f0f0;
+    color: rgba(248, 249, 250, var(--bs-text-opactiy));
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .button-light {
+    background-color: rgba(86, 152, 206, 0.61);
+    border-color: #252c38;
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
