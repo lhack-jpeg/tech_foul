@@ -24,10 +24,10 @@
           fontWeight: "bold"
         },
         legend: {
-		      verticalAlign: "top",
+          verticalAlign: "top",
           fontColor: "#666666",
           fontWeight: "lighter"
-	      },
+        },
         axisX: {
           lineThickness: 1,
           titleFontColor: "#666666",
@@ -65,41 +65,43 @@
         data: [{
           <% team_one.forEach(entry => { %>
           toolTipContent: "<%= entry.name %>: {y}%",
-          type: "stackedBar100",
-          name: "<%= entry.name %>",
-          showInLegend: true,
-          legendMarkerColor: "#1b70a4",
-          legendMarkerBorderColor: "#009ef2",
-          legendMarkerBorderThickness: 2,
-          bevelEnabled: true,
-          color: "#009ef2",
-          dataPoints: [
-            { y: <%= Math.round((entry.elo_win_pct) * 100)%>,
-              indexLabel: "<%= entry.name %>",
-              indexLabelFontWeight: "bold",
-              indexLabelFontColor: "#666666"
-             }
-          ]
-          <% }); %>  
+            type: "stackedBar100",
+              name: "<%= entry.name %>",
+                showInLegend: true,
+                  legendMarkerColor: "#1b70a4",
+                    legendMarkerBorderColor: "#009ef2",
+                      legendMarkerBorderThickness: 2,
+                        bevelEnabled: true,
+                          color: "#009ef2",
+                            dataPoints: [
+                              {
+                                y: <%= Math.round((entry.elo_win_pct) * 100) %>,
+                                indexLabel: "<%= entry.name %>",
+                                indexLabelFontWeight: "bold",
+                                indexLabelFontColor: "#666666"
+                              }
+                            ]
+                              <% }); %>  
         }, {
-          <% team_two.forEach(entry=> { %>
-          toolTipContent: "<%= entry.name %>: {y}%",
-          type: "stackedBar100",
-          name: "<%= entry.name %>",
-          showInLegend: true,
-          legendMarkerColor: "#A44869",
-          legendMarkerBorderColor: "#FC4C7C",
-          legendMarkerBorderThickness: 2,
-          bevelEnabled: true,
-          color: "#FC4C7C",
-          dataPoints: [
-          { y: <%= Math.round((entry.elo_win_pct) * 100)%>,
-            indexLabel: "<%= entry.name %>",
-            indexLabelFontWeight: "bold",
-            indexLabelFontColor: "#666666"
-          }
-          ]
-          <% }); %>
+          <% team_two.forEach(entry => { %>
+                                toolTipContent: "<%= entry.name %>: {y}%",
+                                  type: "stackedBar100",
+                                    name: "<%= entry.name %>",
+                                      showInLegend: true,
+                                        legendMarkerColor: "#A44869",
+                                          legendMarkerBorderColor: "#FC4C7C",
+                                            legendMarkerBorderThickness: 2,
+                                              bevelEnabled: true,
+                                                color: "#FC4C7C",
+                                                  dataPoints: [
+                                                    {
+                                                      y: <%= Math.round((entry.elo_win_pct) * 100) %>,
+                                                      indexLabel: "<%= entry.name %>",
+                                                      indexLabelFontWeight: "bold",
+                                                      indexLabelFontColor: "#666666"
+                                                    }
+                                                  ]
+                                                    <% }); %>
         }]
       });
     chart.render();
@@ -109,78 +111,98 @@
 
 
 <body class="container">
-    <header>
-      <div id="header-logo"></div>
-      <div class="row"><H2 class="d-flex justify-content-center">Tech Foul</H2></div>
-    </header>
-    <main class="main-container">
-      
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 border-right border-bottom">
-              <% team_one.forEach(entry=> { %>
-                <h3 class="d-flex justify-content-center">
-                  <div class="team-name-top"> 
-                    <%= entry.name %> &nbsp;
-                  </div>
-                <div class="team-icon">
-                  <img src="/images/TF_Logo_2.png"/>
-                </div>
-              </h3>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
+  <header>
+    <div id="header-logo"></div>
+    <div class="row">
+      <H2 class="d-flex justify-content-center">Tech Foul</H2>
+    </div>
+  </header>
+  <main class="main-container">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 border-right border-bottom">
+          <% team_one.forEach(entry=> { %>
+            <h3 class="d-flex justify-content-center">
+              <div class="team-name-top">
+                <%= entry.name %> &nbsp;
+              </div>
+              <div class="team-icon">
+                <img src="/images/TF_Logo_2.png" />
+              </div>
+            </h3>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
                     <th>Category</th>
                     <th>Value</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Team ID</td>
-                      <td id="teamOneID"><%= entry.team_id %></td>
-                    </tr>
-                    <tr>
-                      <td>ELO</td>
-                      <td><%= Math.round((entry.elo_win_pct) * 100) + '%' %></td>
-                    </tr>
-                    <tr>
-                      <td>Team Rating</td>
-                      <td><%= entry.rating %></td>
-                    </tr>
-                    <tr>
-                      <td>Wins</td>
-                      <td><%= entry.wins %></td>
-                    </tr>
-                    <tr>
-                      <td>Losses</td>
-                      <td><%= entry.losses %></td>
-                    </tr>
-                    <tr>
-                      <td>Average Match Time</td>
-                      <td><%= entry.avg_match_time %></td>
-                    </tr>
-                    <tr>
-                      <td>Average Score</td>
-                      <td><%= entry.avg_score %></td>
-                    </tr>
-                    <tr>
-                      <td>First Blood Percentage</td>
-                      <td><%= entry.first_blood_pct %></td>
-                    </tr>
-                    <tr>
-                      <td>Win/Loss Record</td>
-                      <td><%= entry.prev_form %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <% }); %> 
-          </div>
-          <div class="col-sm-6 border-left border-bottom">
-            <% team_two.forEach(entry=> { %>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Team ID</td>
+                    <td id="teamOneID">
+                      <%= entry.team_id %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>ELO</td>
+                    <td>
+                      <%= Math.round((entry.elo_win_pct) * 100) + '%' %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Team Rating</td>
+                    <td>
+                      <%= entry.rating %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Wins</td>
+                    <td>
+                      <%= entry.wins %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Losses</td>
+                    <td>
+                      <%= entry.losses %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Average Match Time</td>
+                    <td>
+                      <%= entry.avg_match_time %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Average Score</td>
+                    <td>
+                      <%= entry.avg_score %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>First Blood Percentage</td>
+                    <td>
+                      <%= entry.first_blood_pct %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Win/Loss Record</td>
+                    <td>
+                      <%= entry.prev_form %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <% }); %>
+        </div>
+        <div class="col-sm-6 border-left border-bottom">
+          <% team_two.forEach(entry=> { %>
             <h3 class="d-flex justify-content-center">
-              <div class="team-name-top"> 
+              <div class="team-name-top">
                 <%= entry.name %> &nbsp;
               </div>
               <div class="team-icon">
@@ -256,19 +278,20 @@
             <% }); %>
         </div>
       </div>
-        <div class="row">
-          <div id="chartContainer" style="height: 320px; width: 97%;">
-            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-          </div>
+      <div class="row">
+        <div id="chartContainer" style="height: 320px; width: 97%;">
+          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         </div>
-          <div class="row">
-            <div id="chart-wrapper">
-              <canvas id="eloChart"></canvas>
-              <script src="/javascript/eloChart.js"></script>
-            </div>
-          </div>
+      </div>
+      <div class="row">
+        <h2 class="text-center">Team Elo ratings</h2>
+        <div id="chart-wrapper">
+          <canvas id="eloChart"></canvas>
+          <script src="/javascript/eloChart.js"></script>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
 
   <footer>
     <%- include('../partials/footer'); %>
