@@ -4,16 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>Tech Foul</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <link rel='stylesheet' type='text/css' href="/style/match_detail_style.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel='stylesheet' type='text/css' href="/style/match_detail_style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   <script type="text/javascript">
     window.onload = function () {
-    
+
       var chart = new CanvasJS.Chart("chartContainer", {
         backgroundColor: "#374354",
         title: {
@@ -39,10 +37,10 @@
           gridColor: "black",
           interval: 1,
           tickLength: 0,
-          labelFormatter: function(e) {
+          labelFormatter: function (e) {
             return "";
           },
-          title: "<%= (new Date(epoch * 1000)).toISOString().split('T')[0] %>"
+          title: "<%= (new Date()).toISOString().split('T')[0] %>"
         },
         axisY: {
           includeZero: true,
@@ -56,7 +54,7 @@
           titleFontWeight: "lighter",
           margin: 10,
           titleFontWeight: "bold",
-          labelFormatter: function(e) {
+          labelFormatter: function (e) {
             return e.value;
           },
           gridDashType: "solid",
@@ -65,7 +63,7 @@
           labelFontColor: "#666666"
         },
         data: [{
-          <% team_one.forEach(entry=> { %>
+          <% team_one.forEach(entry => { %>
           toolTipContent: "<%= entry.name %>: {y}%",
           type: "stackedBar100",
           name: "<%= entry.name %>",
@@ -104,7 +102,7 @@
           <% }); %>
         }]
       });
-      chart.render();
+    chart.render();
     }
   </script>
 </head>
@@ -186,7 +184,7 @@
                 <%= entry.name %> &nbsp;
               </div>
               <div class="team-icon">
-                <img src="/images/TF_Logo_2.png"/>
+                <img src="/images/TF_Logo_2.png" />
               </div>
             </h3>
             <div class="table-responsive">
@@ -200,39 +198,57 @@
                 <tbody>
                   <tr>
                     <td>Team ID</td>
-                    <td id="teamTwoID"><%= entry.team_id %></td>
+                    <td id="teamTwoID">
+                      <%= entry.team_id %>
+                    </td>
                   </tr>
                   <tr>
                     <td>ELO</td>
-                    <td><%= Math.round((entry.elo_win_pct) * 100) + '%' %></td>
+                    <td>
+                      <%= Math.round((entry.elo_win_pct) * 100) + '%' %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Team Rating</td>
-                    <td><%= entry.rating %></td>
+                    <td>
+                      <%= entry.rating %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Wins</td>
-                    <td><%= entry.wins %></td>
+                    <td>
+                      <%= entry.wins %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Losses</td>
-                    <td><%= entry.losses %></td>
+                    <td>
+                      <%= entry.losses %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Average Match Time</td>
-                    <td><%= entry.avg_match_time %></td>
+                    <td>
+                      <%= entry.avg_match_time %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Average Score</td>
-                    <td><%= entry.avg_score %></td>
+                    <td>
+                      <%= entry.avg_score %>
+                    </td>
                   </tr>
                   <tr>
                     <td>First Blood Percentage</td>
-                    <td><%= entry.first_blood_pct %></td>
+                    <td>
+                      <%= entry.first_blood_pct %>
+                    </td>
                   </tr>
                   <tr>
                     <td>Win/Loss Record</td>
-                    <td><%= entry.prev_form %></td>
+                    <td>
+                      <%= entry.prev_form %>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -254,9 +270,9 @@
         </div>
     </main>
 
-    <footer>
-      <%- include('../partials/footer'); %>
-    </footer>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
 </body>
 
 </html>

@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
 const Schema = mongoose.Schema;
 
 const TeamSchema = new Schema({
+  team_id: { type: Number, required: true },
   team_id: { type: Number, required: true },
   name: { type: String, required: true },
   rating: { type: Number, required: true },
@@ -23,4 +26,5 @@ const MatchSchema = new Schema({
 });
 
 // Syntax is model name, schema name, collection name
+module.exports = mongoose.model('Matches', MatchSchema, 'matches');
 module.exports = mongoose.model('Matches', MatchSchema, 'matches');
