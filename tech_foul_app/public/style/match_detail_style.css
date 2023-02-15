@@ -17,8 +17,7 @@ header {
 }
 
 .team-name-top {
-    display: inline;
-    white-space: nowrap;
+    color: white;
 }
 
 .team-icon > img {
@@ -30,6 +29,10 @@ header {
 .main-container {
     border-radius: 10px;
     background-color: #374354;
+}
+
+.table th, .table td {
+    color: white;
 }
 
 .border-right {
@@ -45,6 +48,13 @@ header {
 }
 
 #chart-wrapper {
-    flex: 0 0 auto;
-    width: 100%;
+    position: relative;
+    width: 98%;
+    display: flex;
   }
+
+#eloChart {
+    margin: 0 auto;
+    height: 560px;
+    width: 100%;
+}

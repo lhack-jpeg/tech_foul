@@ -30,6 +30,7 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
   new Chart(ctx, {
     type: 'line',
     data: {
+
       datasets: [
         {
           label: 'team_one_rating',
@@ -50,6 +51,8 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         x1:
           {
@@ -66,6 +69,7 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
             },
             beginAtZero: false,
             min: '2022-10-01'
+
           },
         x2:
           {
