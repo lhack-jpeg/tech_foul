@@ -34,7 +34,6 @@ const teamData = postData(
   new Chart(ctx, {
     type: 'line',
     data: {
-
       datasets: [
         {
           label: 'team_one_rating',
@@ -66,28 +65,9 @@ const teamData = postData(
               display: true,
               labelString: 'Date',
             },
-<<<<<<< HEAD
-            beginAtZero: false,
-            min: '2022-10-01'
-
-          },
-        x2:
-          {
-            id: 'teamTwo',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                day: 'dd MM'
-              },
-              stepSize: 7
-=======
             ticks: {
               source: 'auto',
               display: false,
->>>>>>> ejs_chart
             },
           },
         ],
