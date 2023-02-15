@@ -15,6 +15,7 @@
     window.onload = function () {
     
       var chart = new CanvasJS.Chart("chartContainer", {
+        backgroundColor: "#374354",
         title: {
           text: "Team ELO Comparison",
           padding: 8,
@@ -25,10 +26,18 @@
           fontWeight: "bold"
         },
         legend: {
-		      verticalAlign: "top"
+		      verticalAlign: "top",
+          fontColor: "#666666",
+          fontWeight: "lighter"
 	      },
         axisX: {
           lineThickness: 1,
+          titleFontColor: "#666666",
+          titleFontWeight: "lighter",
+          gridDashType: "solid",
+          gridThickness: 0.25,
+          gridColor: "black",
+          interval: 1,
           tickLength: 0,
           labelFormatter: function(e) {
             return "";
@@ -38,17 +47,22 @@
         axisY: {
           includeZero: true,
           lineThickness: 1,
-          gridThickness: 1,
+          gridThickness: 0.25,
+          gridColor: "black",
+          title: "%",
+          titleColor: "#666666",
           tickLength: 10,
+          titleFontColor: "#666666",
+          titleFontWeight: "lighter",
           margin: 10,
           titleFontWeight: "bold",
           labelFormatter: function(e) {
             return e.value;
           },
-          gridDashType: "shortDash",
+          gridDashType: "solid",
           interval: 10,
           labelAngle: 30,
-          title: "%"
+          labelFontColor: "#666666"
         },
         data: [{
           <% team_one.forEach(entry=> { %>
@@ -56,12 +70,16 @@
           type: "stackedBar100",
           name: "<%= entry.name %>",
           showInLegend: true,
+          legendMarkerColor: "#1b70a4",
+          legendMarkerBorderColor: "#009ef2",
+          legendMarkerBorderThickness: 2,
           bevelEnabled: true,
-          color: "#50ca50",
+          color: "#009ef2",
           dataPoints: [
             { y: <%= Math.round((entry.elo_win_pct) * 100)%>,
               indexLabel: "<%= entry.name %>",
-              indexLabelFontWeight: "bold"
+              indexLabelFontWeight: "bold",
+              indexLabelFontColor: "#666666"
              }
           ]
           <% }); %>  
@@ -71,12 +89,16 @@
           type: "stackedBar100",
           name: "<%= entry.name %>",
           showInLegend: true,
+          legendMarkerColor: "#A44869",
+          legendMarkerBorderColor: "#FC4C7C",
+          legendMarkerBorderThickness: 2,
           bevelEnabled: true,
-          color: "#f75134",
+          color: "#FC4C7C",
           dataPoints: [
           { y: <%= Math.round((entry.elo_win_pct) * 100)%>,
             indexLabel: "<%= entry.name %>",
-            indexLabelFontWeight: "bold"
+            indexLabelFontWeight: "bold",
+            indexLabelFontColor: "#666666"
           }
           ]
           <% }); %>
@@ -99,14 +121,14 @@
         <div class="row">
           <div class="col-sm-6 border-right border-bottom">
               <% team_one.forEach(entry=> { %>
-                <h2 class="d-flex justify-content-center">
-                  <div class="team_name_top"> 
+                <h3 class="d-flex justify-content-center">
+                  <div class="team-name-top"> 
                     <%= entry.name %> &nbsp;
                   </div>
                 <div class="team-icon">
                   <img src="/images/TF_Logo_2.png"/>
                 </div>
-              </h2>
+              </h3>
               <div class="table-responsive">
                 <table class="table">
                   <thead>
@@ -159,14 +181,14 @@
           </div>
           <div class="col-sm-6 border-left border-bottom">
             <% team_two.forEach(entry=> { %>
-            <h2 class="d-flex justify-content-center">
-              <div class="team_name_top"> 
+            <h3 class="d-flex justify-content-center">
+              <div class="team-name-top"> 
                 <%= entry.name %> &nbsp;
               </div>
               <div class="team-icon">
                 <img src="/images/TF_Logo_2.png"/>
               </div>
-            </h2>
+            </h3>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -219,13 +241,13 @@
         </div>
       </div>
         <div class="row">
-          <div id="chartContainer" style="height: 320px; width: 100%;">
+          <div id="chartContainer" style="height: 320px; width: 97%;">
             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
           </div>
         </div>
           <div class="row">
             <div id="chart-wrapper">
-              <canvas id="eloChart" style="height: 500px; width: 100%;"></canvas>
+              <canvas id="eloChart"></canvas>
               <script src="/javascript/eloChart.js"></script>
             </div>
           </div>
