@@ -8,77 +8,56 @@
 			this.classList.remove('clicked');
 		});
 	});
+
+	// Function to select classes and switch the two
+	function toggleTextHeaderClasses(selector, fromClass, toClass) {
+		const elements = document.querySelectorAll(selector);
+		elements.forEach(function (element) {
+			element.classList.toggle(fromClass);
+			element.classList.toggle(toClass);
+		});
+	}
+
+	// === Start comment from here ===
 	function toggleLightDarkMode() {
+		// Switches the body and the main elements to light mode
 		const body_element = document.getElementById('body-light');
 		const main_element = document.getElementById('main-light');
-		const text_main_switch = document.querySelectorAll('.main-text');
-		const header_main_switch = document.querySelectorAll('.main-header');
-		const header_light_switch = document.querySelectorAll('.light-mode-header');
 		body_element.classList.toggle('light-mode-body');
 		main_element.classList.toggle('light-mode-main');
-		const text_light_switch = document.querySelectorAll('.light-mode-text');
-		text_main_switch.forEach(function (className) {
-			if (className.classList.contains('main-text')) {
-				className.classList.remove('main-text');
-				className.classList.add('light-mode-text');
-			} else if (className.classList.contains('light-mode-text')) {
-				className.classList.remove('light-mode-text');
-				className.classList.add('main-text');
-			}
-		});
-		text_light_switch.forEach(function (className) {
-			if (className.classList.contains('light-mode-text')) {
-				className.classList.remove('light-mode-text');
-				className.classList.add('main-text');
-			} else if (className.classList.contains('main-text')) {
-				className.classList.remove('main-text');
-				className.classList.add('light-mode-text');
-			}
-		});
-		header_main_switch.forEach(function (className) {
-			if (className.classList.contains('main-header')) {
-				className.classList.remove('main-header');
-				className.classList.add('light-mode-header');
-			} else if (className.classList.contains('light-mode-header')) {
-				className.classList.remove('light-mode-header');
-				className.classList.add('main-header');
-			}
-		});
-		header_light_switch.forEach(function (className) {
-			if (className.classList.contains('light-mode-header')) {
-				className.classList.remove('light-mode-header');
-				className.classList.add('main-header');
-			} else if (className.classList.contains('main-header')) {
-				className.classList.remove('main-header');
-				className.classList.add('light-mode-header');
-			}
 
-			/* 
-      Working on switching all the js
-      to this style of toggle switch
-      */
-			// function toggleLightDarkMode() {
-			// 	const bodyElement = document.getElementById('body-light');
-			// 	const mainElement = document.getElementById('main-light');
-			// 	const textElements = document.querySelectorAll('.main-text, .light-mode-text');
-			// 	const headerElements = document.querySelectorAll('.main-header, .light-mode-header');
+		// Swithces all the text to light and dark modes using toggleTextHeaderClasses function
+		toggleTextHeaderClasses('.main-text, .light-mode-text', 'main-text', 'light-mode-text');
+		toggleTextHeaderClasses('.main-header, .light-mode-header', 'main-header', 'light-mode-header');
 
-			// 	bodyElement.classList.toggle('light-mode-body');
-			// 	mainElement.classList.toggle('light-mode-main');
-
-			// 	textElements.forEach(function (el) {
-			// 		el.classList.toggle('main-text');
-			// 		el.classList.toggle('light-mode-text');
-			// 	});
-
-			// 	headerElements.forEach(function (el) {
-			// 		el.classList.toggle('main-header');
-			// 		el.classList.toggle('light-mode-header');
-			// 	});
-			// }
-		});
+		// Switches the light/dark button to the respective class on click
 		const button_element = document.querySelector('.light-dark-button');
 		button_element.classList.toggle('button-dark');
 		button_element.classList.toggle('button-light');
+		// === end comment here ===
+
+		/*
+	Working on switching all the js
+	to this style of toggle switch
+	*/
+		// // === Start comment from here ===
+		// function toggleLightDarkMode() {
+		// 	const bodyElement = document.getElementById('body-light');
+		// 	const mainElement = document.getElementById('main-light');
+		// 	const textElements = document.querySelectorAll('.main-text, .light-mode-text');
+		// 	const headerElements = document.querySelectorAll('.main-header, .light-mode-header');
+
+		// 	bodyElement.classList.toggle('light-mode-body');
+		// 	mainElement.classList.toggle('light-mode-main');
+
+		// 	textElements.forEach(function (el) {
+		// 		el.classList.toggle('main-text');
+		// 		el.classList.toggle('light-mode-text');
+		// 	});
+
+		// 	headerElements.forEach(function (el) {
+		// 		el.classList.toggle('main-header');
+		// 		el.classList.toggle('light-mode-header');
+		// 	}); // === End comment here ===
 	}
 </script>

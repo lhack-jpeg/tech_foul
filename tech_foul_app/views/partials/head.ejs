@@ -145,7 +145,9 @@
 	}
 	.button-dark:active {
 		background-color: rgb(198, 198, 198);
+		border: 2px solid rgb(255, 255, 255);
 		box-shadow: inset 0px 0px 5px;
+		color: black;
 	}
 	.button-dark {
 		background-color: #374354b9;
@@ -157,9 +159,9 @@
 		--bs-text-opactiy: 1;
 		color: rgba(248, 249, 250, var(--bs-text-opactiy));
 	}
-	/* label {
-		width: 500px;
-		height: 200px;
+	label {
+		width: 50px;
+		height: 25px;
 		position: relative;
 		display: block;
 		background: #ebebeb;
@@ -170,11 +172,11 @@
 	}
 	label:after {
 		content: '';
-		width: 180px;
-		height: 180px;
+		width: 15px;
+		height: 15px;
 		position: absolute;
-		top: 10px;
-		left: 10px;
+		top: 5px;
+		left: 5px;
 		background: linear-gradient(180deg, #ffcc89, #d8860b);
 		border-radius: 180px;
 		box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
@@ -189,13 +191,13 @@
 		background: #242424;
 	}
 	input:checked + label:after {
-		left: 490px;
+		left: 40px;
 		transform: translateX(-100%);
 		background: linear-gradient(180deg, #777, #3a3a3a);
 	}
 	label:active::after {
-		width: 260px;
-	} */
+		width: 20px;
+	}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
