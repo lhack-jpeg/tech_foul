@@ -1,74 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../partials/head'); %>
-  </head>
-  <body class="container bg-image" id="body-light">
-    <header><%- include('../partials/header'); %></header>
+	<head>
+		<%- include('../partials/head'); %>
+	</head>
+	<body class="container bg-image" id="body-light">
+		<header><%- include('../partials/header'); %></header>
 
-    <main class="main-container" id="main-light">
-      <!-- Attempting to display data from db on html page -->
-      <div class="container">
-        <div class="row border-bottom border-secondary">
-          <h6 class="col d-flex main-text"><%= currentDate %></h6>
-          <div class="col d-flex justify-content-end">
-            <div onclick="myFunction()" class="light-dark-button">Light/Dark</div>
-          </div>
-        </div>
-        <!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
-        <!-- <div class="row">
+		<main class="main-container" id="main-light">
+			<!-- Attempting to display data from db on html page -->
+			<div class="container">
+				<div class="row border-bottom border-secondary">
+					<h6 class="col d-flex main-text align-items-end"><%= currentDate %></h6>
+					<div class="col d-flex justify-content-end">
+						<div onclick="toggleLightDarkMode()" class="light-dark-button button-dark">Light/Dark</div>
+						<!-- <div onclick="myFunction.call(this)">
+						<input type="checkbox" id="darkmode-toggle" />
+						<label for="darkmode-toggle"></label> -->
+					</div>
+				</div>
+				<!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
+				<!-- <div class="row">
                     <h6 class="col main-text d-flex start-time justify-content-center m-1">Team One</h6>
                     <h6 class="col main-text d-flex start-time justify-content-center m-1">Team Two</h6>
                 </div> -->
-        <div class="row">
-          <% results.forEach(entry=> { %>
-          <!-- <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton"> -->
-          <div class="container">
-            <!-- Place holder for tournament name -->
-            <div class="row justify-content-center">
-              <h6 class="main-text m-0 p-0">Tournament: <%= entry.tournament_name %></h6>
-            </div>
+				<div class="row">
+					<% results.forEach(entry=> { %>
+					<!-- <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton"> -->
+					<div class="container">
+						<!-- Place holder for tournament name -->
+						<!-- <div class="row justify-content-center">
+							<h6 class="main-text m-0 p-0">Tournament: <%# entry.tournament_name %></h6>
+						</div> -->
 
-            <div class="row align-items-center border-bottom border-secondary row-hover">
-              <div class="col team-icons justify-content-center">
-                <img src="<%= entry.team_one_info.logo_url %>" alt="<%= entry.team_one %>" />
-              </div>
-              <div class="col text-center main-text">
-                <h6 class="row start-time justify-content-center ms-0 me-0 main-text">Team One</h6>
-                <%= entry.team_one %>
-              </div>
-              <div class="col text-center main-text">
-                <h3>VS</h3>
-                <a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
-              </div>
-              <div class="col text-center main-text">
-                <h6 class="row start-time justify-content-center ms-0 me-0 main-text">Team Two</h6>
-                <%= entry.team_two %>
-              </div>
-              <div class="col team-icons d-flex justify-content-center">
-                <img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
-              </div>
-              <div class="col align-items-center main-text">
-                <h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
-                <div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
-              </div>
-            </div>
-            <!-- Place holder for Win and Loss -->
-            <!-- <div class="row align-items-center">
+						<div class="row align-items-center border-bottom border-secondary row-hover">
+							<div class="col team-icons justify-content-center">
+								<img src="<%= entry.team_one_info.logo_url %>" alt="<%= entry.team_one %>" />
+							</div>
+							<div class="col text-center main-text">
+								<h6 class="row start-time justify-content-center ms-0 me-0 main-text">Team One</h6>
+								<%= entry.team_one %>
+							</div>
+							<div class="col text-center main-text">
+								<h3>VS</h3>
+								<a class="row justify-content-center live-button" href="<%= entry.id %>">Live Stats</a>
+							</div>
+							<div class="col text-center main-text">
+								<h6 class="row start-time justify-content-center ms-0 me-0 main-text">Team Two</h6>
+								<%= entry.team_two %>
+							</div>
+							<div class="col team-icons d-flex justify-content-center">
+								<img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
+							</div>
+							<div class="col align-items-center main-text">
+								<h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
+								<div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
+							</div>
+						</div>
+						<!-- Place holder for Win and Loss -->
+						<!-- <div class="row align-items-center">
 								<h6 class="col text-success m-0 p-0">W</h6>
 								<h6 class="col text-danger m-0 p-0">L</h6>
 							</div> -->
-          </div>
-          <!-- </button> -->
+					</div>
+					<!-- </button> -->
 
-          <% }); %> <% results.forEach(entry=> { %>
-          <td><%= entry.id %></td>
-          <% }); %>
-        </div>
-      </div>
-    </main>
+					<% }); %> <% results.forEach(entry=> { %>
+					<td><%= entry.id %></td>
+					<% }); %>
+				</div>
+			</div>
+		</main>
 
-    <footer><%- include('../partials/footer'); %></footer>
-    <%- include('../partials/script'); %>
-  </body>
+		<footer><%- include('../partials/footer'); %></footer>
+		<%- include('../partials/script'); %>
+	</body>
 </html>
