@@ -109,7 +109,7 @@ exports.match_detail = async (req, res) => {
       team_one,
       team_two,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    res.status(404).render('pages/error', { err });
   }
 };
