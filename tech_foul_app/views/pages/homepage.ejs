@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../partials/head'); %>
-  </head>
 
-  <body class="container">
-    <header><%- include('../partials/header'); %></header>
+<head>
+  <%- include('../partials/head'); %>
+</head>
 
-    <main class="main-container">
-      <!-- Attempting to display data from db on html page -->
-      <div class="container">
-        <div class="row border-bottom border-secondary">
-          <h6 class="col d-flex text-light"><%= currentDate %></h6>
-        </div>
-        <!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
-        <!-- <div class="row">
+<body class="container">
+  <header><%- include('../partials/header'); %></header>
+
+  <main class="main-container">
+    <!-- Attempting to display data from db on html page -->
+    <div class="container">
+      <div class="row border-bottom border-secondary">
+        <h6 class="col d-flex text-light">
+          <%= currentDate %>
+        </h6>
+      </div>
+      <!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
+      <!-- <div class="row">
                     <h6 class="col text-light d-flex start-time justify-content-center m-1">Team One</h6>
                     <h6 class="col text-light d-flex start-time justify-content-center m-1">Team Two</h6>
                 </div> -->
-        <div class="row">
-          <% results.forEach(entry=> { %>
+      <div class="row">
+        <% results.forEach(entry=> { %>
           <!-- <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton"> -->
           <div class="container">
             <!-- Place holder for tournament name -->
@@ -48,7 +51,9 @@
               </div>
               <div class="col align-items-center text-light">
                 <h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
-                <div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
+                <div class="col flex-text justify-content-center ms-0 me-0">
+                  <%= entry.timeUntilStart %>
+                </div>
               </div>
             </div>
             <!-- Place holder for Win and Loss -->
@@ -59,24 +64,23 @@
           </div>
           <!-- </button> -->
 
-          <% }); %> <% results.forEach(entry=> { %>
-          <td><%= entry.id %></td>
           <% }); %>
-        </div>
       </div>
-    </main>
+    </div>
+  </main>
 
-    <footer><%- include('../partials/footer'); %></footer>
-    <script>
-      const matchButtons = document.querySelectorAll('.matchButton');
-      matchButtons.forEach(function (button) {
-        button.addEventListener('mousedown', function () {
-          this.classList.add('clicked');
-        });
-        button.addEventListener('mouseup', function () {
-          this.classList.remove('clicked');
-        });
+  <footer><%- include('../partials/footer'); %></footer>
+  <script>
+    const matchButtons = document.querySelectorAll('.matchButton');
+    matchButtons.forEach(function (button) {
+      button.addEventListener('mousedown', function () {
+        this.classList.add('clicked');
       });
-    </script>
-  </body>
+      button.addEventListener('mouseup', function () {
+        this.classList.remove('clicked');
+      });
+    });
+  </script>
+</body>
+
 </html>
