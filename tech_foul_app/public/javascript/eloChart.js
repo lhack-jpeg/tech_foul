@@ -9,8 +9,8 @@ const splintString = (string) => {
 
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
-console.log('team info', teamOneId, teamTwoId);
-async function postData(url = '') {
+// console.log('team info', teamOneId, teamTwoId);
+async function postData(url = '', teamOneID, teamTwoID) {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -18,15 +18,19 @@ async function postData(url = '') {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      teamOne: teamOneId,
-      teamTwo: teamTwoId,
+      teamOne: teamOneID,
+      teamTwo: teamTwoID,
     }),
   });
   const teamData = response.json();
   return teamData;
 }
 
-const teamData = postData('http://localhost:4000/api').then((value) => {
+const teamData = postData(
+  'http://localhost:4000/api',
+  teamOneId,
+  teamTwoId
+).then((value) => {
   new Chart(ctx, {
     type: 'line',
     data: {
@@ -52,13 +56,21 @@ const teamData = postData('http://localhost:4000/api').then((value) => {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
-        xAxis: {
-          ticks: {
-            soruce: 'auto',
-            maxTicksLimit: 12,
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: 'Date',
+            },
+            ticks: {
+              source: 'auto',
+              display: false,
+            },
           },
-        },
+        ],
       },
     },
   });
