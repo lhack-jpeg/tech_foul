@@ -44,6 +44,13 @@ window.onload = () => {
   });
 };
 
+/*
+ * @iterateChangeElement - Takes an array of Html objects and iterates throgh them with
+ * a callback function
+ * @listofHtmlElemet - Array of htmlObjects
+ * @classNameOne - Class name to check if exist on object and pass through to call back
+ * @classNameTwo - Class name to add to html object
+ */
 const iterateChangeElement = (
   listOfHtmlElement,
   classNameOne,
@@ -54,9 +61,15 @@ const iterateChangeElement = (
   });
 };
 
-const addRemoveClassName = (htmlElement, classNameOne, classNameTwo) => {
+/*
+ * addRemoveClassName
+ * @htmlElement - Element that is checked
+ * @classNameOne - Class name to check if it exists on the Element and remove if true
+ * @classNameTwo - Class name to add to element
+ */
+function addRemoveClassName(htmlElement, classNameOne, classNameTwo) {
   if (htmlElement.classList.contains(classNameOne)) {
     htmlElement.classList.remove(classNameOne);
     htmlElement.classList.add(classNameTwo);
   }
-};
+}
