@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include('../partials/head'); %>
-	</head>
-	<body class="container bg-image" id="body-light">
-		<header><%- include('../partials/header'); %></header>
 
-		<main class="main-container" id="main-light">
-			<!-- Attempting to display data from db on html page -->
-			<div class="container">
-				<div class="row border-bottom border-secondary">
-					<h6 class="col d-flex main-text align-items-end"><%= currentDate %></h6>
-					<div class="col d-flex justify-content-end">
-						<div onclick="toggleLightDarkMode()" class="light-dark-button button-dark">Light/Dark</div>
-						<!-- <div onclick="myFunction.call(this)">
+<head>
+	<%- include('../partials/head'); %>
+</head>
+
+<body class="container bg-image" id="body-light">
+	<header><%- include('../partials/header'); %></header>
+
+	<main class="main-container" id="main-light">
+		<!-- Attempting to display data from db on html page -->
+		<div class="container">
+			<div class="row border-bottom border-secondary">
+				<h6 class="col d-flex main-text align-items-end">
+					<%= currentDate %>
+				</h6>
+				<div class="col d-flex justify-content-end">
+					<div>Light/Dark Mode <input type="checkbox" name="" id="darkmode-toggle"></div>
+					<!-- <div onclick="toggleLightDarkMode()" class="light-dark-button button-dark">Light/Dark</div> -->
+					<!-- <div onclick="myFunction.call(this)">
 						<input type="checkbox" id="darkmode-toggle" />
 						<label for="darkmode-toggle"></label> -->
-					</div>
 				</div>
-				<!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
-				<!-- <div class="row">
+			</div>
+			<!-- Uncomment below code for a Team One and Team Two heading at the top of Teams -->
+			<!-- <div class="row">
                     <h6 class="col main-text d-flex start-time justify-content-center m-1">Team One</h6>
                     <h6 class="col main-text d-flex start-time justify-content-center m-1">Team Two</h6>
                 </div> -->
-				<div class="row">
-					<% results.forEach(entry=> { %>
+			<div class="row">
+				<% results.forEach(entry=> { %>
 					<!-- <button class="btn btn-block border-bottom border-secondary shadow-lg m-1 matchButton"> -->
 					<div class="container">
 						<!-- Place holder for tournament name -->
@@ -53,7 +58,9 @@
 							</div>
 							<div class="col align-items-center main-text">
 								<h6 class="row start-time justify-content-center ms-0 me-0">Start Time:</h6>
-								<div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
+								<div class="col flex-text justify-content-center ms-0 me-0">
+									<%= entry.timeUntilStart %>
+								</div>
 							</div>
 						</div>
 						<!-- Place holder for Win and Loss -->
@@ -64,14 +71,18 @@
 					</div>
 					<!-- </button> -->
 
-					<% }); %> <% results.forEach(entry=> { %>
-					<td><%= entry.id %></td>
 					<% }); %>
-				</div>
+						<% results.forEach(entry=> { %>
+							<td>
+								<%= entry.id %>
+							</td>
+							<% }); %>
 			</div>
-		</main>
+		</div>
+	</main>
 
-		<footer><%- include('../partials/footer'); %></footer>
-		<%- include('../partials/script'); %>
-	</body>
+	<footer><%- include('../partials/footer'); %></footer>
+	<%- include('../partials/script'); %>
+</body>
+
 </html>
