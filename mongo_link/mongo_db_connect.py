@@ -4,11 +4,15 @@ This module returns a connection instance to a mongoDB server.
 import variables
 from pymongo import MongoClient
 import certifi
+from os import getenv
 
 
 def get_mongoDB():
     """Creates a connection to MongoDB database"""
-    CONNECTION_STRING = variables.MONGO_DB_CONNECTION_STRING
+    if getenv("MONGO_DB_CONNECTION_STRING"):
+        CONNECTION_STRING = getenv("MONGO_DB_CONNECTION_STRING")
+    else:
+        CONNECTION_STRING = variables.MONGO_DB_CONNECTION_STRING
 
     client = MongoClient(CONNECTION_STRING, tlsCAFile=certifi.where())
 

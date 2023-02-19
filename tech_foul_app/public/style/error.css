@@ -1,0 +1,11 @@
+.i-frame {
+  width: 80%;
+  height: 80vh;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+}
+
+.i-frame iframe {
+  width: 100%;
+  height: 100%;
+}

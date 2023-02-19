@@ -9,85 +9,69 @@ const splintString = (string) => {
 
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
-console.log('team info', teamOneId, teamTwoId);
-async function postData (url = '') {
+// console.log('team info', teamOneId, teamTwoId);
+async function postData(url = '', teamOneID, teamTwoID) {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      teamOne: teamOneId,
-      teamTwo: teamTwoId
-    })
+      teamOne: teamOneID,
+      teamTwo: teamTwoID,
+    }),
   });
   const teamData = response.json();
   return teamData;
 }
 
-const teamData = postData('http://localhost:4000/api').then((value) => {
+const teamData = postData(
+  'http://localhost:4000/api',
+  teamOneId,
+  teamTwoId
+).then((value) => {
   new Chart(ctx, {
     type: 'line',
     data: {
-
       datasets: [
         {
           label: 'team_one_rating',
           xAxisID: 'teamOne',
           data: value.teamOne.map((row) => ({
             x: row.inserted_at,
-            y: row.rating
-          }))
+            y: row.rating,
+          })),
+          tension: 0.5,
         },
         {
           label: 'team_two_rating',
           xAxisID: 'teamTwo',
           data: value.teamTwo.map((row) => ({
             x: row.inserted_at,
-            y: row.rating
-          }))
-        }
-      ]
+            y: row.rating,
+          })),
+          tension: 0.5,
+        },
+      ],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        x1:
+        xAxes: [
           {
-            id: 'teamOne',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                quarter: 'dd MM'
-              },
-              stepSize: 7
+            scaleLabel: {
+              display: true,
+              labelString: 'Date',
             },
-            beginAtZero: false,
-            min: '2022-10-01'
-
+            ticks: {
+              source: 'auto',
+              display: false,
+            },
           },
-        x2:
-          {
-            id: 'teamTwo',
-            type: 'time',
-            distribution: 'linear',
-            time: {
-              parser: 'yyyy-MM-dd HH:mm:ss',
-              unit: 'day',
-              displayFormats: {
-                day: 'dd MM'
-              },
-              stepSize: 7
-            },
-            beginAtZero: true,
-            display: false
-          }
-      }
-    }
+        ],
+      },
+    },
   });
 });
