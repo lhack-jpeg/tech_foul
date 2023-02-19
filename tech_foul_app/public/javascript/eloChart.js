@@ -10,17 +10,17 @@ const splintString = (string) => {
 const teamOneId = splintString(teamOneText);
 const teamTwoId = splintString(teamTwoText);
 // console.log('team info', teamOneId, teamTwoId);
-async function postData(url = '', teamOneID, teamTwoID) {
+async function postData (url = '', teamOneID, teamTwoID) {
   const response = await fetch(url, {
     method: 'POST',
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       teamOne: teamOneID,
-      teamTwo: teamTwoID,
-    }),
+      teamTwo: teamTwoID
+    })
   });
   const teamData = response.json();
   return teamData;
@@ -40,38 +40,37 @@ const teamData = postData(
           xAxisID: 'teamOne',
           data: value.teamOne.map((row) => ({
             x: row.inserted_at,
-            y: row.rating,
+            y: row.rating
           })),
-          tension: 0.5,
+          tension: 0.5
         },
         {
           label: 'team_two_rating',
           xAxisID: 'teamTwo',
           data: value.teamTwo.map((row) => ({
             x: row.inserted_at,
-            y: row.rating,
+            y: row.rating
           })),
-          tension: 0.5,
-        },
-      ],
+          tension: 0.5
+        }
+      ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        xAxes: [
+        xAxes:
           {
             scaleLabel: {
               display: true,
-              labelString: 'Date',
+              labelString: 'Date'
             },
             ticks: {
               source: 'auto',
-              display: false,
-            },
-          },
-        ],
-      },
-    },
+              display: false
+            }
+          }
+      }
+    }
   });
 });
