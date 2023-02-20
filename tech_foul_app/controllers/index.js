@@ -45,8 +45,6 @@ exports.getAllMatches = async (req, res, next) => {
     month: 'long',
     year: 'numeric',
   });
-
-  log(JSON.stringify(results));
   res.render('pages/homepage', { results, currentDate: currentDateString });
 };
 
