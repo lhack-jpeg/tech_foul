@@ -141,38 +141,6 @@ ul {
   border-radius: 5px;
 }
 
-.button-light {
-  background-color: rgb(95, 167, 227);
-  border-color: #252c38;
-  border: 2px solid rgb(74, 131, 177);
-  margin-top: 2px;
-  margin-bottom: 2px;
-  color: rgb(0, 0, 0);
-}
-
-.button-light:active {
-  background-color: rgb(198, 198, 198);
-  border: 2px solid rgb(0, 0, 0);
-  box-shadow: inset 0px 0px 5px;
-}
-
-.button-dark:active {
-  background-color: rgb(198, 198, 198);
-  border: 2px solid rgb(255, 255, 255);
-  box-shadow: inset 0px 0px 5px;
-  color: black;
-}
-
-.button-dark {
-  background-color: #374354b9;
-  display: inline-block;
-  padding: 2px 5px;
-  border: 2px solid #222a34b9;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  --bs-text-opactiy: 1;
-  color: rgba(248, 249, 250, var(--bs-text-opactiy));
-}
 #header-logo {
   display: flex;
   height: 138px;
