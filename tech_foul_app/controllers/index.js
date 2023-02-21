@@ -6,6 +6,14 @@ const TeamRating = require('../models/teamRatings');
 const { log } = require('console');
 const sequelize = require('../services/mysqlDB');
 
+// Renders the current date in a longer format
+const currentDate = new Date();
+const currentDateString = currentDate.toLocaleDateString('en-AU', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
 exports.getAllMatches = async (req, res, next) => {
   const results = await sqlMatch.findAll({
     include: [
@@ -37,14 +45,6 @@ exports.getAllMatches = async (req, res, next) => {
     // }
   });
 
-  // Renders the current date in a longer format
-  const currentDate = new Date();
-  const currentDateString = currentDate.toLocaleDateString('en-AU', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
   res.render('pages/homepage', { results, currentDate: currentDateString });
 };
 
@@ -57,13 +57,7 @@ exports.getTeamData = async (req, res) => {
   eloRatings.teamTwo = [];
   const teamOneElo = await TeamRating.findAll({
     attributes: {
-      include: [
-        'rating',
-        [
-          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
-          'inserted_at',
-        ],
-      ],
+      include: ['rating', [sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'), 'inserted_at']],
     },
     where: {
       team_id: teamOne,
@@ -72,13 +66,7 @@ exports.getTeamData = async (req, res) => {
   });
   const teamTwoElo = await TeamRating.findAll({
     attributes: {
-      include: [
-        'rating',
-        [
-          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
-          'inserted_at',
-        ],
-      ],
+      include: ['rating', [sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'), 'inserted_at']],
     },
     where: {
       team_id: teamTwo,
@@ -106,6 +94,7 @@ exports.match_detail = async (req, res) => {
       epoch: results.epoch_time,
       team_one,
       team_two,
+      currentDate: currentDateString,
     });
   } catch (err) {
     res.status(404).render('pages/error', { err });
