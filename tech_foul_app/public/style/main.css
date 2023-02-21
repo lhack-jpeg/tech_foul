@@ -47,6 +47,7 @@ header {
   padding: 2px;
   width: 6.5rem;
   height: 5rem;
+  margin: 2px;
 }
 
 ul {
@@ -63,25 +64,11 @@ ul {
   background-attachment: fixed;
 }
 
-.logo-header {
-  height: 5%;
-  width: 5%;
-  padding-bottom: 10px;
-}
-
 .flex-text {
   display: flex;
   justify-content: left;
   text-align: center;
   align-items: center;
-}
-
-.start-time {
-  margin-bottom: 0;
-}
-
-.clicked {
-  background-color: #252c38;
 }
 
 .main-container {
@@ -185,4 +172,90 @@ ul {
   margin-bottom: 2px;
   --bs-text-opactiy: 1;
   color: rgba(248, 249, 250, var(--bs-text-opactiy));
+}
+#header-logo {
+  display: flex;
+  height: 138px;
+  width: 196px;
+  background-image: url('../images/TF_Logo_2.png');
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.team-name-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-icon > img {
+  display: inline;
+  height: 50px;
+  width: 70px;
+}
+
+.table th,
+.table td {
+  color: white;
+  text-align: center;
+}
+
+/* Trying to incorporate a light and dark mode for the tables */
+
+/* .table th,
+.table td {
+  color: rgb(0, 0, 0);
+  text-align: center;
+} */
+
+thead {
+  border-width: 4px;
+  border-color: white;
+  border-style: ridge;
+}
+
+.heading-table {
+  border-top-width: 4px;
+  border-top-color: white;
+  border-top-style: ridge;
+}
+
+.border-far-right,
+#teamTwoID,
+.heading-table {
+  border-left-width: 4px;
+  border-left-color: white;
+  border-left-style: ridge;
+}
+
+.heading-table,
+.top-center-label-border {
+  border-right-width: 4px;
+  border-right-color: white;
+  border-right-style: ridge;
+}
+
+.border-right {
+  border-right-style: double;
+  border-right-width: 8px;
+  border-right-color: #0bc37b;
+}
+
+.border-end,
+.top-label-border {
+  border-bottom-width: 4px;
+  border-bottom-color: white;
+  border-bottom-style: ridge;
+}
+
+#chart-wrapper {
+  position: relative;
+  width: 98%;
+  display: flex;
+}
+
+#eloChart {
+  margin: 0 auto;
+  height: 560px;
+  width: 100%;
 }
