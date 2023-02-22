@@ -136,7 +136,8 @@ ul {
   display: flex;
   height: 138px;
   width: 196px;
-  background-image: url('../images/TF_Logo_2.png');
+  background-image: url('../images/TF_Transparent.png');
+  border-radius: 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
