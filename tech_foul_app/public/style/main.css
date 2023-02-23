@@ -177,7 +177,7 @@ ul {
 
 .main-table {
 	background-color: black;
-	color: white;
+	color: var(--darkmode-text);
 }
 .main-table tbody>tr:hover {
 	background-color: #1F2022;
@@ -186,7 +186,7 @@ ul {
 
 .light-mode-table {
 	background-color: #1f6aa3;
-	color: black;
+	color: var(--lightmode-text);
 }
 .light-mode-table tbody>tr:hover {
 	background-color: #0000d8;
