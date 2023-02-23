@@ -18,7 +18,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import urllib.parse
 from os import getenv, path
 
-if path.exists("./variables.py"):
+if path.exists("variables.py"):
     import variables as DB
 
 # Import database secrets
