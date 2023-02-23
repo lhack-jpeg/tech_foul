@@ -16,7 +16,9 @@ header {
 }
 
 .team-name-top {
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .team-icon > img {
@@ -33,18 +35,43 @@ header {
 .table th,
 .table td {
   color: white;
+  text-align: center;
+}
+
+thead {
+  border-width: 4px;
+  border-color: white;
+  border-style: ridge;
+}
+
+.heading-table {
+  border-top-width: 4px;
+  border-top-color: white;
+  border-top-style: ridge;
+}
+
+.border-far-right, #teamTwoID, .heading-table {
+  border-left-width: 4px;
+  border-left-color: white;
+  border-left-style: ridge;
+}
+
+.heading-table, .top-center-label-border {
+  border-right-width: 4px;
+  border-right-color: white;
+  border-right-style: ridge;
 }
 
 .border-right {
   border-right-style: double;
-  border-right-width: 5px;
-  border-right-color: #6b757e;
+  border-right-width: 8px;
+  border-right-color: #0BC37B;
 }
 
-.border-bottom {
-  border-bottom-style: double;
-  border-bottom-width: 5px;
-  border-bottom-color: #6b757e;
+.border-end, .top-label-border {
+  border-bottom-width: 4px;
+  border-bottom-color: white;
+  border-bottom-style: ridge;
 }
 
 #chart-wrapper {
