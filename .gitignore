@@ -2,3 +2,4 @@ node_modules/
 .env
 variables.py
 __pycache__/
+tech_foul_app/views/pages/match_detail copy.ejs
