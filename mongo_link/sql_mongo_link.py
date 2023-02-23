@@ -5,6 +5,7 @@ It then condenses it down to key metrics and stores it in a mongo database
 
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
+from get_team_logo import get_team_logo
 from datetime import date, datetime
 from os import path, getenv
 from one_match import One_Match, get_api_rating
@@ -34,7 +35,7 @@ def get_sql_matches():
 
 def get_team_rating(team_id):
     """
-    Returns the teams current rating as well as wins, losses and elo over time.
+    Returns the teams current rating as well as wins, losses and elo over time as Dict
     If team is not in team_ratings, it will fetch the current rating from opendota api.
     """
     team_rating = (
@@ -89,8 +90,10 @@ def create_match_list(match_object):
     matches_dict["team_two"] = {}
     matches_dict["team_one"]["team_id"] = single_match.team_one
     matches_dict["team_one"]["name"] = single_match.team_one_name
+    matches_dict["team_one"]["logo"] = get_team_logo(single_match.team_one)
     matches_dict["team_two"]["team_id"] = single_match.team_two
     matches_dict["team_two"]["name"] = single_match.team_two_name
+    matches_dict["team_two"]["logo"] = get_team_logo(single_match.team_two)
     matches_dict["team_one"]["match_ids"] = One_Match.get_matches(
         single_match.team_one
     )
