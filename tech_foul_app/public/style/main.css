@@ -167,12 +167,6 @@ ul {
 	width: 70px;
 }
 
-.table th,
-.table td {
-	color: white;
-	text-align: center;
-}
-
 /* Trying to incorporate a light and dark mode for the tables */
 
 /* .table th,
@@ -181,44 +175,42 @@ ul {
   text-align: center;
 } */
 
+.main-table {
+	background-color: black;
+	color: white;
+}
+.main-table tbody>tr:hover {
+	background-color: #1F2022;
+	color: #a9a9a9
+}
+
+.light-mode-table {
+	background-color: #1f6aa3;
+	color: black;
+}
+.light-mode-table tbody>tr:hover {
+	background-color: #0000d8;
+	color: #a9a9a9;
+}
+
 thead {
 	border-width: var(--table-border-width);
 	border-color: var(--table-dark-border-color);
 	border-style: var(--table-border-style);
+	text-align: center;
 }
 
-.heading-table {
-	border-top-width: var(--table-border-width);
-	border-top-color: var(--table-dark-border-color);
-	border-top-style: var(--table-border-style);
+tbody {
+	border-width: var(--table-border-width);
+	border-color: var(--table-dark-border-color);
+	border-style: var(--table-border-style);
+	text-align: center;
 }
 
-.border-far-right,
-#teamTwoID,
-.heading-table {
-	border-left-width: var(--table-border-width);
-	border-left-color: var(--table-dark-border-color);
-	border-left-style: var(--table-border-style);
-}
-
-.heading-table,
-.top-center-label-border {
+.left-col-right-border {
 	border-right-width: var(--table-border-width);
 	border-right-color: var(--table-dark-border-color);
 	border-right-style: var(--table-border-style);
-}
-
-.border-right {
-	border-right-style: var(--table-border-style);
-	border-right-width: var(--table-border-width);
-	border-right-color: var(--table-dark-border-color);
-}
-
-.border-end,
-.top-label-border {
-	border-bottom-width: var(--table-border-width);
-	border-bottom-color: var(--table-dark-border-color);
-	border-bottom-style: var(--table-border-style);
 }
 
 #chart-wrapper {

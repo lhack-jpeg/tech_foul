@@ -17,8 +17,10 @@ function domloaded () {
     // Selects all in both html files
     const textMainSwitch = document.querySelectorAll('.main-text');
     const headerMainSwitch = document.querySelectorAll('.main-header');
+    const headingTableSwitch = document.querySelectorAll('.main-table');
     const textLightSwitch = document.querySelectorAll('.light-mode-text');
     const headerLightSwitch = document.querySelectorAll('.light-mode-header');
+    const headingTableLightSwitch = document.querySelectorAll('.light-mode-table');
     const chart = new CanvasJS.Chart('chartContainer', {
       backgroundColor: '#374354',
       legend: {
@@ -119,6 +121,8 @@ function domloaded () {
           'light-mode-header',
           'main-header'
         );
+        iterateChangeElement(headingTableSwitch, 'light-mode-table', 'main-table');
+        iterateChangeElement(headingTableLightSwitch, 'light-mode-table', 'main-table');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: '#374354',
           legend: {
@@ -216,6 +220,8 @@ function domloaded () {
           'main-header',
           'light-mode-header'
         );
+        iterateChangeElement(headingTableSwitch, 'main-table', 'light-mode-table');
+        iterateChangeElement(headingTableLightSwitch, 'main-table', 'light-mode-table');
         console.log('Unchecked');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: '#5698CE',
