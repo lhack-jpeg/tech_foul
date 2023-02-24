@@ -2,6 +2,7 @@ body {
   padding-top: 50px;
   background-color: #a4230d;
 }
+
 header {
   color: white;
 }
@@ -21,7 +22,7 @@ header {
   justify-content: center;
 }
 
-.team-icon > img {
+.team-icon>img {
   display: inline;
   height: 50px;
   width: 70px;
@@ -50,13 +51,16 @@ thead {
   border-top-style: ridge;
 }
 
-.border-far-right, #teamTwoID, .heading-table {
+.border-far-right,
+#teamTwoID,
+.heading-table {
   border-left-width: 4px;
   border-left-color: white;
   border-left-style: ridge;
 }
 
-.heading-table, .top-center-label-border {
+.heading-table,
+.top-center-label-border {
   border-right-width: 4px;
   border-right-color: white;
   border-right-style: ridge;
@@ -68,7 +72,8 @@ thead {
   border-right-color: #0BC37B;
 }
 
-.border-end, .top-label-border {
+.border-end,
+.top-label-border {
   border-bottom-width: 4px;
   border-bottom-color: white;
   border-bottom-style: ridge;
@@ -78,6 +83,7 @@ thead {
   position: relative;
   width: 98%;
   display: flex;
+  height: 480px;
 }
 
 #eloChart {

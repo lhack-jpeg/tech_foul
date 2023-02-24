@@ -12,7 +12,8 @@
 	--table-dark-border-color: white;
 	--table-border-style: ridge;
 	--table-border-width: 4px;
-	--table-light-border-color: black; /* To be used if we make light mode classes for tables */
+	--table-light-border-color: black;
+	/* To be used if we make light mode classes for tables */
 }
 
 input[type='checkbox'] {
@@ -48,6 +49,7 @@ input[type='checkbox']:checked::before {
 input[type='checkbox']:checked {
 	background: #060031;
 }
+
 body {
 	padding-top: 50px;
 }
@@ -161,7 +163,7 @@ ul {
 	justify-content: center;
 }
 
-.team-icon > img {
+.team-icon>img {
 	display: inline;
 	height: 50px;
 	width: 70px;
@@ -179,6 +181,7 @@ ul {
 	background-color: black;
 	color: var(--darkmode-text);
 }
+
 .main-table tbody>tr:hover {
 	background-color: #1F2022;
 	color: #a9a9a9
@@ -188,6 +191,7 @@ ul {
 	background-color: #1f6aa3;
 	color: var(--lightmode-text);
 }
+
 .light-mode-table tbody>tr:hover {
 	background-color: #0000d8;
 	color: #a9a9a9;
@@ -213,11 +217,6 @@ tbody {
 	border-right-style: var(--table-border-style);
 }
 
-#chart-wrapper {
-	position: relative;
-	width: 98%;
-	display: flex;
-}
 
 #eloChart {
 	margin: 0 auto;
