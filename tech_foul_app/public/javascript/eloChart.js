@@ -4,6 +4,7 @@ const teamOneText = document.getElementById('teamOneID').innerText;
 const teamOneName = document.getElementById('team-one-name').innerText;
 const teamTwoName = document.getElementById('team-two-name').innerText;
 const teamTwoText = document.getElementById('teamTwoID').innerText;
+const toggleMode = document.getElementById('darkmode-toggle');
 const splintString = (string) => {
   const indexOfChar = string.indexOf(':');
   const newId = parseInt(string.slice(indexOfChar + 1).trim());
@@ -29,73 +30,100 @@ async function postData(url = '', teamID) {
   return teamData;
 }
 
-const teamOneData = postData('http://localhost:4000/api', teamOneId).then(
-  (value) => {
-    new Chart(ctxOne, {
-      type: 'line',
-      data: {
-        datasets: [
-          {
-            label: teamOneName,
-            data: value.team.map((row) => ({
-              x: row.inserted_at,
-              y: row.rating,
-            })),
-            tension: 0.5,
-          },
-        ],
+(async function () {
+  const teamOneData = await postData('http://localhost:4000/api', teamOneId);
+  let teamOneChart = new Chart(ctxOne, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: teamOneName,
+          data: teamOneData.team.map((row) => ({
+            x: row.inserted_at,
+            y: row.rating,
+          })),
+          borderColor: '#009ef2',
+          tension: 0.5,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: 'white', size: 18 },
+        },
       },
-      options: {
-        scales: {
-          x: {
-            scaleLabel: {
-              display: true,
-              labelString: 'Date',
-            },
+      scales: {
+        x: {
+          scaleLabel: {
+            display: true,
+            labelString: 'Date',
           },
-          y: {
-            beginAtZero: false,
+          ticks: {
+            color: 'white',
+          },
+        },
+        y: {
+          beginAtZero: false,
+          ticks: {
+            color: 'white',
           },
         },
       },
-    });
-  }
-);
+    },
+  });
+  toggleMode.addEventListener('click', function () {
+    if (toggleMode.checked) {
+      teamOneChart.data.datasets[0].borderColor = '#009ef2';
+      teamOneChart.update();
+    } else {
+      teamOneChart.data.datasets[0].borderColor = '#0cf79b';
+      teamOneChart.update();
+    }
+  });
+})();
 
-const teamTwoData = postData('http://localhost:4000/api', teamTwoId).then(
-  (value) => {
-    new Chart(ctxTwo, {
-      type: 'line',
-      data: {
-        datasets: [
-          {
-            label: teamTwoName,
-            data: value.team.map((row) => ({
-              x: row.inserted_at,
-              y: row.rating,
-            })),
-            borderColor: '#fc4c7c',
-            tension: 0.5,
-            fill: {
-              display: true,
-              target: 'origin',
-              below: '#fc4c7c',
-            },
-          },
-        ],
+(async function () {
+  const teamTwoData = await postData('http://localhost:4000/api', teamTwoId);
+  let teamTwoChart = new Chart(ctxTwo, {
+    type: 'line',
+    data: {
+      datasets: [
+        {
+          label: teamTwoName,
+          data: teamTwoData.team.map((row) => ({
+            x: row.inserted_at,
+            y: row.rating,
+          })),
+          tension: 0.5,
+          borderColor: '#fc4c7c',
+          color: 'white',
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: { color: 'white', size: 18 },
+        },
       },
-      options: {
-        scales: {
-          x: {
-            ticks: {
-              source: 'labels',
-            },
+      scales: {
+        x: {
+          scaleLabel: {
+            display: true,
+            labelString: 'Date',
           },
-          y: {
-            beginAtZero: false,
+          ticks: {
+            color: 'white',
+          },
+        },
+        yAxes: {
+          beginAtZero: false,
+          ticks: {
+            color: 'white',
           },
         },
       },
-    });
-  }
-);
+    },
+  });
+})();
