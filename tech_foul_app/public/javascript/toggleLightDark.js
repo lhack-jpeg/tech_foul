@@ -68,7 +68,7 @@ const iterateChangeElement = (
  * @classNameOne - Class name to check if it exists on the Element and remove if true
  * @classNameTwo - Class name to add to element
  */
-function addRemoveClassName (htmlElement, classNameOne, classNameTwo) {
+function addRemoveClassName(htmlElement, classNameOne, classNameTwo) {
   if (htmlElement.classList.contains(classNameOne)) {
     htmlElement.classList.remove(classNameOne);
     htmlElement.classList.add(classNameTwo);
