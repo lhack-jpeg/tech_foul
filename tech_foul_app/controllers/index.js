@@ -19,6 +19,7 @@ exports.getAllMatches = async (req, res, next) => {
         as: 'team_two_info',
       },
     ],
+    order: ['match_time'],
   });
   results.forEach((result) => {
     result.startTime = moment(result.epoch_time * 1000).format('HH:mm:ss');
