@@ -22,7 +22,7 @@ function domloaded () {
     const headerLightSwitch = document.querySelectorAll('.light-mode-header');
     const headingTableLightSwitch = document.querySelectorAll('.light-mode-table');
     const chart = new CanvasJS.Chart('chartContainer', {
-      backgroundColor: '#374354',
+      backgroundColor: 'black',
       legend: {
         verticalAlign: 'top',
         fontColor: '#666666',
@@ -34,7 +34,7 @@ function domloaded () {
         titleFontWeight: 'lighter',
         gridDashType: 'solid',
         gridThickness: 0.25,
-        gridColor: 'black',
+        gridColor: 'white',
         interval: 1,
         tickLength: 0,
         labelFormatter: function (e) {
@@ -45,7 +45,7 @@ function domloaded () {
         includeZero: true,
         lineThickness: 1,
         gridThickness: 0.25,
-        gridColor: 'black',
+        gridColor: 'white',
         title: '%',
         titleColor: '#666666',
         tickLength: 10,
@@ -124,7 +124,7 @@ function domloaded () {
         iterateChangeElement(headingTableSwitch, 'light-mode-table', 'main-table');
         iterateChangeElement(headingTableLightSwitch, 'light-mode-table', 'main-table');
         var chart = new CanvasJS.Chart('chartContainer', {
-          backgroundColor: '#374354',
+          backgroundColor: 'black',
           legend: {
             verticalAlign: 'top',
             fontColor: '#666666',
@@ -136,7 +136,7 @@ function domloaded () {
             titleFontWeight: 'lighter',
             gridDashType: 'solid',
             gridThickness: 0.25,
-            gridColor: 'black',
+            gridColor: 'white',
             interval: 1,
             tickLength: 0,
             labelFormatter: function (e) {
@@ -147,7 +147,7 @@ function domloaded () {
             includeZero: true,
             lineThickness: 1,
             gridThickness: 0.25,
-            gridColor: 'black',
+            gridColor: 'white',
             title: '%',
             titleColor: '#666666',
             tickLength: 10,
@@ -224,7 +224,7 @@ function domloaded () {
         iterateChangeElement(headingTableLightSwitch, 'main-table', 'light-mode-table');
         console.log('Unchecked');
         var chart = new CanvasJS.Chart('chartContainer', {
-          backgroundColor: '#5698CE',
+          backgroundColor: '#1f6aa3',
           legend: {
             verticalAlign: 'top',
             fontColor: '#000000',

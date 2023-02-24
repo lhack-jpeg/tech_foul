@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- <%- include('../partials/singleMatch') %> -->
+    <%- include('../partials/singleMatch') %>
     <%- include('../partials/head'); %>
 </head>
 
@@ -34,28 +34,30 @@
                     <div class="table-responsive">
                         <table class="table main-table">
                             <thead>
+                                
                                 <tr>
                                     <th class="left-col-right-border">
-                                        <h2 class="d-flex align-items-center justify-content-center"
+                                        <h2 class="d-flex my-3 justify-content-center"
                                             style="color: #0bc37b">Category</h2>
                                     </th>
                                     <th>
                                         <h2 class="team-name-top" id="team-one-name" style="color: #009ef2">
-                                            <% team_one.forEach(entry=> { %><%= entry.name %>
-                                                    <% }); %> &nbsp;
-                                                        <div class="team-icon">
-                                                            <img src="/images/TF_Logo_2.png" />
-                                                        </div>
+                                            <% team_one.forEach(entry=> { %>
+                                                <%= entry.name %> &nbsp;
+                                                    <div class="team-icon">
+                                                        <img src="<%= entry.logo %>" />
+                                                    </div>
+                                            <% }); %>
                                         </h2>
                                     </th>
                                     <th>
                                         <h2 class="team-name-top" id="team-two-name" style="color: #fc4c7c">
-                                            <% team_two.forEach(entry=> { %><%= entry.name %>
-                                                    <% }); %> &nbsp;
-                                                        <div class="team-icon">
-                                                            <!-- add <%# entry.team_two_info.logo_url %> once sent from DB -->
-                                                            <img src="/images/TF_Logo_2.png" />
-                                                        </div>
+                                            <% team_two.forEach(entry=> { %>
+                                                <%= entry.name %> &nbsp;
+                                                    <div class="team-icon">
+                                                        <img src="<%= entry.logo %>" />
+                                                    </div>
+                                            <% }); %>
                                         </h2>
                                     </th>
                                 </tr>
@@ -169,9 +171,9 @@
             </div>
 
 
-            <div class="row">
+            <div class="row chart-border mx-auto">
                 <h2 class="text-center main-text">Team Elo Comparison</h2>
-                <div id="chartContainer" style="height: 320px; width: 97%">
+                <div id="chartContainer" style="height: 320px; width: 100%; margin-left: -0.75em;">
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                 </div>
             </div>

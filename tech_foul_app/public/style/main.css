@@ -193,18 +193,17 @@ ul {
 	color: #a9a9a9;
 }
 
-thead {
+thead, tbody {
 	border-width: var(--table-border-width);
 	border-color: var(--table-dark-border-color);
 	border-style: var(--table-border-style);
 	text-align: center;
 }
 
-tbody {
+.chart-border {
 	border-width: var(--table-border-width);
 	border-color: var(--table-dark-border-color);
 	border-style: var(--table-border-style);
-	text-align: center;
 }
 
 .left-col-right-border {
