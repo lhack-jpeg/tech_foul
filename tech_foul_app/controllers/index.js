@@ -7,13 +7,6 @@ const { log } = require('console');
 const sequelize = require('../services/mysqlDB');
 
 // Renders the current date in a longer format
-const currentDate = new Date();
-const currentDateString = currentDate.toLocaleDateString('en-AU', {
-  weekday: 'long',
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
 exports.getAllMatches = async (req, res, next) => {
   const results = await sqlMatch.findAll({
     include: [
@@ -26,6 +19,7 @@ exports.getAllMatches = async (req, res, next) => {
         as: 'team_two_info',
       },
     ],
+    order: ['match_time'],
   });
   results.forEach((result) => {
     result.startTime = moment(result.epoch_time * 1000).format('HH:mm:ss');
@@ -38,11 +32,13 @@ exports.getAllMatches = async (req, res, next) => {
     const hoursUntilStart = Math.floor(timeUntilStart / 1000 / 60 / 60);
     const minutesUntilStart = Math.floor((timeUntilStart / 1000 / 60) % 60);
 
-    // if (timeUntilStart <= 0) {
-    //   result.timeUntilStart = 'Game Finished';
-    // } else {
-    result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
-    // }
+    if (timeUntilStart < 0 && timeUntilStart > -3600) {
+      result.timeUntilStart = 'Live';
+    } else if (timeUntilStart < -3600) {
+      result.timeUntilStart = 'Game Finished';
+    } else {
+      result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
+    }
   });
 
   // Renders the current date in a longer format
@@ -57,12 +53,10 @@ exports.getAllMatches = async (req, res, next) => {
 };
 
 exports.getTeamData = async (req, res) => {
-  const teams = req.body;
-  const teamOne = teams.teamOne;
-  const teamTwo = teams.teamTwo;
+  const team = req.body;
+  const teamId = team.team;
   const eloRatings = {};
-  eloRatings.teamOne = [];
-  eloRatings.teamTwo = [];
+  eloRatings.team = [];
   const teamOneElo = await TeamRating.findAll({
     attributes: {
       include: [
@@ -74,30 +68,12 @@ exports.getTeamData = async (req, res) => {
       ],
     },
     where: {
-      team_id: teamOne,
-    },
-    order: [['inserted_at', 'ASC']],
-  });
-  const teamTwoElo = await TeamRating.findAll({
-    attributes: {
-      include: [
-        'rating',
-        [
-          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
-          'inserted_at',
-        ],
-      ],
-    },
-    where: {
-      team_id: teamTwo,
+      team_id: teamId,
     },
     order: [['inserted_at', 'ASC']],
   });
   if (teamOneElo.length > 0) {
-    eloRatings.teamOne = teamOneElo;
-  }
-  if (teamTwoElo.length > 0) {
-    eloRatings.teamTwo = teamTwoElo;
+    eloRatings.team = teamOneElo;
   }
   res.status(200).send(eloRatings);
 };

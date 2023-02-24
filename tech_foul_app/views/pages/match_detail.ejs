@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <%- include('../partials/head'); %>
+    <%- include('../partials/singleMatch') %>
+        <%- include('../partials/head'); %>
 </head>
 
 <body class="container bg-image" id="body-light">
@@ -31,37 +32,39 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="table-responsive">
-                        <table class="heading-table table table-dark table-hover">
+                        <table class="table main-table">
                             <thead>
+
                                 <tr>
-                                    <th class="top-label-border border-right">
-                                        <h2 class="d-flex align-items-center justify-content-center"
-                                            style="color: #0bc37b">Category</h2>
-                                    </th>
-                                    <th class="top-center-label-border">
-                                        <h2 class="team-name-top" id="team-one-name" style="color: #009ef2">
-                                            <% team_one.forEach(entry=> { %><%= entry.name %>
-                                                    <% }); %> &nbsp;
-                                                        <div class="team-icon">
-                                                            <img src="/images/TF_Logo_2.png" />
-                                                        </div>
+                                    <th class="left-col-right-border">
+                                        <h2 class="d-flex my-3 justify-content-center" style="color: #0bc37b">Category
                                         </h2>
                                     </th>
-                                    <th class="top-label-border">
+                                    <th>
+                                        <h2 class="team-name-top" id="team-one-name" style="color: #009ef2">
+                                            <% team_one.forEach(entry=> { %>
+                                                <%= entry.name %> &nbsp;
+                                                    <div class="team-icon">
+                                                        <img src="<%= entry.logo %>" />
+                                                    </div>
+                                                    <% }); %>
+                                        </h2>
+                                    </th>
+                                    <th>
                                         <h2 class="team-name-top" id="team-two-name" style="color: #fc4c7c">
-                                            <% team_two.forEach(entry=> { %><%= entry.name %>
-                                                    <% }); %> &nbsp;
-                                                        <div class="team-icon">
-                                                            <!-- add <%# entry.team_two_info.logo_url %> once sent from DB -->
-                                                            <img src="/images/TF_Logo_2.png" />
-                                                        </div>
+                                            <% team_two.forEach(entry=> { %>
+                                                <%= entry.name %> &nbsp;
+                                                    <div class="team-icon">
+                                                        <img src="<%= entry.logo %>" />
+                                                    </div>
+                                                    <% }); %>
                                         </h2>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="border-lights">
                                 <tr>
-                                    <td class="border-right table-dark">Team ID</td>
+                                    <td class="left-col-right-border">Team ID</td>
                                     <td id="teamOneID">
                                         <% team_one.forEach(entry=> { %><%= entry.team_id %>
                                                 <% }); %>
@@ -72,91 +75,91 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">ELO</td>
+                                    <td class="left-col-right-border">ELO</td>
                                     <td id="team-one-elo">
                                         <% team_one.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%'
                                                 %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right" id="team-two-elo">
+                                    <td id="team-two-elo">
                                         <% team_two.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%'
                                                 %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">Team Rating</td>
+                                    <td class="left-col-right-border">Team Rating</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.rating %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.rating %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">Wins</td>
+                                    <td class="left-col-right-border">Wins</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.wins %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.wins %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">Losses</td>
+                                    <td class="left-col-right-border">Losses</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.losses %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.losses %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">Average Match Time</td>
+                                    <td class="left-col-right-border">Average Match Time</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.avg_match_time %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.avg_match_time %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">Average Score</td>
+                                    <td class="left-col-right-border">Average Score</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.avg_score %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.avg_score %>
                                                 <% }); %>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="border-right table-dark">First Blood Percentage</td>
+                                    <td class="left-col-right-border">First Blood Percentage</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.first_blood_pct %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.first_blood_pct %>
                                                 <% }); %>
                                     </td>
                                 </tr>
-                                <tr class="border-end">
-                                    <td class="border-right table-dark">Win/Loss Record</td>
+                                <tr>
+                                    <td class="left-col-right-border">Win/Loss Record</td>
                                     <td>
                                         <% team_one.forEach(entry=> { %><%= entry.prev_form %>
                                                 <% }); %>
                                     </td>
-                                    <td class="border-far-right">
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.prev_form %>
                                                 <% }); %>
                                     </td>
@@ -168,16 +171,21 @@
             </div>
 
 
-            <div class="row">
+            <div class="row chart-border mx-auto">
                 <h2 class="text-center main-text">Team Elo Comparison</h2>
-                <div id="chartContainer" style="height: 320px; width: 97%">
+                <div id="chartContainer" style="height: 320px; width: 100%; margin-left: -0.75em;">
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                 </div>
             </div>
             <div class="row">
                 <h2 class="text-center main-text">Team Elo ratings</h2>
-                <div id="chart-wrapper">
-                    <canvas id="eloChart"></canvas>
+                <div id="chart-wrapper" class="row">
+                    <div class="col-6">
+                        <canvas id="eloChartTeamOne"></canvas>
+                    </div>
+                    <div class="col-6">
+                        <canvas id="eloChartTeamTwo"></canvas>
+                    </div>
                     <script src="/javascript/eloChart.js"></script>
                 </div>
             </div>
