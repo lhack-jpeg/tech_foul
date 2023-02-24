@@ -32,11 +32,13 @@ exports.getAllMatches = async (req, res, next) => {
     const hoursUntilStart = Math.floor(timeUntilStart / 1000 / 60 / 60);
     const minutesUntilStart = Math.floor((timeUntilStart / 1000 / 60) % 60);
 
-    // if (timeUntilStart <= 0) {
-    //   result.timeUntilStart = 'Game Finished';
-    // } else {
-    result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
-    // }
+    if (timeUntilStart < 0 && timeUntilStart > -3600) {
+      result.timeUntilStart = 'Live';
+    } else if (timeUntilStart < -3600) {
+      result.timeUntilStart = 'Game Finished';
+    } else {
+      result.timeUntilStart = `${hoursUntilStart} hours and ${minutesUntilStart} minutes`;
+    }
   });
 
   // Renders the current date in a longer format
@@ -57,13 +59,7 @@ exports.getTeamData = async (req, res) => {
   eloRatings.team = [];
   const teamOneElo = await TeamRating.findAll({
     attributes: {
-      include: [
-        'rating',
-        [
-          sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'),
-          'inserted_at',
-        ],
-      ],
+      include: ['rating', [sequelize.fn('DATE_FORMAT', sequelize.col('inserted_at'), '%Y-%m-%d'), 'inserted_at']],
     },
     where: {
       team_id: teamId,
