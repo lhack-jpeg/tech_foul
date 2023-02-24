@@ -117,7 +117,7 @@ async function postData(url = '', teamID) {
             color: 'white',
           },
         },
-        yAxes: {
+        y: {
           beginAtZero: false,
           ticks: {
             color: 'white',
