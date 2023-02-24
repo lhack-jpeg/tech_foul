@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <!-- <%- include('../partials/singleMatch') %> -->
-    <%- include('../partials/head'); %>
+    <%- include('../partials/singleMatch') %>
+        <%- include('../partials/head'); %>
 </head>
 
 <body class="container bg-image" id="body-light">
@@ -113,7 +113,7 @@
                                         <% team_one.forEach(entry=> { %><%= entry.losses %>
                                                 <% }); %>
                                     </td>
-                                    <td >
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.losses %>
                                                 <% }); %>
                                     </td>
@@ -124,7 +124,7 @@
                                         <% team_one.forEach(entry=> { %><%= entry.avg_match_time %>
                                                 <% }); %>
                                     </td>
-                                    <td >
+                                    <td>
                                         <% team_two.forEach(entry=> { %><%= entry.avg_match_time %>
                                                 <% }); %>
                                     </td>
@@ -177,8 +177,13 @@
             </div>
             <div class="row">
                 <h2 class="text-center main-text">Team Elo ratings</h2>
-                <div id="chart-wrapper">
-                    <canvas id="eloChart"></canvas>
+                <div id="chart-wrapper" class="row">
+                    <div class="col-6">
+                        <canvas id="eloChartTeamOne"></canvas>
+                    </div>
+                    <div class="col-6">
+                        <canvas id="eloChartTeamTwo"></canvas>
+                    </div>
                     <script src="/javascript/eloChart.js"></script>
                 </div>
             </div>
