@@ -24,9 +24,8 @@
         <div class="container-lg">
             <div class="row">
                 <h2 class="d-flex justify-content-center main-text">
-                    Match Date & Time: <%= (new Date(epoch * 1000)).toLocaleDateString('en-AU', { weekday: 'long' ,
-                        day: 'numeric' , month: 'long' , year: 'numeric' }) %>, <%= (new Date(epoch *
-                            1000)).toISOString().split('T')[1].split('.')[0] %> GMT
+                    Match Date & Time: <%= (new Date(epoch * 1000)).toLocaleString('en-AU', { weekday: 'long' ,
+                        day: 'numeric' , month: 'long' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric', hour12: false  }) %> AEDT                           
                 </h2>
             </div>
             <div class="row">
@@ -171,9 +170,9 @@
             </div>
 
 
-            <div class="row chart-border mx-auto">
+            <div class="row chart-border mx-auto ELO-comparison-heading">
                 <h2 class="text-center main-text">Team Elo Comparison</h2>
-                <div id="chartContainer" style="height: 320px; width: 100%; margin-left: -0.75em;">
+                <div id="chartContainer" style="height: 320px; width: 100%; margin-left: -0.75em">
                     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                 </div>
             </div>

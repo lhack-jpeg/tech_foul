@@ -18,19 +18,22 @@ function domloaded () {
     const textMainSwitch = document.querySelectorAll('.main-text');
     const headerMainSwitch = document.querySelectorAll('.main-header');
     const headingTableSwitch = document.querySelectorAll('.main-table');
+    const ELOcomparisonheadingSwitch = document.querySelectorAll('.ELO-comparison-heading');
     const textLightSwitch = document.querySelectorAll('.light-mode-text');
     const headerLightSwitch = document.querySelectorAll('.light-mode-header');
     const headingTableLightSwitch = document.querySelectorAll('.light-mode-table');
+    const ELOcomparisonheadingLightSwitch = document.querySelectorAll('.light-mode-ELO-comparison-heading');
     const chart = new CanvasJS.Chart('chartContainer', {
       backgroundColor: 'black',
       legend: {
         verticalAlign: 'top',
-        fontColor: '#666666',
+        fontColor: '#FFFFFF',
         fontWeight: 'lighter'
       },
       axisX: {
         lineThickness: 1,
-        titleFontColor: '#666666',
+        lineColor: '#FFFFFF',
+        titleFontColor: '#FFFFFF',
         titleFontWeight: 'lighter',
         gridDashType: 'solid',
         gridThickness: 0.25,
@@ -44,12 +47,13 @@ function domloaded () {
       axisY: {
         includeZero: true,
         lineThickness: 1,
+        lineColor: '#FFFFFF',
         gridThickness: 0.25,
         gridColor: 'white',
         title: '%',
-        titleColor: '#666666',
+        titleColor: '#FFFFFF',
         tickLength: 10,
-        titleFontColor: '#666666',
+        titleFontColor: '#FFFFFF',
         titleFontWeight: 'lighter',
         margin: 10,
         titleFontWeight: 'bold',
@@ -59,7 +63,7 @@ function domloaded () {
         gridDashType: 'solid',
         interval: 10,
         labelAngle: 30,
-        labelFontColor: '#666666'
+        labelFontColor: '#FFFFFF'
       },
       data: [
         {
@@ -77,7 +81,7 @@ function domloaded () {
               y: teamOneElo,
               indexLabel: teamOneName,
               indexLabelFontWeight: 'bold',
-              indexLabelFontColor: '#666666'
+              indexLabelFontColor: '#FFFFFF'
             }
           ]
         },
@@ -96,7 +100,7 @@ function domloaded () {
               y: teamTwoElo,
               indexLabel: teamTwoName,
               indexLabelFontWeight: 'bold',
-              indexLabelFontColor: '#666666'
+              indexLabelFontColor: '#FFFFFF'
             }
           ]
         }
@@ -123,16 +127,19 @@ function domloaded () {
         );
         iterateChangeElement(headingTableSwitch, 'light-mode-table', 'main-table');
         iterateChangeElement(headingTableLightSwitch, 'light-mode-table', 'main-table');
+        iterateChangeElement(ELOcomparisonheadingSwitch, 'light-mode-ELO-comparison-heading', 'ELO-comparison-heading');
+        iterateChangeElement(ELOcomparisonheadingLightSwitch, 'light-mode-ELO-comparison-heading', 'ELO-comparison-heading');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: 'black',
           legend: {
             verticalAlign: 'top',
-            fontColor: '#666666',
+            fontColor: '#FFFFFF',
             fontWeight: 'lighter'
           },
           axisX: {
             lineThickness: 1,
-            titleFontColor: '#666666',
+            lineColor: '#FFFFFF',
+            titleFontColor: '#FFFFFF',
             titleFontWeight: 'lighter',
             gridDashType: 'solid',
             gridThickness: 0.25,
@@ -146,12 +153,13 @@ function domloaded () {
           axisY: {
             includeZero: true,
             lineThickness: 1,
+            lineColor: '#FFFFFF',
             gridThickness: 0.25,
             gridColor: 'white',
             title: '%',
-            titleColor: '#666666',
+            titleColor: '#FFFFFF',
             tickLength: 10,
-            titleFontColor: '#666666',
+            titleFontColor: '#FFFFFF',
             titleFontWeight: 'lighter',
             margin: 10,
             titleFontWeight: 'bold',
@@ -161,7 +169,7 @@ function domloaded () {
             gridDashType: 'solid',
             interval: 10,
             labelAngle: 30,
-            labelFontColor: '#666666'
+            labelFontColor: '#FFFFFF'
           },
           data: [
             {
@@ -179,7 +187,7 @@ function domloaded () {
                   y: teamOneElo,
                   indexLabel: teamOneName,
                   indexLabelFontWeight: 'bold',
-                  indexLabelFontColor: '#666666'
+                  indexLabelFontColor: '#FFFFFF'
                 }
               ]
             },
@@ -198,7 +206,7 @@ function domloaded () {
                   y: teamTwoElo,
                   indexLabel: teamTwoName,
                   indexLabelFontWeight: 'bold',
-                  indexLabelFontColor: '#666666'
+                  indexLabelFontColor: '#FFFFFF'
                 }
               ]
             }
@@ -222,6 +230,8 @@ function domloaded () {
         );
         iterateChangeElement(headingTableSwitch, 'main-table', 'light-mode-table');
         iterateChangeElement(headingTableLightSwitch, 'main-table', 'light-mode-table');
+        iterateChangeElement(ELOcomparisonheadingSwitch, 'ELO-comparison-heading', 'light-mode-ELO-comparison-heading');
+        iterateChangeElement(ELOcomparisonheadingLightSwitch, 'ELO-comparison-heading', 'light-mode-ELO-comparison-heading');
         console.log('Unchecked');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: '#1f6aa3',

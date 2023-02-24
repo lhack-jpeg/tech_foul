@@ -216,6 +216,13 @@ thead, tbody {
 	border-right-style: var(--table-border-style);
 }
 
+.ELO-comparison-heading {
+	background-color: black;
+}
+
+.light-mode-ELO-comparison-heading {
+	background-color: #1f6aa3;
+}
 
 #eloChart {
 	margin: 0 auto;
