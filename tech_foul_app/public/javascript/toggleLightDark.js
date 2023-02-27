@@ -5,8 +5,10 @@ window.onload = () => {
   // Selects all in both html files
   const textMainSwitch = document.querySelectorAll('.main-text');
   const headerMainSwitch = document.querySelectorAll('.main-header');
+  const logoMainSwitch = document.querySelectorAll('.header-logo');
   const textLightSwitch = document.querySelectorAll('.light-mode-text');
   const headerLightSwitch = document.querySelectorAll('.light-mode-header');
+  const logoLightSwitch = document.querySelectorAll('.light-mode-header-logo');
   toggleMode.addEventListener('click', function () {
     console.log({ toggleMode });
     if (toggleMode.checked) {
@@ -25,6 +27,8 @@ window.onload = () => {
         'light-mode-header',
         'main-header'
       );
+      iterateChangeElement(logoMainSwitch, 'light-mode-header-logo', 'header-logo');
+      iterateChangeElement(logoLightSwitch, 'light-mode-header-logo', 'header-logo');
     } else {
       body_element.classList.toggle('light-mode-body');
       main_element.classList.toggle('light-mode-main');
@@ -40,6 +44,8 @@ window.onload = () => {
         'main-header',
         'light-mode-header'
       );
+      iterateChangeElement(logoMainSwitch, 'header-logo', 'light-mode-header-logo');
+      iterateChangeElement(logoLightSwitch, 'header-logo', 'light-mode-header-logo');
       console.log('Unchecked');
     }
   });
@@ -68,7 +74,7 @@ const iterateChangeElement = (
  * @classNameOne - Class name to check if it exists on the Element and remove if true
  * @classNameTwo - Class name to add to element
  */
-function addRemoveClassName(htmlElement, classNameOne, classNameTwo) {
+function addRemoveClassName (htmlElement, classNameOne, classNameTwo) {
   if (htmlElement.classList.contains(classNameOne)) {
     htmlElement.classList.remove(classNameOne);
     htmlElement.classList.add(classNameTwo);

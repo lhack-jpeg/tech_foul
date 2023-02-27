@@ -147,12 +147,22 @@ ul {
 	color: var(--darkmode-text, var(--bs-text-opactiy));
 }
 
-#header-logo {
+.header-logo {
 	display: flex;
-	height: 138px;
-	width: 196px;
-	background-image: url('../images/TF_Transparent.png');
-	border-radius: 20px;
+	height: 141px;
+	width: 193px;
+	background-image: url('../images/TF_Logo_Dark.png');
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.light-mode-header-logo {
+	display: flex;
+	height: 141px;
+	width: 193px;
+	background-image: url('../images/TF_Logo_Light.png');
+	border-radius: 10px;
 	background-repeat: no-repeat;
 	background-position: left;
 }
