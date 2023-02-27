@@ -2,6 +2,7 @@ window.onload = () => {
   const toggleMode = document.getElementById('darkmode-toggle');
   const body_element = document.getElementById('body-light');
   const main_element = document.getElementById('main-light');
+  // Selects all in both html files
   const textMainSwitch = document.querySelectorAll('.main-text');
   const headerMainSwitch = document.querySelectorAll('.main-header');
   const textLightSwitch = document.querySelectorAll('.light-mode-text');

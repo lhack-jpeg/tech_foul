@@ -1,5 +1,5 @@
-const { DataTypes, Deferrable } = require('sequelize')
-const sequelize = require('../services/mysqlDB')
+const { DataTypes, Deferrable } = require('sequelize');
+const sequelize = require('../services/mysqlDB');
 
 const Team = sequelize.define(
   'Team',
@@ -22,6 +22,6 @@ const Team = sequelize.define(
     tableName: 'teams',
     timestamps: false
   }
-)
+);
 
-module.exports = Team
+module.exports = Team;

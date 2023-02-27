@@ -2,187 +2,230 @@
   transform: scale(2);
 } */
 
+:root {
+	--light-background: rgb(86, 152, 206);
+	--dark-background: #374354;
+	--live-button-background: #a4230d;
+	--lightmode-text: rgb(0, 0, 0);
+	--darkmode-text: rgba(248, 249, 250);
+	--heading-font: constantia;
+	--table-dark-border-color: white;
+	--table-border-style: ridge;
+	--table-border-width: 4px;
+	--table-light-border-color: black;
+	/* To be used if we make light mode classes for tables */
+}
+
 input[type='checkbox'] {
-  position: relative;
-  width: 40px;
-  height: 20px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #3665fff1;
-  outline: none;
-  border-radius: 2rem;
-  cursor: pointer;
-  box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+	position: relative;
+	width: 40px;
+	height: 20px;
+	-webkit-appearance: none;
+	appearance: none;
+	background: #3665fff1;
+	outline: none;
+	border-radius: 2rem;
+	cursor: pointer;
+	box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
 input[type='checkbox']::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: 0.5s;
+	content: '';
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: 0.5s;
 }
 
 input[type='checkbox']:checked::before {
-  transform: translateX(100%);
-  background: #fff;
+	transform: translateX(100%);
+	background: #fff;
 }
 
 input[type='checkbox']:checked {
-  background: #060031;
+	background: #060031;
 }
+
 body {
-  padding-top: 50px;
+	padding-top: 50px;
 }
 
 header {
-  color: white;
+	color: white;
 }
 
 .team-icons img {
-  padding: 2px;
-  width: 6.5rem;
-  height: 5rem;
+	padding: 2px;
+	width: 6.5rem;
+	height: 5rem;
+	margin: 2px;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 .bg-image {
-  background-image: url('https://cdn.oneesports.gg/cdn-data/2022/03/Dota2_ClashofHeroes.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100%;
-  background-attachment: fixed;
-}
-
-.logo-header {
-  height: 5%;
-  width: 5%;
-  padding-bottom: 10px;
+	background-image: url('https://cdn.oneesports.gg/cdn-data/2022/03/Dota2_ClashofHeroes.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	width: 100%;
+	background-attachment: fixed;
 }
 
 .flex-text {
-  display: flex;
-  justify-content: left;
-  text-align: center;
-  align-items: center;
-}
-
-.start-time {
-  margin-bottom: 0;
-}
-
-.clicked {
-  background-color: #252c38;
+	display: flex;
+	justify-content: left;
+	text-align: center;
+	align-items: center;
 }
 
 .main-container {
-  border-radius: 10px;
-  background-color: #374354;
+	border-radius: 10px;
+	background-color: var(--dark-background);
 }
 
 .live-button {
-  background-color: #a4230d;
-  color: white;
-  margin-left: 35px;
-  margin-right: 35px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  text-decoration: none;
-  border-radius: 7px;
+	background-color: var(--live-button-background);
+	color: white;
+	margin-left: 60px;
+	margin-right: 60px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-decoration: none;
+	border-radius: 7px;
 }
 
 .live-button:hover {
-  color: #ceac4d;
+	color: #ceac4d;
 }
 
 .live-button:active {
-  box-shadow: 0px 0px 5px;
+	box-shadow: 0px 0px 5px black;
 }
 
 .light-mode-body {
-  background-color: white;
+	background-color: white;
 }
 
 .light-mode-main {
-  background-color: rgb(86, 152, 206);
-  border-color: #252c38;
+	background-color: var(--light-background);
+	border-color: #252c38;
 }
 
 .light-mode-text {
-  color: rgb(0, 0, 0);
+	color: var(--lightmode-text);
 }
 
 .light-mode-header {
-  color: rgb(0, 0, 0);
-  background-color: rgb(86, 152, 206);
-  border-radius: 25px;
-  box-shadow: -2px 3px 0px 0px rgb(86, 152, 206), 0 6px 20px 0 rgb(86, 152, 206);
-  font-family: constantia;
-  font-weight: bold;
+	color: var(--lightmode-text);
+	background-color: var(--light-background);
+	border-radius: 25px;
+	box-shadow: -2px 3px 0px 0px var(--light-background), 0 6px 20px 0 var(--light-background);
+	font-family: var(--heading-font);
+	font-weight: bold;
 }
 
 .main-header {
-  --bs-text-opactiy: 1;
-  color: rgba(248, 249, 250, var(--bs-text-opactiy));
-  background-color: #374354;
-  border-radius: 25px;
-  box-shadow: -2px 3px 0px 0px #374354, 0 6px 20px 0 #374354;
-  font-family: constantia;
-  font-weight: bold;
+	--bs-text-opactiy: 1;
+	color: var(--darkmode-text, var(--bs-text-opactiy));
+	background-color: var(--dark-background);
+	border-radius: 25px;
+	box-shadow: -2px 3px 0px 0px var(--dark-background), 0 6px 20px 0 var(--dark-background);
+	font-family: var(--heading-font);
+	font-weight: bold;
 }
 
 .main-text {
-  --bs-text-opactiy: 1;
-  color: rgba(248, 249, 250, var(--bs-text-opactiy));
+	--bs-text-opactiy: 1;
+	color: var(--darkmode-text, var(--bs-text-opactiy));
 }
 
-.light-dark-button {
-  display: inline-block;
-  padding: 2px 5px;
-  background-color: #374354b9;
-  color: rgba(248, 249, 250, var(--bs-text-opactiy));
-  cursor: pointer;
-  border-radius: 5px;
+#header-logo {
+	display: flex;
+	height: 138px;
+	width: 196px;
+	background-image: url('../images/TF_Transparent.png');
+	border-radius: 20px;
+	background-repeat: no-repeat;
+	background-position: left;
 }
 
-.button-light {
-  background-color: rgb(95, 167, 227);
-  border-color: #252c38;
-  border: 2px solid rgb(74, 131, 177);
-  margin-top: 2px;
-  margin-bottom: 2px;
+.team-name-top {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.team-icon>img {
+	display: inline;
+	height: 50px;
+	width: 70px;
+}
+
+/* Trying to incorporate a light and dark mode for the tables */
+
+/* .table th,
+.table td {
   color: rgb(0, 0, 0);
+  text-align: center;
+} */
+
+.main-table {
+	background-color: black;
+	color: var(--darkmode-text);
 }
 
-.button-light:active {
-  background-color: rgb(198, 198, 198);
-  border: 2px solid rgb(0, 0, 0);
-  box-shadow: inset 0px 0px 5px;
+.main-table tbody>tr:hover {
+	background-color: #1F2022;
+	color: #a9a9a9
 }
 
-.button-dark:active {
-  background-color: rgb(198, 198, 198);
-  border: 2px solid rgb(255, 255, 255);
-  box-shadow: inset 0px 0px 5px;
-  color: black;
+.light-mode-table {
+	background-color: #1f6aa3;
+	color: var(--lightmode-text);
 }
 
-.button-dark {
-  background-color: #374354b9;
-  display: inline-block;
-  padding: 2px 5px;
-  border: 2px solid #222a34b9;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  --bs-text-opactiy: 1;
-  color: rgba(248, 249, 250, var(--bs-text-opactiy));
+.light-mode-table tbody>tr:hover {
+	background-color: #0000d8;
+	color: #a9a9a9;
+}
+
+thead, tbody {
+	border-width: var(--table-border-width);
+	border-color: var(--table-dark-border-color);
+	border-style: var(--table-border-style);
+	text-align: center;
+}
+
+.chart-border {
+	border-width: var(--table-border-width);
+	border-color: var(--table-dark-border-color);
+	border-style: var(--table-border-style);
+}
+
+.left-col-right-border {
+	border-right-width: var(--table-border-width);
+	border-right-color: var(--table-dark-border-color);
+	border-right-style: var(--table-border-style);
+}
+
+.ELO-comparison-heading {
+	background-color: black;
+}
+
+.light-mode-ELO-comparison-heading {
+	background-color: #1f6aa3;
+}
+
+#eloChart {
+	margin: 0 auto;
+	height: 560px;
+	width: 100%;
 }

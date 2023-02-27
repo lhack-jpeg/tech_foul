@@ -1,7 +1,7 @@
 // This file contains the entity model for the matches table in mySQL using them TypeORM module.
-const { DataTypes, Deferrable } = require('sequelize')
-const sequelize = require('../services/mysqlDB')
-const teams = require('./teams')
+const { DataTypes, Deferrable } = require('sequelize');
+const sequelize = require('../services/mysqlDB');
+const teams = require('./teams');
 
 const SqlMatch = sequelize.define(
   'match',
@@ -46,17 +46,17 @@ const SqlMatch = sequelize.define(
     tableName: 'matches',
     timestamps: false
   }
-)
+);
 
 SqlMatch.belongsTo(teams, {
   foreignKey: 'team_one_id',
   as: 'team_one_info',
   targetKey: 'id'
-})
+});
 SqlMatch.belongsTo(teams, {
   foreignKey: 'team_two_id',
   as: 'team_two_info',
   targetKey: 'id'
-})
+});
 
-module.exports = SqlMatch
+module.exports = SqlMatch;

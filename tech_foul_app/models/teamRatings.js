@@ -7,42 +7,42 @@ const TeamRating = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
+      primaryKey: true
     },
     team_id: {
       type: DataTypes.BIGINT,
       references: {
         model: 'teams',
         key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE,
-      },
+        deferrable: Deferrable.INITIALLY_IMMEDIATE
+      }
     },
     rating: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.FLOAT
     },
     wins: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     losses: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     last_match_time: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.BIGINT
     },
     inserted_at: {
-      type: DataTypes.DATE,
-    },
+      type: DataTypes.DATE
+    }
   },
   {
     tableName: 'team_ratings',
-    timestamps: false,
+    timestamps: false
   }
 );
 
 TeamRating.belongsTo(teams, {
   foreignKey: 'team_id',
   as: 'team_rating',
-  targetKey: 'id',
+  targetKey: 'id'
 });
 
 module.exports = TeamRating;

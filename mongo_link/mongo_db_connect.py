@@ -1,10 +1,12 @@
 """
 This module returns a connection instance to a mongoDB server.
 """
-import variables
 from pymongo import MongoClient
 import certifi
-from os import getenv
+from os import getenv, path
+
+if path.exists("./variables.py"):
+    import variables
 
 
 def get_mongoDB():

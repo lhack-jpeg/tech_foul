@@ -5,16 +5,27 @@ It then condenses it down to key metrics and stores it in a mongo database
 
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
+from get_team_logo import get_team_logo
 from datetime import date, datetime
-import variables
+from os import path, getenv
 from one_match import One_Match, get_api_rating
 from mongo_db_connect import get_mongoDB
 
+if path.exists("./variables.py"):
+    import variables
 engine = mysql_connect()
 Session = sessionmaker(bind=engine)
 session = Session()
-headers = {"api_key": variables.API_KEY}
 today = date.today()
+
+if getenv("API_KEY"):
+    API_KEY = getenv("API_KEY")
+else:
+    import variables
+
+    API_KEY = variables.API_KEY
+
+headers = {"api_key": API_KEY}
 
 
 def get_sql_matches():
@@ -24,7 +35,7 @@ def get_sql_matches():
 
 def get_team_rating(team_id):
     """
-    Returns the teams current rating as well as wins, losses and elo over time.
+    Returns the teams current rating as well as wins, losses and elo over time as Dict
     If team is not in team_ratings, it will fetch the current rating from opendota api.
     """
     team_rating = (
@@ -34,20 +45,6 @@ def get_team_rating(team_id):
         )
         .first()
     )
-    elo_rating = (
-        session.query(Team_rating.rating, Team_rating.inserted_at)
-        .filter(Team_rating.team_id == team_id)
-        .all()
-    )
-    elo_list = []
-    if elo_rating is not None:
-        for rating in elo_rating:
-            elo_dict = {}
-            date = rating[1].date()
-            date = date.strftime("%m/%d/%Y")
-            elo_dict["date"] = date
-            elo_dict["rating"] = rating[0]
-            elo_list.append(elo_dict)
     if team_rating is None:
         team_stats = get_api_rating(team_id)
     else:
@@ -56,7 +53,6 @@ def get_team_rating(team_id):
         team_stats.update({"wins": team_rating.wins})
         team_stats.update({"Losses": team_rating.losses})
 
-    team_stats.update({"elo_ratings": elo_list})
     return team_stats
 
 
@@ -79,8 +75,10 @@ def create_match_list(match_object):
     matches_dict["team_two"] = {}
     matches_dict["team_one"]["team_id"] = single_match.team_one
     matches_dict["team_one"]["name"] = single_match.team_one_name
+    matches_dict["team_one"]["logo"] = get_team_logo(single_match.team_one)
     matches_dict["team_two"]["team_id"] = single_match.team_two
     matches_dict["team_two"]["name"] = single_match.team_two_name
+    matches_dict["team_two"]["logo"] = get_team_logo(single_match.team_two)
     matches_dict["team_one"]["match_ids"] = One_Match.get_matches(
         single_match.team_one
     )

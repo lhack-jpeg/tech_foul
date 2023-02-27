@@ -1,30 +1,39 @@
 ---
 name: tech_foul
 on:
-    push:
-        branches: [main, master]
-    schedule:
-        - cron: 0 0 * * *
-    pull_request:
-        types: [opened, reopened, edited, ready_for_review]
+  push:
+    branches: [main, master]
+  schedule:
+    - cron: 0 0 * * *
+  pull_request:
+    types: [opened, reopened, edited, ready_for_review]
 
 jobs:
-    tech_foul:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Clone and check out repository
-              uses: actions/checkout@v3
-            - name: Set up node
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '16.14.0'
-            - run: |
-                  cd tech_foul_app/
-                  npm ci
-                  npm run
-            - name: Lint
-              uses: github/super-linter@v4
-              env:
-                  VALIDATE_ALL_CODEBASE: false
-                  DEFAULT_BRANCH: main
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  tech_foul:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone and check out repository
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.14.0'
+      - name: Run node tests
+        env:
+          MYSQL_DB_HOST: ${{ secrets.MYSQL_DB_HOST }}
+          MYSQL_DB_PASS: ${{ secrets.MYSQL_DB_PASS }}
+          MONGO_DB_CONNECTION_STRING: ${{ secrets.MONGO_DB_CONNECTION_STRING }}
+          API_KEY: ${{ secrets.API_KEY }}
+          MYSQL_DB_USER: ${{ secrets.MYSQL_DB_USER }}
+          MYSQL_DB: ${{ secrets.MYSQL_DB }}
+        run: |
+          cd tech_foul_app/
+          npm ci
+          npm run
+          npm run test
+      - name: Lint
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

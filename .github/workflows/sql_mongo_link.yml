@@ -1,5 +1,5 @@
 ---
-name: tech_foul
+name: tech_foul mongo link
 on:
   push:
     branches: [main, master]
@@ -9,7 +9,7 @@ on:
     types: [opened, reopened, edited, ready_for_review]
 
 jobs:
-  tech_foul:
+  mongo_link:
     runs-on: ubuntu-latest
     strategy:
       matrix:

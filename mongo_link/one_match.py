@@ -2,16 +2,19 @@
 This module contains the constructor for one match using requests and json
 """
 import requests
-import variables
 import json
-from os import getenv
+from os import getenv, path
 
+if path.exists("variables.py"):
+    import variables
 """
 Check for env variables
 """
 if getenv("API_KEY"):
     API_KEY = getenv("API_KEY")
 else:
+    import variables
+
     API_KEY = variables.API_KEY
 
 headers = {"api_key": API_KEY}
