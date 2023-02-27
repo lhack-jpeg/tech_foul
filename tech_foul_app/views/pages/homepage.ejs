@@ -1,69 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include('../partials/head'); %>
-	</head>
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
 
-	<body class="container bg-image" id="body-light">
-		<header><%- include('../partials/header'); %></header>
+  <body class="container bg-image" id="body-light">
+    <header><%- include('../partials/header'); %></header>
 
-		<main class="main-container" id="main-light">
-			<div class="container">
-				<div class="row border-bottom border-secondary">
-					<h6 class="col d-flex main-text align-items-end"><%= currentDate %></h6>
-					<div class="col d-flex justify-content-end">
-						<div class="light-mode-text main-text">
-							Light/Dark Mode <input type="checkbox" name="" id="darkmode-toggle" checked />
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<% results.forEach(entry=> { %>
-					<div class="container">
-						<!-- Place holder for tournament name -->
-						<!-- <div class="row justify-content-center">
+    <main class="main-container" id="main-light">
+      <div class="container">
+        <div class="row border-bottom border-secondary">
+          <%- include('../partials/currentDate'); %>
+          <div class="col d-flex justify-content-end">
+            <div class="light-mode-text main-text">
+              Light/Dark Mode <input type="checkbox" name="" id="darkmode-toggle" checked />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% results.forEach(entry=> { %>
+          <div class="container">
+            <!-- Place holder for tournament name -->
+            <!-- <div class="row justify-content-center">
 							<h6 class="main-text m-0 p-0">Tournament: <%# entry.tournament_name %></h6>
 						</div> -->
 
-						<div class="row align-items-center border-bottom border-secondary row-hover">
-							<div class="col team-icons justify-content-center">
-								<img src="<%= entry.team_one_info.logo_url %>" alt="<%= entry.team_one %>" />
-							</div>
-							<div class="col text-center main-text">
-								<h6 class="row justify-content-center ms-0 me-0 main-text">Team One</h6>
-								<!-- Add color scheme as seen in single match page for if we want to go with that style -->
-								<!-- <div style="color: #009ef2"></div> --><%= entry.team_one %>
-							</div>
-							<div class="col text-center main-text">
-								<h3>VS</h3>
-								<a class="row justify-content-center live-button" href="<%= entry.id %>">Stats</a>
-							</div>
-							<div class="col text-center main-text">
-								<h6 class="row justify-content-center ms-0 me-0 main-text">Team Two</h6>
-								<!-- Add color scheme as seen in single match page for if we want to go with that style -->
-								<!-- <div style="color: #fc4c7c"></div> --><%= entry.team_two %>
-							</div>
-							<div class="col team-icons d-flex justify-content-center">
-								<img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
-							</div>
-							<div class="col align-items-center main-text">
-								<h6 class="row justify-content-center ms-0 me-0">Start Time:</h6>
-								<div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
-							</div>
-						</div>
-						<!-- Place holder for Win and Loss -->
-						<!-- <div class="row align-items-center">
+            <div class="row align-items-center border-bottom border-secondary row-hover">
+              <div class="col team-icons justify-content-center">
+                <img src="<%= entry.team_one_info.logo_url %>" alt="<%= entry.team_one %>" />
+              </div>
+              <div class="col text-center main-text">
+                <h6 class="row justify-content-center ms-0 me-0 main-text">Team One</h6>
+                <!-- Add color scheme as seen in single match page for if we want to go with that style -->
+                <!-- <div style="color: #009ef2"></div> --><%= entry.team_one %>
+              </div>
+              <div class="col text-center main-text">
+                <h3>VS</h3>
+                <a class="row justify-content-center live-button" href="<%= entry.id %>">Stats</a>
+              </div>
+              <div class="col text-center main-text">
+                <h6 class="row justify-content-center ms-0 me-0 main-text">Team Two</h6>
+                <!-- Add color scheme as seen in single match page for if we want to go with that style -->
+                <!-- <div style="color: #fc4c7c"></div> --><%= entry.team_two %>
+              </div>
+              <div class="col team-icons d-flex justify-content-center">
+                <img src="<%= entry.team_two_info.logo_url %>" alt="<%= entry.team_two %>" />
+              </div>
+              <div class="col align-items-center main-text">
+                <h6 class="row justify-content-center ms-0 me-0">Start Time:</h6>
+                <div class="col flex-text justify-content-center ms-0 me-0"><%= entry.timeUntilStart %></div>
+              </div>
+            </div>
+            <!-- Place holder for Win and Loss -->
+            <!-- <div class="row align-items-center">
 								<h6 class="col text-success m-0 p-0">W</h6>
 								<h6 class="col text-danger m-0 p-0">L</h6>
 							</div> -->
-					</div>
-					<% }); %> <% results.forEach(entry=> { %>
-					<td><%= entry.id %></td>
-					<% }); %>
-				</div>
-			</div>
-		</main>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </main>
 
-		<footer><%- include('../partials/footer'); %></footer>
-	</body>
+    <footer><%- include('../partials/footer'); %></footer>
+  </body>
 </html>
