@@ -5,6 +5,10 @@ const Team = require('../models/teams');
 const TeamRating = require('../models/teamRatings');
 const { log } = require('console');
 const sequelize = require('../services/mysqlDB');
+const fetch = require('node-fetch');
+
+const dateOptions = { year: 'numeric', month: 'numeric', day: 'numeric' };
+const todayDate = new Date().toLocaleDateString('en-AU', dateOptions);
 
 // Renders the current date in a longer format
 exports.getAllMatches = async (req, res, next) => {
@@ -56,6 +60,7 @@ exports.getTeamData = async (req, res) => {
   const team = req.body;
   const teamId = team.team;
   const eloRatings = {};
+  eloRatings.type = '';
   eloRatings.team = [];
   const teamOneElo = await TeamRating.findAll({
     attributes: {
@@ -74,6 +79,21 @@ exports.getTeamData = async (req, res) => {
   });
   if (teamOneElo.length > 0) {
     eloRatings.team = teamOneElo;
+    eloRatings.type = 'line';
+  } else {
+    const response = await fetch(
+      `https://api.opendota.com/api/teams/${teamId}`,
+      {
+        method: 'GET',
+        headers: {
+          api_key: process.env.API_KEY,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    const teamData = await response.json();
+    eloRatings.team = [{ rating: teamData.rating, inserted_at: todayDate }];
+    eloRatings.type = 'bar';
   }
   res.status(200).send(eloRatings);
 };
