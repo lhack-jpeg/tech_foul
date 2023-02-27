@@ -33,7 +33,7 @@ async function postData(url = '', teamID) {
 (async function () {
   const teamOneData = await postData('http://localhost:4000/api', teamOneId);
   let teamOneChart = new Chart(ctxOne, {
-    type: 'line',
+    type: teamOneData.type,
     data: {
       datasets: [
         {
@@ -42,6 +42,7 @@ async function postData(url = '', teamID) {
             x: row.inserted_at,
             y: row.rating,
           })),
+          backgroundColor: '#009ef2',
           borderColor: '#009ef2',
           tension: 0.5,
         },
@@ -75,9 +76,15 @@ async function postData(url = '', teamID) {
   toggleMode.addEventListener('click', function () {
     if (toggleMode.checked) {
       teamOneChart.data.datasets[0].borderColor = '#009ef2';
+      teamOneChart.data.datasets[0].backgroundColor = '#009ef2';
+      teamOneChart.options.scales.x.ticks.color = 'white';
+      teamOneChart.options.scales.y.ticks.color = 'white';
       teamOneChart.update();
     } else {
       teamOneChart.data.datasets[0].borderColor = '#0cf79b';
+      teamOneChart.data.datasets[0].backgroundColor = '#0cf79b';
+      teamOneChart.options.scales.x.ticks.color = 'black';
+      teamOneChart.options.scales.y.ticks.color = 'black';
       teamOneChart.update();
     }
   });
@@ -86,7 +93,7 @@ async function postData(url = '', teamID) {
 (async function () {
   const teamTwoData = await postData('http://localhost:4000/api', teamTwoId);
   let teamTwoChart = new Chart(ctxTwo, {
-    type: 'line',
+    type: teamTwoData.type,
     data: {
       datasets: [
         {
@@ -96,6 +103,7 @@ async function postData(url = '', teamID) {
             y: row.rating,
           })),
           tension: 0.5,
+          backgroundColor: '#fc4c7c',
           borderColor: '#fc4c7c',
           color: 'white',
         },
@@ -125,5 +133,20 @@ async function postData(url = '', teamID) {
         },
       },
     },
+  });
+  toggleMode.addEventListener('click', function () {
+    if (toggleMode.checked) {
+      teamTwoChart.data.datasets[0].borderColor = '#fc4c7c';
+      teamTwoChart.data.datasets[0].backgroundColor = '#fc4c7c';
+      teamTwoChart.options.scales.x.ticks.color = 'white';
+      teamTwoChart.options.scales.y.ticks.color = 'white';
+      teamTwoChart.update();
+    } else {
+      teamTwoChart.data.datasets[0].borderColor = '#fc0347';
+      teamTwoChart.data.datasets[0].backgroundColor = '#fc0347';
+      teamTwoChart.options.scales.x.ticks.color = 'black';
+      teamTwoChart.options.scales.y.ticks.color = 'black';
+      teamTwoChart.update();
+    }
   });
 })();
