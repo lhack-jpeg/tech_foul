@@ -12,7 +12,7 @@ mongoDB = get_mongoDB()
 matches_collection = mongoDB["matches"]
 # Get current datetime as timestamp
 current_datetime = datetime.now()
-time_difference = timedelta(hours=5)
+time_difference = timedelta(hours=3)
 
 
 if __name__ == "__main__":
@@ -28,6 +28,7 @@ if __name__ == "__main__":
         # Check if greater than 5 hours difference
         if current_datetime > match_time_5_hours:
             new_object = session.merge(match)
+            print(match.id)
             session.delete(new_object)
             session.commit()
             matches_collection.delete_one({"match_id": match.id})
