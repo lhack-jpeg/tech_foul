@@ -3,180 +3,179 @@
 } */
 
 :root {
-	--light-background: rgb(86, 152, 206);
-	--dark-background: #374354;
-	--live-button-background: #a4230d;
-	--lightmode-text: rgb(0, 0, 0);
-	--darkmode-text: rgba(248, 249, 250);
-	--heading-font: constantia;
-	--table-dark-border-color: white;
-	--table-border-style: ridge;
-	--table-border-width: 4px;
-	--table-light-border-color: black;
-	/* To be used if we make light mode classes for tables */
+  --light-background: rgb(86, 152, 206);
+  --dark-background: #374354;
+  --live-button-background: #a4230d;
+  --lightmode-text: rgb(0, 0, 0);
+  --darkmode-text: rgba(248, 249, 250);
+  --heading-font: constantia;
+  --table-dark-border-color: white;
+  --table-border-style: ridge;
+  --table-border-width: 4px;
+  --table-light-border-color: black;
 }
 
 input[type='checkbox'] {
-	position: relative;
-	width: 40px;
-	height: 20px;
-	-webkit-appearance: none;
-	appearance: none;
-	background: #3665fff1;
-	outline: none;
-	border-radius: 2rem;
-	cursor: pointer;
-	box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+  position: relative;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #3665fff1;
+  outline: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
 input[type='checkbox']::before {
-	content: '';
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background: #fff;
-	position: absolute;
-	top: 0;
-	left: 0;
-	transition: 0.5s;
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
 }
 
 input[type='checkbox']:checked::before {
-	transform: translateX(100%);
-	background: #fff;
+  transform: translateX(100%);
+  background: #fff;
 }
 
 input[type='checkbox']:checked {
-	background: #060031;
+  background: #060031;
 }
 
 body {
-	padding-top: 50px;
+  padding-top: 50px;
 }
 
 header {
-	color: white;
+  color: white;
 }
 
 .team-icons img {
-	padding: 2px;
-	width: 6.5rem;
-	height: 5rem;
-	margin: 2px;
+  padding: 2px;
+  width: 6.5rem;
+  height: 5rem;
+  margin: 2px;
 }
 
 ul {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .bg-image {
-	background-image: url('https://cdn.oneesports.gg/cdn-data/2022/03/Dota2_ClashofHeroes.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 100vh;
-	width: 100%;
-	background-attachment: fixed;
+  background-image: url('https://cdn.oneesports.gg/cdn-data/2022/03/Dota2_ClashofHeroes.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
 }
 
 .flex-text {
-	display: flex;
-	justify-content: left;
-	text-align: center;
-	align-items: center;
+  display: flex;
+  justify-content: left;
+  text-align: center;
+  align-items: center;
 }
 
 .main-container {
-	border-radius: 10px;
-	background-color: var(--dark-background);
+  border-radius: 10px;
+  background-color: var(--dark-background);
 }
 
 .live-button {
-	background-color: var(--live-button-background);
-	color: white;
-	margin-left: 60px;
-	margin-right: 60px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	text-decoration: none;
-	border-radius: 7px;
+  background-color: var(--live-button-background);
+  color: white;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-decoration: none;
+  border-radius: 7px;
 }
 
 .live-button:hover {
-	color: #ceac4d;
+  color: #ceac4d;
 }
 
 .live-button:active {
-	box-shadow: 0px 0px 5px black;
+  box-shadow: 0px 0px 5px black;
 }
 
 .light-mode-body {
-	background-color: white;
+  background-color: white;
 }
 
 .light-mode-main {
-	background-color: var(--light-background);
-	border-color: #252c38;
+  background-color: var(--light-background);
+  border-color: #252c38;
 }
 
 .light-mode-text {
-	color: var(--lightmode-text);
+  color: var(--lightmode-text);
 }
 
 .light-mode-header {
-	color: var(--lightmode-text);
-	background-color: var(--light-background);
-	border-radius: 25px;
-	box-shadow: -2px 3px 0px 0px var(--light-background), 0 6px 20px 0 var(--light-background);
-	font-family: var(--heading-font);
-	font-weight: bold;
+  color: var(--lightmode-text);
+  background-color: var(--light-background);
+  border-radius: 25px;
+  box-shadow: -2px 3px 0px 0px var(--light-background), 0 6px 20px 0 var(--light-background);
+  font-family: var(--heading-font);
+  font-weight: bold;
 }
 
 .main-header {
-	--bs-text-opactiy: 1;
-	color: var(--darkmode-text, var(--bs-text-opactiy));
-	background-color: var(--dark-background);
-	border-radius: 25px;
-	box-shadow: -2px 3px 0px 0px var(--dark-background), 0 6px 20px 0 var(--dark-background);
-	font-family: var(--heading-font);
-	font-weight: bold;
+  --bs-text-opactiy: 1;
+  color: var(--darkmode-text, var(--bs-text-opactiy));
+  background-color: var(--dark-background);
+  border-radius: 25px;
+  box-shadow: -2px 3px 0px 0px var(--dark-background), 0 6px 20px 0 var(--dark-background);
+  font-family: var(--heading-font);
+  font-weight: bold;
 }
 
 .main-text {
-	--bs-text-opactiy: 1;
-	color: var(--darkmode-text, var(--bs-text-opactiy));
+  --bs-text-opactiy: 1;
+  color: var(--darkmode-text, var(--bs-text-opactiy));
 }
 
 .header-logo {
-	display: flex;
-	height: 141px;
-	width: 193px;
-	background-image: url('../images/TF_Logo_Dark.png');
-	border-radius: 10px;
-	background-repeat: no-repeat;
-	background-position: left;
+  display: flex;
+  height: 141px;
+  width: 193px;
+  background-image: url('../images/TF_Logo_Dark.png');
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: left;
 }
 
 .light-mode-header-logo {
-	display: flex;
-	height: 141px;
-	width: 193px;
-	background-image: url('../images/TF_Logo_Light.png');
-	border-radius: 10px;
-	background-repeat: no-repeat;
-	background-position: left;
+  display: flex;
+  height: 141px;
+  width: 193px;
+  background-image: url('../images/TF_Logo_Light.png');
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: left;
 }
 
 .team-name-top {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.team-icon>img {
-	display: inline;
-	height: 50px;
-	width: 70px;
+.team-icon > img {
+  display: inline;
+  height: 50px;
+  width: 70px;
 }
 
 /* Trying to incorporate a light and dark mode for the tables */
@@ -188,54 +187,55 @@ ul {
 } */
 
 .main-table {
-	background-color: black;
-	color: var(--darkmode-text);
+  background-color: black;
+  color: var(--darkmode-text);
 }
 
-.main-table tbody>tr:hover {
-	background-color: #1F2022;
-	color: #a9a9a9
+.main-table tbody > tr:hover {
+  background-color: #1f2022;
+  color: #a9a9a9;
 }
 
 .light-mode-table {
-	background-color: #1f6aa3;
-	color: var(--lightmode-text);
+  background-color: #1f6aa3;
+  color: var(--lightmode-text);
 }
 
-.light-mode-table tbody>tr:hover {
-	background-color: #0000d8;
-	color: #a9a9a9;
+.light-mode-table tbody > tr:hover {
+  background-color: #0000d8;
+  color: #a9a9a9;
 }
 
-thead, tbody {
-	border-width: var(--table-border-width);
-	border-color: var(--table-dark-border-color);
-	border-style: var(--table-border-style);
-	text-align: center;
+thead,
+tbody {
+  border-width: var(--table-border-width);
+  border-color: var(--table-dark-border-color);
+  border-style: var(--table-border-style);
+  text-align: center;
 }
 
 .chart-border {
-	border-width: var(--table-border-width);
-	border-color: var(--table-dark-border-color);
-	border-style: var(--table-border-style);
+  border-width: var(--table-border-width);
+  border-color: var(--table-dark-border-color);
+  border-style: var(--table-border-style);
 }
 
 .left-col-right-border {
-	border-right-width: var(--table-border-width);
-	border-right-color: var(--table-dark-border-color);
-	border-right-style: var(--table-border-style);
+  border-right-width: var(--table-border-width);
+  border-right-color: var(--table-dark-border-color);
+  border-right-style: var(--table-border-style);
 }
 
 .ELO-comparison-heading {
-	background-color: black;
+  background-color: black;
 }
 
 .light-mode-ELO-comparison-heading {
-	background-color: #1f6aa3;
+  background-color: #1f6aa3;
 }
 
 #eloChart {
-	margin: 0 auto;
-	height: 560px;
-	width: 100%;
+  margin: 0 auto;
+  height: 560px;
+  width: 100%;
 }
