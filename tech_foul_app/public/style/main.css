@@ -244,11 +244,11 @@ tbody {
   border-right-style: var(--table-border-style);
 }
 
-.ELO-comparison-heading {
+.chart-styling {
   background-color: black;
 }
 
-.light-mode-ELO-comparison-heading {
+.light-mode-chart-styling {
   background-color: #1f6aa3;
 }
 
