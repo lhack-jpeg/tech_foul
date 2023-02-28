@@ -12,7 +12,7 @@ mongoDB = get_mongoDB()
 matches_collection = mongoDB["matches"]
 # Get current datetime as timestamp
 current_datetime = datetime.now()
-time_difference = timedelta(hours=5)
+time_difference = timedelta(hours=3)
 
 
 if __name__ == "__main__":
