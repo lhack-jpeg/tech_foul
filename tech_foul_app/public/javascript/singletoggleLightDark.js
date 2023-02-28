@@ -20,11 +20,13 @@ function domloaded () {
     const headingTableSwitch = document.querySelectorAll('.main-table');
     const ELOcomparisonheadingSwitch = document.querySelectorAll('.ELO-comparison-heading');
     const logoMainSwitch = document.querySelectorAll('.header-logo');
+    const longlogoMainSwitch = document.querySelectorAll('.long-logo');
     const textLightSwitch = document.querySelectorAll('.light-mode-text');
     const headerLightSwitch = document.querySelectorAll('.light-mode-header');
     const headingTableLightSwitch = document.querySelectorAll('.light-mode-table');
     const ELOcomparisonheadingLightSwitch = document.querySelectorAll('.light-mode-ELO-comparison-heading');
     const logoLightSwitch = document.querySelectorAll('.light-mode-header-logo');
+    const longlogoLightSwitch = document.querySelectorAll('.light-mode-long-logo');
     const chart = new CanvasJS.Chart('chartContainer', {
       backgroundColor: 'black',
       legend: {
@@ -133,6 +135,8 @@ function domloaded () {
         iterateChangeElement(ELOcomparisonheadingLightSwitch, 'light-mode-ELO-comparison-heading', 'ELO-comparison-heading');
         iterateChangeElement(logoMainSwitch, 'light-mode-header-logo', 'header-logo');
         iterateChangeElement(logoLightSwitch, 'light-mode-header-logo', 'header-logo');
+        iterateChangeElement(longlogoMainSwitch, 'light-mode-long-logo', 'long-logo');
+        iterateChangeElement(longlogoLightSwitch, 'light-mode-long-logo', 'long-logo');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: 'black',
           legend: {
@@ -238,6 +242,8 @@ function domloaded () {
         iterateChangeElement(ELOcomparisonheadingLightSwitch, 'ELO-comparison-heading', 'light-mode-ELO-comparison-heading');
         iterateChangeElement(logoMainSwitch, 'header-logo', 'light-mode-header-logo');
         iterateChangeElement(logoLightSwitch, 'header-logo', 'light-mode-header-logo');
+        iterateChangeElement(longlogoMainSwitch, 'long-logo', 'light-mode-long-logo');
+        iterateChangeElement(longlogoLightSwitch, 'long-logo', 'light-mode-long-logo');
         console.log('Unchecked');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: '#1f6aa3',

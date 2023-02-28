@@ -6,9 +6,11 @@ window.onload = () => {
   const textMainSwitch = document.querySelectorAll('.main-text');
   const headerMainSwitch = document.querySelectorAll('.main-header');
   const logoMainSwitch = document.querySelectorAll('.header-logo');
+  const longlogoMainSwitch = document.querySelectorAll('.long-logo');
   const textLightSwitch = document.querySelectorAll('.light-mode-text');
   const headerLightSwitch = document.querySelectorAll('.light-mode-header');
   const logoLightSwitch = document.querySelectorAll('.light-mode-header-logo');
+  const longlogoLightSwitch = document.querySelectorAll('.light-mode-long-logo');
   toggleMode.addEventListener('click', function () {
     console.log({ toggleMode });
     if (toggleMode.checked) {
@@ -29,6 +31,8 @@ window.onload = () => {
       );
       iterateChangeElement(logoMainSwitch, 'light-mode-header-logo', 'header-logo');
       iterateChangeElement(logoLightSwitch, 'light-mode-header-logo', 'header-logo');
+      iterateChangeElement(longlogoMainSwitch, 'light-mode-long-logo', 'long-logo');
+      iterateChangeElement(longlogoLightSwitch, 'light-mode-long-logo', 'long-logo');
     } else {
       body_element.classList.toggle('light-mode-body');
       main_element.classList.toggle('light-mode-main');
@@ -46,6 +50,8 @@ window.onload = () => {
       );
       iterateChangeElement(logoMainSwitch, 'header-logo', 'light-mode-header-logo');
       iterateChangeElement(logoLightSwitch, 'header-logo', 'light-mode-header-logo');
+      iterateChangeElement(longlogoMainSwitch, 'long-logo', 'light-mode-long-logo');
+      iterateChangeElement(longlogoLightSwitch, 'long-logo', 'light-mode-long-logo');
       console.log('Unchecked');
     }
   });
