@@ -54,9 +54,8 @@ class MatchSchedulerSpider(scrapy.Spider):
             )
             match_item["epoch_time"] = match_item["start_time"]
             match_item["tournament"] = game_time.xpath(
-                ".//td/div/div/a/@title"
+                ".//td/div/div/a/text()"
             ).get()
-            match_item["tournament"] = match_item["tournament"][:-2]
 
             if match_item["match_format"] is None:
                 pass
