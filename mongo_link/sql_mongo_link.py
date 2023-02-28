@@ -157,9 +157,4 @@ if __name__ == "__main__":
             del match["team_two"]["rich_info"]
             del match["team_two"]["match_ids"]
             del match["team_one"]["match_ids"]
-            print(
-                match.keys(),
-                match["team_one"].items(),
-                match["team_two"].items(),
-            )
             mongo_matches.insert_one(match)
