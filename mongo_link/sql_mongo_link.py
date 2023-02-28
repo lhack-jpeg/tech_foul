@@ -127,6 +127,9 @@ def get_stats(matches_dict):
                     first_blood_binary += player["firstblood_claimed"]
         first_bloods.append(first_blood_binary)
     team_dict["avg_match_time"] = sum(match_duration) / 10
+    match_seconds = team_dict['avg_match_time'] % (24 * 3600)
+    match_minutes = match_seconds // 60
+    team_dict["avg_match_time"] = "%02d:%02d" % (match_minutes, match_seconds)
     team_dict["avg_score"] = sum(average_score) / 10
     team_dict["first_blood_pct"] = sum(first_bloods) / 10
     team_dict["prev_form"] = prev_performance
