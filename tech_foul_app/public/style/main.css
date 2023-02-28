@@ -148,8 +148,8 @@ ul {
 
 .header-logo {
   display: flex;
-  height: 141px;
-  width: 193px;
+  height: 70px;
+  width: 98px;
   background-image: url('../images/TF_Logo_Dark.png');
   border-radius: 10px;
   background-repeat: no-repeat;
@@ -158,12 +158,30 @@ ul {
 
 .light-mode-header-logo {
   display: flex;
-  height: 141px;
-  width: 193px;
+  height: 70px;
+  width: 98px;
   background-image: url('../images/TF_Logo_Light.png');
   border-radius: 10px;
   background-repeat: no-repeat;
   background-position: left;
+}
+
+.long-logo {
+	height: 90px;
+	width: 400px;
+	background-image: url('../images/Long_Logo_Dark.png');
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.light-mode-long-logo {
+	height: 90px;
+	width: 400px;
+	background-image: url('../images/Long_Logo_Light.png');
+	border-radius: 10px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .team-name-top {
@@ -226,11 +244,11 @@ tbody {
   border-right-style: var(--table-border-style);
 }
 
-.ELO-comparison-heading {
+.chart-styling {
   background-color: black;
 }
 
-.light-mode-ELO-comparison-heading {
+.light-mode-chart-styling {
   background-color: #1f6aa3;
 }
 

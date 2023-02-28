@@ -18,13 +18,15 @@ function domloaded () {
     const textMainSwitch = document.querySelectorAll('.main-text');
     const headerMainSwitch = document.querySelectorAll('.main-header');
     const headingTableSwitch = document.querySelectorAll('.main-table');
-    const ELOcomparisonheadingSwitch = document.querySelectorAll('.ELO-comparison-heading');
+    const chartstylingSwitch = document.querySelectorAll('.chart-styling');
     const logoMainSwitch = document.querySelectorAll('.header-logo');
+    const longlogoMainSwitch = document.querySelectorAll('.long-logo');
     const textLightSwitch = document.querySelectorAll('.light-mode-text');
     const headerLightSwitch = document.querySelectorAll('.light-mode-header');
     const headingTableLightSwitch = document.querySelectorAll('.light-mode-table');
-    const ELOcomparisonheadingLightSwitch = document.querySelectorAll('.light-mode-ELO-comparison-heading');
+    const chartstylingLightSwitch = document.querySelectorAll('.light-mode-chart-styling');
     const logoLightSwitch = document.querySelectorAll('.light-mode-header-logo');
+    const longlogoLightSwitch = document.querySelectorAll('.light-mode-long-logo');
     const chart = new CanvasJS.Chart('chartContainer', {
       backgroundColor: 'black',
       legend: {
@@ -129,10 +131,12 @@ function domloaded () {
         );
         iterateChangeElement(headingTableSwitch, 'light-mode-table', 'main-table');
         iterateChangeElement(headingTableLightSwitch, 'light-mode-table', 'main-table');
-        iterateChangeElement(ELOcomparisonheadingSwitch, 'light-mode-ELO-comparison-heading', 'ELO-comparison-heading');
-        iterateChangeElement(ELOcomparisonheadingLightSwitch, 'light-mode-ELO-comparison-heading', 'ELO-comparison-heading');
+        iterateChangeElement(chartstylingSwitch, 'light-mode-chart-styling', 'chart-styling');
+        iterateChangeElement(chartstylingLightSwitch, 'light-mode-chart-styling', 'chart-styling');
         iterateChangeElement(logoMainSwitch, 'light-mode-header-logo', 'header-logo');
         iterateChangeElement(logoLightSwitch, 'light-mode-header-logo', 'header-logo');
+        iterateChangeElement(longlogoMainSwitch, 'light-mode-long-logo', 'long-logo');
+        iterateChangeElement(longlogoLightSwitch, 'light-mode-long-logo', 'long-logo');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: 'black',
           legend: {
@@ -234,10 +238,12 @@ function domloaded () {
         );
         iterateChangeElement(headingTableSwitch, 'main-table', 'light-mode-table');
         iterateChangeElement(headingTableLightSwitch, 'main-table', 'light-mode-table');
-        iterateChangeElement(ELOcomparisonheadingSwitch, 'ELO-comparison-heading', 'light-mode-ELO-comparison-heading');
-        iterateChangeElement(ELOcomparisonheadingLightSwitch, 'ELO-comparison-heading', 'light-mode-ELO-comparison-heading');
+        iterateChangeElement(chartstylingSwitch, 'chart-styling', 'light-mode-chart-styling');
+        iterateChangeElement(chartstylingLightSwitch, 'chart-styling', 'light-mode-chart-styling');
         iterateChangeElement(logoMainSwitch, 'header-logo', 'light-mode-header-logo');
         iterateChangeElement(logoLightSwitch, 'header-logo', 'light-mode-header-logo');
+        iterateChangeElement(longlogoMainSwitch, 'long-logo', 'light-mode-long-logo');
+        iterateChangeElement(longlogoLightSwitch, 'long-logo', 'light-mode-long-logo');
         console.log('Unchecked');
         var chart = new CanvasJS.Chart('chartContainer', {
           backgroundColor: '#1f6aa3',
