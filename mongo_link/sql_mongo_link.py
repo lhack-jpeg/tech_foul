@@ -46,6 +46,7 @@ def get_team_rating(team_id):
         .first()
     )
     if team_rating is None:
+        # If team is not in top 100 daily, get latest rating from API
         team_stats = get_api_rating(team_id)
     else:
         team_stats = {}
@@ -101,12 +102,17 @@ def get_stats(matches_dict):
     team_dict = {}
     team_id = matches_dict["team_id"]
     team_dict.update(get_team_rating(team_id))
+    # Win loss record
     prev_performance = ""
+    # Match duration
     match_duration = []
+    # Average kills per game
     average_score = []
+    # First blood count
     first_bloods = []
     matches = matches_dict["rich_info"]
     matches.reverse()
+    # Flag determines if radiant or dire team
     flag = False
     for match in matches:
         match_duration.append(match.get("duration"))
