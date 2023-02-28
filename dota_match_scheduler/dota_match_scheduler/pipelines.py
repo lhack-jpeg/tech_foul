@@ -9,6 +9,7 @@ from itemadapter import ItemAdapter
 from dota_match_scheduler.models import db_connect, Match, Team, MyEnum
 from sqlalchemy.orm import sessionmaker
 from scrapy.exceptions import DropItem
+from sqlalchemy import desc
 from hashlib import md5
 
 
@@ -86,11 +87,13 @@ class DuplicatesPipelines(object):
         team_2_id = (
             session.query(Team.id)
             .filter(Team.name == item["team_right"])
+            .order_by(desc(Team.id))
             .first()
         )
         team_1_id = (
             session.query(Team.id)
             .filter(Team.name == item["team_left"])
+            .order_by(desc(Team.id))
             .first()
         )
         session.close()
