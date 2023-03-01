@@ -27,8 +27,8 @@ if __name__ == "__main__":
         match_time_5_hours = match_time + time_difference
         # Check if greater than 5 hours difference
         if current_datetime > match_time_5_hours:
+            matches_collection["matches"].delete_one({"match_id": match.id})
             new_object = session.merge(match)
             print(match.id)
             session.delete(new_object)
             session.commit()
-            matches_collection.delete_one({"match_id": match.id})
