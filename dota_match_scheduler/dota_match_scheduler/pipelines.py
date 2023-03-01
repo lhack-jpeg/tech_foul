@@ -8,6 +8,7 @@
 from itemadapter import ItemAdapter
 from dota_match_scheduler.models import db_connect, Match, Team, MyEnum
 from sqlalchemy.orm import sessionmaker
+from get_team_or_match import get_team_id, get_match_id
 from scrapy.exceptions import DropItem
 from sqlalchemy import desc
 from hashlib import md5
@@ -34,24 +35,15 @@ class SaveMatchesPipeline(object):
         match = Match()
 
         match.team_one = item["team_left"]
-        team_1_id = (
-            session.query(Team.id)
-            .filter(Team.name == item["team_left"])
-            .first()
-        )
-        match.team_one_id = team_1_id[0]
+        match.team_one_id = get_team_id(match.team_one)
         match.team_two = item["team_right"]
-        team_2_id = (
-            session.query(Team.id)
-            .filter(Team.name == item["team_right"])
-            .first()
-        )
-        match.team_two_id = team_2_id[0]
+        match.team_two_id = get_team_id(match.team_two)
         match.match_time = item["start_time"]
         match.epoch_time = item["epoch_time"]
         match.match_format = item["match_format"]
         match.tournament_name = item["tournament"]
-        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode()
+        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode(
+        )
         match_id = md5(match_id)
         match_id = str(match_id.hexdigest())
         match.id = match_id
@@ -62,6 +54,29 @@ class SaveMatchesPipeline(object):
         session.commit()
         session.close()
         return item
+
+
+class UpdatePipeline(object):
+    '''
+    This pipeline checks to see if the same match exists but a different time.
+    '''
+
+    def __init__(self):
+        '''
+        Initialise pipeline
+        '''
+        engine = db_connect()
+        self.Session = sessionmaker(bind=engine)
+
+    def process_item(self, item, spider):
+        '''
+        queries the database, and checks if the match has the same teams, league, match_format
+        if true, updates the start time with the new time else will pass.
+        '''
+        session = self.Session()
+        team_one_id = get_team_id(item['team_left'])
+        team_two_id = get_team_id(item['team_right'])
+        check_match = session.query(Match).filter(Team)
 
 
 class DuplicatesPipelines(object):
@@ -77,13 +92,15 @@ class DuplicatesPipelines(object):
         self.Session = sessionmaker(bind=engine)
 
     def process_item(self, item, spider):
+        '''
+        Checks to see if match already exists, if true then item is dropped.
+        '''
         session = self.Session()
-        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode()
+        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode(
+        )
         match_id = md5(match_id)
         match_id = str(match_id.hexdigest())
-        match_exists = (
-            session.query(Match.id).filter(Match.id == match_id).one_or_none()
-        )
+        match_exists = get_match_id(match_id)
         team_2_id = (
             session.query(Team.id)
             .filter(Team.name == item["team_right"])
