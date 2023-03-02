@@ -263,3 +263,7 @@ tbody {
 	border-radius: 5px;
 	margin-bottom: 50px;
 }
+
+.hover-footer::selection {
+	background-color: white;
+}
