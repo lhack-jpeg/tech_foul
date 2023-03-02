@@ -10,7 +10,7 @@ from dota_match_scheduler.models import db_connect, Match, Team, MyEnum
 from sqlalchemy.orm import sessionmaker
 from dota_match_scheduler.get_team_or_match import get_team_id, get_match_id
 from scrapy.exceptions import DropItem
-from sqlalchemy import desc
+from sqlalchemy import desc, update
 from dota_match_scheduler.create_match_id import create_match_id
 from dota_match_scheduler.mongo_db_connect import get_mongoDB
 
@@ -84,13 +84,20 @@ class UpdatePipeline(object):
         if check_match is None:
             return item
         check_match = check_match[0]
-        print(check_match.epoch_time)
+        print(check_match.epoch_time, check_match)
         print(check_match.epoch_time < item['epoch_time'])
         if check_match.epoch_time < item['epoch_time']:
+            new_id = get_match_id(item['team_left'], item['team_right'], item['start_time'])
             check_match.epoch_time = item['epoch_time']
+            matches_coll.find_one_and_update({'match_id': check_match.id},
+                                             {'$set': {'match_id': new_id}})
+            check_match.id = new_id
             session.commit()
-        session.close()
-        return item
+            raise DropItem('Updated Match Id')
+        else:
+            return item
+
+
 
 # Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
 
