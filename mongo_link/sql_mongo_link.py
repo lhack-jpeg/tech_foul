@@ -6,7 +6,8 @@ It then condenses it down to key metrics and stores it in a mongo database
 from sql_model import mysql_connect, Match, Team_rating, Team
 from sqlalchemy.orm import sessionmaker
 from get_team_logo import get_team_logo
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+import math
 from os import path, getenv
 from one_match import One_Match, get_api_rating
 from mongo_db_connect import get_mongoDB
@@ -126,10 +127,9 @@ def get_stats(matches_dict):
                 if player.get("firstblood_claimed") != None:
                     first_blood_binary += player["firstblood_claimed"]
         first_bloods.append(first_blood_binary)
-    team_dict["avg_match_time"] = sum(match_duration) / 10
-    match_seconds = team_dict['avg_match_time'] % (24 * 3600)
-    match_minutes = match_seconds // 60
-    team_dict["avg_match_time"] = f"{match_minutes}:{match_seconds:2f}"
+    team_dict["avg_match_time"] = math.floor(sum(match_duration) / 10)
+    seconds_convert = str(timedelta(seconds=team_dict['avg_match_time']))
+    team_dict["avg_match_time"] = seconds_convert
     team_dict["avg_score"] = sum(average_score) / 10
     team_dict["first_blood_pct"] = sum(first_bloods) / 10
     team_dict["prev_form"] = prev_performance
