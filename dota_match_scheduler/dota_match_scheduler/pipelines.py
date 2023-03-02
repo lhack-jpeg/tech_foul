@@ -80,9 +80,13 @@ class UpdatePipeline(object):
         check_match = session.query(Match).filter(
             Match.team_one_id == team_one_id,
             Match.team_one_id == team_two_id,
-            Match.tournament_name == tournament).first()
+            Match.tournament_name == tournament).one_or_none()
+        # if check_match is None:
+        #     return item
         check_match = check_match[0]
+        print(check_match.epoch_time < item['epoch_time'])
         if check_match.epoch_time < item['epoch_time']:
+            check_match = session.merge(check_match)
             check_match.epoch_time = item['epoch_time']
             check_match.start_time = item['start_time']
             new_match_id = create_match_id(
@@ -92,6 +96,8 @@ class UpdatePipeline(object):
             check_match.match_id = new_match_id
             session.commit()
         return item
+
+# Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column.  To disable safe mode, toggle the option in Preferences -> SQL Editor and reconnect.
 
 
 class DuplicatesPipelines(object):
