@@ -64,6 +64,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     "dota_match_scheduler.pipelines.DuplicatesPipelines": 100,
+    'dota_match_scheduler.pipelines.UpdatePipeline': 200,
     "dota_match_scheduler.pipelines.SaveMatchesPipeline": 400,
 }
 
