@@ -54,48 +54,48 @@ class SaveMatchesPipeline(object):
         return item
 
 
-class UpdatePipeline(object):
-    '''
-    This pipeline checks to see if the same match exists but a different time.
-    '''
+# class UpdatePipeline(object):
+#     '''
+#     This pipeline checks to see if the same match exists but a different time.
+#     '''
 
-    def __init__(self):
-        '''
-        Initialise pipeline
-        '''
-        engine = db_connect()
-        self.Session = sessionmaker(bind=engine)
-        self.MongoDB = get_mongoDB()
+#     def __init__(self):
+#         '''
+#         Initialise pipeline
+#         '''
+#         engine = db_connect()
+#         self.Session = sessionmaker(bind=engine)
+#         self.MongoDB = get_mongoDB()
 
-    def process_item(self, item, spider):
-        '''
-        queries the database, and checks if the match has the same teams, league, match_format
-        if true, updates the start time with the new time else will pass.
-        '''
-        session = self.Session()
-        matches_coll = self.MongoDB['matches']
-        team_one_id = get_team_id(item['team_left'])
-        team_two_id = get_team_id(item['team_right'])
-        tournament = item['tournament']
-        check_match = session.query(Match).filter(
-            Match.team_one_id == team_one_id,
-            Match.team_one_id == team_two_id,
-            Match.tournament_name == tournament).one_or_none()
-        if check_match is None:
-            return item
-        check_match = check_match[0]
-        print(check_match.epoch_time, check_match)
-        print(check_match.epoch_time < item['epoch_time'])
-        if check_match.epoch_time < item['epoch_time']:
-            new_id = get_match_id(item['team_left'], item['team_right'], item['start_time'])
-            check_match.epoch_time = item['epoch_time']
-            matches_coll.find_one_and_update({'match_id': check_match.id},
-                                             {'$set': {'match_id': new_id}})
-            check_match.id = new_id
-            session.commit()
-            raise DropItem('Updated Match Id')
-        else:
-            return item
+#     def process_item(self, item, spider):
+#         '''
+#         queries the database, and checks if the match has the same teams, league, match_format
+#         if true, updates the start time with the new time else will pass.
+#         '''
+#         session = self.Session()
+#         matches_coll = self.MongoDB['matches']
+#         team_one_id = get_team_id(item['team_left'])
+#         team_two_id = get_team_id(item['team_right'])
+#         tournament = item['tournament']
+#         check_match = session.query(Match).filter(
+#             Match.team_one_id == team_one_id,
+#             Match.team_one_id == team_two_id,
+#             Match.tournament_name == tournament).one_or_none()
+#         if check_match is None:
+#             return item
+#         check_match = check_match[0]
+#         print(check_match.epoch_time, check_match)
+#         print(check_match.epoch_time < item['epoch_time'])
+#         if check_match.epoch_time < item['epoch_time']:
+#             new_id = get_match_id(item['team_left'], item['team_right'], item['start_time'])
+#             check_match.epoch_time = item['epoch_time']
+#             matches_coll.find_one_and_update({'match_id': check_match.id},
+#                                              {'$set': {'match_id': new_id}})
+#             check_match.id = new_id
+#             session.commit()
+#             raise DropItem('Updated Match Id')
+#         else:
+#             return item
 
 
 
