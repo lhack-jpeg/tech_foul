@@ -32,5 +32,3 @@ if __name__ == "__main__":
             print(match.id)
             session.delete(new_object)
             session.commit()
-            
-
