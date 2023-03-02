@@ -8,11 +8,11 @@
 from itemadapter import ItemAdapter
 from dota_match_scheduler.models import db_connect, Match, Team, MyEnum
 from sqlalchemy.orm import sessionmaker
-from get_team_or_match import get_team_id, get_match_id
+from dota_match_scheduler.get_team_or_match import get_team_id, get_match_id
 from scrapy.exceptions import DropItem
 from sqlalchemy import desc
-from create_match_id import create_match_id
-from mongo_db_connect import get_mongoDB
+from dota_match_scheduler.create_match_id import create_match_id
+from dota_match_scheduler.mongo_db_connect import get_mongoDB
 
 
 class DotaMatchSchedulerPipeline:
