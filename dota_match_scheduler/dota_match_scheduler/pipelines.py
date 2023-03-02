@@ -11,7 +11,8 @@ from sqlalchemy.orm import sessionmaker
 from get_team_or_match import get_team_id, get_match_id
 from scrapy.exceptions import DropItem
 from sqlalchemy import desc
-from hashlib import md5
+from create_match_id import create_match_id
+from mongo_db_connect import get_mongoDB
 
 
 class DotaMatchSchedulerPipeline:
@@ -42,11 +43,8 @@ class SaveMatchesPipeline(object):
         match.epoch_time = item["epoch_time"]
         match.match_format = item["match_format"]
         match.tournament_name = item["tournament"]
-        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode(
-        )
-        match_id = md5(match_id)
-        match_id = str(match_id.hexdigest())
-        match.id = match_id
+        match.id = create_match_id(
+            item['team_left'], item['team_right'], item['start_time'])
 
         # ! check the sqlalchemy for league and return the id
 
@@ -67,6 +65,7 @@ class UpdatePipeline(object):
         '''
         engine = db_connect()
         self.Session = sessionmaker(bind=engine)
+        self.MongoDB = get_mongoDB()
 
     def process_item(self, item, spider):
         '''
@@ -74,9 +73,25 @@ class UpdatePipeline(object):
         if true, updates the start time with the new time else will pass.
         '''
         session = self.Session()
+        matches_coll = self.MongoDB['matches']
         team_one_id = get_team_id(item['team_left'])
         team_two_id = get_team_id(item['team_right'])
-        check_match = session.query(Match).filter(Team)
+        tournament = item['tournament']
+        check_match = session.query(Match).filter(
+            Match.team_one_id == team_one_id,
+            Match.team_one_id == team_two_id,
+            Match.tournament_name == tournament).first()
+        check_match = check_match[0]
+        if check_match.epoch_time < item['epoch_time']:
+            check_match.epoch_time = item['epoch_time']
+            check_match.start_time = item['start_time']
+            new_match_id = create_match_id(
+                item['team_left'], item['team_right'], item['start_time'])
+            matches_coll.find_one_and_update({'match_id': check_match.id},
+                                             {'$set': {'match_id': new_match_id}})
+            check_match.match_id = new_match_id
+            session.commit()
+        return item
 
 
 class DuplicatesPipelines(object):
@@ -96,10 +111,8 @@ class DuplicatesPipelines(object):
         Checks to see if match already exists, if true then item is dropped.
         '''
         session = self.Session()
-        match_id = f'{str(item["team_left"])}{str(item["team_right"])}{str(item["epoch_time"])}'.encode(
-        )
-        match_id = md5(match_id)
-        match_id = str(match_id.hexdigest())
+        match_id = create_match_id(
+            item['team_left'], item['team_right'], item['start_time'])
         match_exists = get_match_id(match_id)
         team_2_id = (
             session.query(Team.id)
