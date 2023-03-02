@@ -88,7 +88,6 @@ class UpdatePipeline(object):
         print(check_match.epoch_time < item['epoch_time'])
         if check_match.epoch_time < item['epoch_time']:
             check_match.epoch_time = item['epoch_time']
-            check_match.start_time = item['start_time']
             session.commit()
         session.close()
         return item
