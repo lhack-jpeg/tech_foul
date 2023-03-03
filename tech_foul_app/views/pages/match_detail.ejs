@@ -1,192 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<%- include('../partials/singleMatch') %> <%- include('../partials/head'); %>
+	</head>
 
-<head>
-  <%- include('../partials/singleMatch') %> <%- include('../partials/head'); %>
-</head>
+	<body class="container bg-image" id="body-light">
+		<header><%- include('../partials/header'); %></header>
 
-<body class="container bg-image" id="body-light">
-  <header><%- include('../partials/header'); %></header>
+		<!-- Set id to be match-main-light, still not switching around the css. Variables can be found in toggleLightDark.js -->
+		<main class="main-container" id="main-light">
+			<div class="row border-bottom border-secondary me-0 ms-0">
+				<%- include('../partials/currentDate'); %>
+				<div class="col d-flex justify-content-end">
+					<div class="d-flex light-mode-text main-text mt-1 mb-1 align-items-center justify-content-center">
+						Light/Dark Mode
+						<input class="align-items-center mt-1 mb-1 ms-2" type="checkbox" name="" id="darkmode-toggle" checked />
+					</div>
+				</div>
+			</div>
+			<div class="container-lg">
+				<div class="row">
+					<h2 class="d-flex justify-content-center main-text">
+						Match Date & Time: <%= (new Date(epoch * 1000)).toLocaleString('en-AU', { weekday: 'long' , day: 'numeric' ,
+						month: 'long' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric' , hour12: false })
+						%> AEDT
+					</h2>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<div class="table-responsive">
+							<table class="table main-table">
+								<thead>
+									<tr>
+										<th class="left-col-right-border">
+											<h2 class="d-flex my-3 justify-content-center" style="color: #0bc37b">Category</h2>
+										</th>
+										<th>
+											<h2 class="team-name-top" id="team-one-name" style="color: #32b7ff">
+												<% team_one.forEach(entry=> { %> <%= entry.name %> &nbsp;
+												<div class="team-icon">
+													<img src="<%= entry.logo %>" />
+												</div>
+												<% }); %>
+											</h2>
+										</th>
+										<th>
+											<h2 class="team-name-top" id="team-two-name" style="color: #ff6f95">
+												<% team_two.forEach(entry=> { %> <%= entry.name %> &nbsp;
+												<div class="team-icon">
+													<img src="<%= entry.logo %>" />
+												</div>
+												<% }); %>
+											</h2>
+										</th>
+									</tr>
+								</thead>
+								<tbody class="border-lights">
+									<tr>
+										<td class="left-col-right-border">Team ID</td>
+										<td id="teamOneID"><% team_one.forEach(entry=> { %><%= entry.team_id %> <% }); %></td>
+										<td id="teamTwoID"><% team_two.forEach(entry=> { %><%= entry.team_id %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">ELO</td>
+										<td id="team-one-elo">
+											<% team_one.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%' %> <% }); %>
+										</td>
+										<td id="team-two-elo">
+											<% team_two.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%' %> <% }); %>
+										</td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Team Rating</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.rating %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.rating %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Wins</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.wins %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.wins %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Losses</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.losses %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.losses %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Average Match Time</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.avg_match_time %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.avg_match_time %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Average Score</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.avg_score %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.avg_score %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">First Blood Percentage</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.first_blood_pct %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.first_blood_pct %> <% }); %></td>
+									</tr>
+									<tr>
+										<td class="left-col-right-border">Win/Loss Record</td>
+										<td><% team_one.forEach(entry=> { %><%= entry.prev_form %> <% }); %></td>
+										<td><% team_two.forEach(entry=> { %><%= entry.prev_form %> <% }); %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
-  <!-- Set id to be match-main-light, still not switching around the css. Variables can be found in toggleLightDark.js -->
-  <main class="main-container" id="main-light">
-    <div class="row border-bottom border-secondary me-0 ms-0">
-      <%- include('../partials/currentDate'); %>
-        <div class="col d-flex justify-content-end">
-          <div class="d-flex light-mode-text main-text mt-1 mb-1 align-items-center justify-content-center">
-            Light/Dark Mode
-            <input class="align-items-center mt-1 mb-1 ms-2" type="checkbox" name="" id="darkmode-toggle" checked />
-          </div>
-        </div>
-    </div>
-    <div class="container-lg">
-      <div class="row">
-        <h2 class="d-flex justify-content-center main-text">
-          Match Date & Time: <%= (new Date(epoch * 1000)).toLocaleString('en-AU', { weekday: 'long' , day: 'numeric' ,
-            month: 'long' , year: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric' , hour12: false })
-            %> AEDT
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <div class="table-responsive">
-            <table class="table main-table">
-              <thead>
-                <tr>
-                  <th class="left-col-right-border">
-                    <h2 class="d-flex my-3 justify-content-center" style="color: #0bc37b">Category</h2>
-                  </th>
-                  <th>
-                    <h2 class="team-name-top" id="team-one-name" style="color: #009ef2">
-                      <% team_one.forEach(entry=> { %> <%= entry.name %> &nbsp;
-                          <div class="team-icon">
-                            <img src="<%= entry.logo %>" />
-                          </div>
-                          <% }); %>
-                    </h2>
-                  </th>
-                  <th>
-                    <h2 class="team-name-top" id="team-two-name" style="color: #fc4c7c">
-                      <% team_two.forEach(entry=> { %> <%= entry.name %> &nbsp;
-                          <div class="team-icon">
-                            <img src="<%= entry.logo %>" />
-                          </div>
-                          <% }); %>
-                    </h2>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="border-lights">
-                <tr>
-                  <td class="left-col-right-border">Team ID</td>
-                  <td id="teamOneID">
-                    <% team_one.forEach(entry=> { %><%= entry.team_id %>
-                        <% }); %>
-                  </td>
-                  <td id="teamTwoID">
-                    <% team_two.forEach(entry=> { %><%= entry.team_id %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">ELO</td>
-                  <td id="team-one-elo">
-                    <% team_one.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%' %>
-                        <% }); %>
-                  </td>
-                  <td id="team-two-elo">
-                    <% team_two.forEach(entry=> { %><%= Math.round((entry.elo_win_pct) * 100) + '%' %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Team Rating</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.rating %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.rating %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Wins</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.wins %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.wins %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Losses</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.losses %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.losses %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Average Match Time</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.avg_match_time %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.avg_match_time %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Average Score</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.avg_score %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.avg_score %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">First Blood Percentage</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.first_blood_pct %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.first_blood_pct %>
-                        <% }); %>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="left-col-right-border">Win/Loss Record</td>
-                  <td>
-                    <% team_one.forEach(entry=> { %><%= entry.prev_form %>
-                        <% }); %>
-                  </td>
-                  <td>
-                    <% team_two.forEach(entry=> { %><%= entry.prev_form %>
-                        <% }); %>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+				<div class="row chart-border mx-auto pt-2 chart-styling">
+					<h2 class="text-center main-text">Team Elo Comparison</h2>
+					<div id="chartContainer" style="height: 320px; width: 99%; margin-left: -0.5em">
+						<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+					</div>
+				</div>
+				<div class="row my-2"></div>
+				<div class="row chart-border mx-auto pt-2 pb-3 chart-styling">
+					<h2 class="text-center main-text">Team Elo ratings</h2>
+					<div id="chart-wrapper" class="row">
+						<div class="col-6">
+							<canvas id="eloChartTeamOne"></canvas>
+						</div>
+						<div class="col-6">
+							<canvas id="eloChartTeamTwo"></canvas>
+						</div>
+						<script src="/javascript/eloChart.js"></script>
+					</div>
+				</div>
+				<div class="row my-3"></div>
+			</div>
+		</main>
 
-      <div class="row chart-border mx-auto pt-2 chart-styling">
-        <h2 class="text-center main-text">Team Elo Comparison</h2>
-        <div id="chartContainer" style="height: 320px; width: 99%; margin-left: -0.5em">
-          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        </div>
-      </div>
-      <div class="row my-2"></div>
-      <div class="row chart-border mx-auto pt-2 pb-3 chart-styling">
-        <h2 class="text-center main-text">Team Elo ratings</h2>
-        <div id="chart-wrapper" class="row">
-          <div class="col-6">
-            <canvas id="eloChartTeamOne"></canvas>
-          </div>
-          <div class="col-6">
-            <canvas id="eloChartTeamTwo"></canvas>
-          </div>
-          <script src="/javascript/eloChart.js"></script>
-        </div>
-      </div>
-      <div class="row my-3"></div>
-    </div>
-  </main>
-
-  <footer><%- include('../partials/footer'); %></footer>
-  <script src="/javascript/imageReloader.js"></script>
-</body>
-
+		<footer><%- include('../partials/footer'); %></footer>
+		<script src="/javascript/imageReloader.js"></script>
+	</body>
 </html>
