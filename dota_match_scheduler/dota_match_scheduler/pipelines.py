@@ -43,7 +43,7 @@ class SaveMatchesPipeline(object):
         match.match_format = item["match_format"]
         match.tournament_name = item["tournament"]
         match.id = create_match_id(
-            item['team_left'], item['team_right'], item['start_time'])
+            item['team_left'], item['team_right'], item['tournament'])
 
         # ! check the sqlalchemy for league and return the id
 
@@ -77,13 +77,11 @@ class DuplicatesPipelines(object):
         team_2_id = (
             session.query(Team.id)
             .filter(Team.name == item["team_right"])
-            .order_by((Team.id.desc()))
             .first()
         )
         team_1_id = (
             session.query(Team.id)
             .filter(Team.name == item["team_left"])
-            .order_by((Team.id.desc()))
             .first()
         )
         # If team name doesn't return an ID, item wil,be dropped.
@@ -98,14 +96,11 @@ class DuplicatesPipelines(object):
             raise DropItem(f"Can not access id")
 
         if match_exists is not None:
-            raise DropItem(f"Duplicate match exists {match_id}")
             if match_exists.epoch_time < item['epoch_time']:
                 match_exists.epoch_time = item['epoch_time']
                 match_exists.start_time = item['start_time']
                 session.commit()
-                mongo_matches.update_one(
-                    {'match_id': match_exists.id},
-                    {'$set': {'epoch_time': item['epoch_time']}})
-            session.close()
+                session.close()
+            raise DropItem(f"Duplicate match exists {match_id}")
         else:
             return item

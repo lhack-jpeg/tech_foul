@@ -23,6 +23,9 @@ def get_match_id(match_id):
     '''
     Take a match_id and queries the database. Returns one or None.
     '''
-    match_row = session.query(Match.id).filter(
+    print('---------------------------------------')
+    print(f'match_id is {match_id}')
+    match_row = session.query(Match).filter(
         Match.id == match_id).one_or_none()
+    print(f'inside match_id function {match_row}')
     return match_row
