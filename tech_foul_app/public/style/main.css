@@ -8,7 +8,7 @@
 	--live-button-background: #a4230d;
 	--lightmode-text: rgb(0, 0, 0);
 	--darkmode-text: rgba(248, 249, 250);
-	--heading-font: constantia;
+	--team-name-font: 'Orbitron', sans-serif;
 	--table-dark-border-color: white;
 	--table-border-style: ridge;
 	--table-border-width: 4px;
@@ -120,25 +120,6 @@ ul {
 
 .light-mode-text {
 	color: var(--lightmode-text);
-}
-
-.light-mode-header {
-	color: var(--lightmode-text);
-	background-color: var(--light-background);
-	border-radius: 25px;
-	box-shadow: -2px 3px 0px 0px var(--light-background), 0 6px 20px 0 var(--light-background);
-	font-family: var(--heading-font);
-	font-weight: bold;
-}
-
-.main-header {
-	--bs-text-opactiy: 1;
-	color: var(--darkmode-text, var(--bs-text-opactiy));
-	background-color: var(--dark-background);
-	border-radius: 25px;
-	box-shadow: -2px 3px 0px 0px var(--dark-background), 0 6px 20px 0 var(--dark-background);
-	font-family: var(--heading-font);
-	font-weight: bold;
 }
 
 .main-text {
@@ -266,4 +247,10 @@ tbody {
 
 .hover-footer::selection {
 	background-color: white;
+}
+
+.team-font {
+	font-family: var(--team-name-font);
+	font-weight: bold;
+	font-size: larger;
 }
