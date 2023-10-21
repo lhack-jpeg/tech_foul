@@ -28,11 +28,9 @@ else:
 
 headers = {"api_key": API_KEY}
 
-
 def get_sql_matches():
     """returns all matches from MySQL Database"""
     return session.query(Match)
-
 
 def get_team_rating(team_id):
     """
