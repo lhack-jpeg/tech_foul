@@ -142,8 +142,9 @@ if __name__ == "__main__":
     mongoDB = get_mongoDB()
     mongo_matches = mongoDB["matches"]
     for match in matches:
-        print(match.id)
+        print("Match ID: ", match.id)
         if mongo_matches.find_one({"match_id": match.id}) is not None:
+            print(f'Match already exists in Collection: {match.id}')
             pass
         else:
             match = create_match_list(match)
@@ -161,3 +162,4 @@ if __name__ == "__main__":
             del match["team_two"]["match_ids"]
             del match["team_one"]["match_ids"]
             mongo_matches.insert_one(match)
+            print(f'Created mongo object for match {match.id}')
